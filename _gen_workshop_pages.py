@@ -9,7 +9,7 @@ headbits = s[s.index('<title>'):s.index('<style>')]
 style = s[s.index('<style>'):s.index('</style>') + 8]
 header = s[s.index('<header class="nav"'):s.index('<section class="hero"')]
 footer = s[s.index('<footer>'):s.index('</footer>') + 9]
-for a in ['#workshops', '#calendar', '#studio', '#visit', '#faq', '#contact', '#top', '#projects']:
+for a in ['#experiences', '#calendar', '#studio', '#visit', '#faq', '#contact', '#top', '#projects']:
     header = header.replace(f'href="{a}"', f'href="index.html{a}"')
     footer = footer.replace(f'href="{a}"', f'href="index.html{a}"')
 # pull the booking email templates from index.html so there is one source of truth
@@ -136,7 +136,7 @@ CSS = '''<style>
 BODY = '''
 <main class="pd" id="top">
   <div class="wrap">
-    <nav class="crumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="index.html#workshops">Experiences</a><span>/</span><span id="crumbName"></span></nav>
+    <nav class="crumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="index.html#experiences">Experiences</a><span>/</span><span id="crumbName"></span></nav>
     <div class="picker" id="picker" hidden></div>
     <div class="pd-grid">
       <div class="media">

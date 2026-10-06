@@ -540,7 +540,7 @@
     <a href="#top" class="brand-logo" aria-label="Prowell WoodSkills home"><img src="images/brand/logo.webp" alt="Prowell WoodSkills" width="900" height="283"></a>
     <nav class="links" aria-label="Main">
       <a href="#top">Home</a>
-      <a href="#workshops">Experiences</a>
+      <a href="#experiences">Experiences</a>
       <a href="#calendar">Calendar</a>
       <a href="#studio">The studio</a>
       <a href="#visit">Visit</a>
@@ -554,7 +554,7 @@
 </header>
 <div class="mobile-menu" id="mobileMenu">
   <a href="#top">Home</a>
-  <a href="#workshops">Experiences</a>
+  <a href="#experiences">Experiences</a>
   <a href="#calendar">Calendar</a>
   <a href="#studio">The studio</a>
   <a href="#visit">Visit</a>
@@ -572,7 +572,7 @@
       <p class="lede">Hands-on woodworking experiences for kids and adults. Holiday experiences, birthday parties and group sessions in our professional woodworking studio in Paarl, where everyone walks out with something they built themselves.</p>
       <div class="hero-ctas">
         <a href="#calendar" class="btn btn-primary">See holiday dates</a>
-        <a href="#workshops" class="btn btn-outline">See all experiences</a>
+        <a href="#experiences" class="btn btn-outline">See all experiences</a>
       </div>
       <ul class="hero-stats">
         <li><span class="check">&#10003;</span>No experience needed</li>
@@ -590,12 +590,12 @@
 
 <section class="who">
   <div class="wrap who-grid">
-    <a class="who-card" href="#workshops" data-jump="Kids">
+    <a class="who-card" href="#experiences" data-jump="Kids">
       <span class="who-ico">8+</span>
       <div><h3>For kids</h3><p>Holiday experiences and birthday parties, ages 8 to 16</p></div>
       <span class="arrow">&rarr;</span>
     </a>
-    <a class="who-card" href="#workshops" data-jump="Adults">
+    <a class="who-card" href="#experiences" data-jump="Adults">
       <span class="who-ico">5–8</span>
       <div><h3>For adults &amp; families</h3><p>Craft Together sessions for families, friends and teams</p></div>
       <span class="arrow">&rarr;</span>
@@ -603,7 +603,7 @@
   </div>
 </section>
 
-<section id="workshops">
+<section id="experiences">
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">Our experiences</span>
@@ -1091,3 +1091,4 @@ if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: red
   document.querySelectorAll('.reveal').forEach(el=>{if(el.getBoundingClientRect().top>innerHeight){el.classList.add('pre');io.observe(el);}});
 }
 </script>
+<script>if(location.hash==="#workshops"){history.replaceState(null,"","#experiences");document.getElementById("experiences").scrollIntoView();}</script>
