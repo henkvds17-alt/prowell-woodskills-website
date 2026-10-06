@@ -352,6 +352,8 @@
   .contact-row .lbl{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--charcoal-soft);display:block;}
   .contact-row .val{font-family:var(--display);font-weight:600;font-size:16px;user-select:all;word-break:break-all;}
   .contact-row > div{flex:1;min-width:0;}
+  .call-btn{display:inline-flex;align-items:center;gap:6px;background:var(--red);color:var(--white);font-weight:700;font-size:13px;padding:8px 16px;border-radius:100px;white-space:nowrap;transition:background .2s;}
+  .call-btn:hover{background:var(--red-dark);}
   .copy-btn{border:none;background:var(--cream-dark);color:var(--charcoal);font-weight:600;font-size:12.5px;padding:7px 12px;border-radius:100px;cursor:pointer;}
   .copy-btn:hover{background:var(--gold-light);}
   .contact-card .btn{width:100%;margin-top:8px;}
@@ -572,7 +574,7 @@
       <p class="lede">Hands-on woodworking workshops for kids and adults. Holiday workshops, birthday parties and group sessions in our Paarl studio, where everyone walks out with something they built themselves.</p>
       <div class="hero-ctas">
         <a href="#calendar" class="btn btn-primary">See holiday dates</a>
-        <a href="#contact" class="btn btn-outline">Party or group</a>
+        <a href="#workshops" class="btn btn-outline">See all workshops</a>
       </div>
       <ul class="hero-stats">
         <li><span class="check">&#10003;</span>No experience needed</li>
@@ -744,9 +746,8 @@
     <div class="contact-card reveal">
       <h3>Talk to Henk</h3>
       <p>Parties and group sessions are booked by request. Send your date, time and group size.</p>
-      <div class="contact-row"><div><span class="lbl">WhatsApp / phone</span><span class="val" id="phoneVal"></span></div><button class="copy-btn" data-copy="phoneVal">Copy</button></div>
-      <div class="contact-row"><div><span class="lbl">Email</span><span class="val" id="emailVal"></span></div><button class="copy-btn" data-copy="emailVal">Copy</button></div>
-      <a class="btn btn-wa" id="waBtn" href="#" target="_blank" rel="noopener">Message us on WhatsApp</a>
+      <div class="contact-row"><div><span class="lbl">Phone / WhatsApp</span><span class="val" id="phoneVal"></span></div><a class="call-btn" id="callBtn" href="tel:+27810270892">&#128222; Call</a></div>
+      <a class="btn btn-wa" id="waBtn" href="#" target="_blank" rel="noopener">Ask a question on WhatsApp</a>
     </div>
   </div>
 </section>
@@ -788,11 +789,13 @@ const WIX = "https://www.prowellwoodskills.co.za";
 const HOLIDAY_BOOK_URL = WIX + "/booking-calendar/2-day-kids-holiday-workshop";
 const PHONE_DISPLAY = "081 027 0892";
 const PHONE_INTL = "27810270892";
-const EMAIL = "henk@prowellkitchens.co.za";
 const MAP_URL = "https://maps.app.goo.gl/P7HAnz21569Az6MM8"; // Google Maps listing: Prowell WoodSkills, -33.6792966, 18.964857
 const wa = (msg) => `https://wa.me/${PHONE_INTL}?text=${encodeURIComponent(msg)}`;
+/* Date requests go by email (opens the visitor's mail app with the message pre-typed). WhatsApp is only for questions, in the contact section. */
+const BOOK_EMAIL = "henkvds17@gmail.com";
+const mail = (subject, body) => `mailto:${BOOK_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-/* Pre-typed WhatsApp messages. Visitors only replace the [brackets]. Keep in sync with the Read more pages. */
+/* Pre-typed booking emails. Visitors only replace the [brackets]. Keep in sync with the Read more pages. */
 const WA_PARTY = `Hi Henk! My name is [your name] and I'd like to book a Kids Birthday Party at Prowell WoodSkills.
 
 🎂 Birthday child: [name], turning [age]
@@ -812,18 +815,9 @@ const WA_CRAFT = `Hi Henk! My name is [your name] and I'd like to book a Craft T
 🪵 Our 3 project choices (if decided): [1. …  2. …  3. …]
 
 Please let me know if that date is available. Thank you!`;
-const WA_GENERAL = `Hi Henk! My name is [your name] and I'd like to book a session at Prowell WoodSkills.
+const WA_GENERAL = `Hi Henk! My name is [your name] and I have a question about Prowell WoodSkills:
 
-🪵 Workshop: [Kids Birthday Party / Craft Together]
-📅 Preferred date: [day and date]
-🕘 Preferred start time: [time]
-👥 Number of people: [number]
-
-Please let me know if that date is available. Thank you!`;
-const WA_NOTIFY = `Hi Henk! My name is [your name]. Please let me know as soon as the next Kids Holiday Workshop dates open.
-
-👦 My child's age: [age]
-🪵 Project they'd like to build: [e.g. Key Rack]
+[your question]
 
 Thank you!`;
 
@@ -839,13 +833,13 @@ const workshops = [
     facts:[["Duration","3 hours"],["Group","Up to 8 kids"],["Cake","Add one for +R300"],["Language","Afr & Eng"]],
     price:"R2,900", priceNote:"flat rate for the party",
     more:{label:"Read more", href:"kids-birthday-party.html"},
-    booking:"request", cta:"Ask about a date", href: wa(WA_PARTY) },
+    booking:"request", cta:"Request booking", href: mail("Kids Birthday Party booking request", WA_PARTY) },
   { name:"Craft Together", audience:"Adults", tag:"Adults · groups of 5–8", photo:"images/studio/studio-14.webp",
     blurb:"A relaxed group outing for friends, teams and visitors: pick a project, learn the tools and take home something you made. Coffee and tea on us.",
     facts:[["Duration","3 hours"],["Group","5 to 8 people"],["When","Weekdays"],["Language","Afr & Eng"]],
     price:"R550", priceNote:"per person",
     more:{label:"Read more", href:"craft-together.html"},
-    booking:"request", cta:"Ask about a date", href: wa(WA_CRAFT) }
+    booking:"request", cta:"Request booking", href: mail("Craft Together booking request", WA_CRAFT) }
 ];
 
 /* KIDS HOLIDAY WORKSHOP SESSIONS — mirrors the Wix booking calendar ("2-Day Kids Holiday Workshop").
@@ -906,10 +900,10 @@ const good = [
 const faqs = [
   {q:"Does my child need any experience?",a:"No. Every workshop assumes they have never used a tool before. We teach safe tool use step by step, and every child completes their own project."},
   {q:"What ages are the kids workshops for?",a:"Kids aged 8 to 16. Projects are matched to the age group, and every child is guided step by step."},
-  {q:"How does the Kids Holiday Workshop work?",a:"Each workshop is a single 3-hour session on one day. Some days have two workshops at different times, each building a different project. Your child finishes the project and takes it home the same day. See the holiday projects page for what they can build."},
+  {q:"How does the Kids Holiday Workshop work?",a:"Each workshop is a single 3-hour session on one day. Your child finishes the project and takes it home the same day. See the holiday projects page for what they can build."},
   {q:"Is it safe?",a:"Yes. Groups are small and fully supervised. Kids use hand tools and selected power tools only under instruction, and closed shoes are required."},
   {q:"What should we bring?",a:"Closed shoes, clothes that can take wood dust, a water bottle and a snack. All tools and materials are supplied."},
-  {q:"How do I book a Kids Birthday Party?",a:"Send us a WhatsApp or email with your preferred date, time and number of kids (up to 8). We'll confirm a session that suits you. You bring the cake, drinks and extras, or add a decorated cake for R300."},
+  {q:"How do I book a Kids Birthday Party?",a:"Tap \"Request booking\" on the Kids Birthday Party card and send us your preferred date, time and number of kids (up to 8). We'll confirm a session that suits you. You bring the cake, drinks and extras, or add a decorated cake for R300."},
   {q:"Can adults join?",a:"Yes. Craft Together is our adult workshop for groups of 5 to 8, such as friends celebrating, work teams or visitors to the Winelands. It runs on weekdays and is booked by request."},
   {q:"Where is the studio?",a:"Our studio is in Paarl, Western Cape. Search for Prowell WoodSkills on Google Maps, or use the directions button in the Visit section."},
   {q:"What language are sessions in?",a:"Afrikaans and English. Instructors switch freely so everyone follows along."}
@@ -1014,11 +1008,11 @@ function renderCal(){
 function renderList(){
   const list=sessions(), box=$('#sessList');
   const toggle=`<button class="mock-toggle" id="mockToggle" type="button" aria-pressed="${useSample}">${useSample?'Hide sample dates':'Mockup: show sample dates'}</button>`;
-  const note=`<p class="panel-note"><strong>Parties &amp; Craft Together</strong> run on almost any date, by request. <a href="#contact">Ask about a date &rarr;</a></p>`;
+  const note=`<p class="panel-note"><strong>Parties &amp; Craft Together</strong> run on almost any date, by request. <a href="#contact">Request booking &rarr;</a></p>`;
   if(!allSessions().length){
     box.innerHTML=`<div class="cal-empty"><h4>Next holiday dates coming soon</h4>
-      <p>We're scheduling the December holiday workshops now. We'll let you know as soon as booking opens.</p>
-      <a class="btn btn-wa" href="${wa(WA_NOTIFY)}" target="_blank" rel="noopener">Notify me on WhatsApp</a></div>
+      <p>We're scheduling the December holiday workshops now. Dates are added here before every school holiday, so check back soon.</p>
+      </div>
       <a class="ws-more" href="holiday-projects.html">See the projects &rarr;</a>${note}${toggle}`;
   } else {
     box.innerHTML=`<h3>${filterProj?filterProj:'Next dates'} <small>${list.length} workshop${list.length===1?'':'s'}</small>${useSample?'<span class="mock-flag">SAMPLE</span>':''}</h3>
@@ -1027,7 +1021,7 @@ function renderList(){
           <div class="d" style="background:${pc(s.project)}"><b>${d.getDate()}</b><small>${MONTHS[d.getMonth()].slice(0,3)}</small></div>
           <div class="n"><b>${s.project}</b><span>${fmtDay(d)} · ${s.start}–${s.end}</span></div>
           </div>`;}).join('')
-        :`<p class="panel-note" style="border:none;padding:0">No dates for this project yet. <a href="${wa(WA_NOTIFY.replace('[e.g. Key Rack]',filterProj||''))}" target="_blank" rel="noopener">Ask us to add one &rarr;</a></p>`}</div>
+        :`<p class="panel-note" style="border:none;padding:0">No dates for this project yet. New dates are added before every school holiday.</p>`}</div>
       <a class="btn btn-primary panel-book" href="${HOLIDAY_BOOK_URL}" target="_blank" rel="noopener">Book a date</a>
       <a class="ws-more" href="holiday-projects.html${filterProj&&projInfo(filterProj)?'#'+projInfo(filterProj).id:''}">${filterProj?'More about the '+filterProj:'See all the projects'} &rarr;</a>${note}${toggle}`;
   }
@@ -1069,7 +1063,7 @@ faqs.forEach((f,i)=>{
 });
 
 // contact
-$('#phoneVal').textContent=PHONE_DISPLAY; $('#emailVal').textContent=EMAIL;
+$('#phoneVal').textContent=PHONE_DISPLAY; $('#callBtn').href='tel:+'+PHONE_INTL;
 $('#waBtn').href=wa(WA_GENERAL);
 $('#mapLink').href=MAP_URL;
 document.querySelectorAll('.copy-btn').forEach(b=>b.addEventListener('click',()=>{

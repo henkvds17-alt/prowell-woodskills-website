@@ -352,6 +352,8 @@
   .contact-row .lbl{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--charcoal-soft);display:block;}
   .contact-row .val{font-family:var(--display);font-weight:600;font-size:16px;user-select:all;word-break:break-all;}
   .contact-row > div{flex:1;min-width:0;}
+  .call-btn{display:inline-flex;align-items:center;gap:6px;background:var(--red);color:var(--white);font-weight:700;font-size:13px;padding:8px 16px;border-radius:100px;white-space:nowrap;transition:background .2s;}
+  .call-btn:hover{background:var(--red-dark);}
   .copy-btn{border:none;background:var(--cream-dark);color:var(--charcoal);font-weight:600;font-size:12.5px;padding:7px 12px;border-radius:100px;cursor:pointer;}
   .copy-btn:hover{background:var(--gold-light);}
   .contact-card .btn{width:100%;margin-top:8px;}
@@ -774,8 +776,9 @@ const PAGE = {
  ],
  "price": "R550",
  "priceNote": "Per person, for groups of 5 to 8. All materials included.",
- "bookLabel": "Ask about a date",
+ "bookLabel": "Request booking",
  "waMsg": "Hi Henk! My name is [your name] and I'd like to book a Craft Together session at Prowell WoodSkills.\n\n📅 Preferred date (weekday): [day and date]\n🕘 Preferred start time: [e.g. 10:00]\n👥 Group size: [5 to 8 people]\n🎉 Occasion: [e.g. team building, birthday, friends' outing]\n🪵 Our 3 project choices (if decided): [1. …  2. …  3. …]\n\nPlease let me know if that date is available. Thank you!",
+ "mailSubject": "Craft Together booking request",
  "altHtml": "Groups only, on weekdays. Tell us your preferred date and we will confirm it.",
  "included": [
   "A facilitator guiding your group",
@@ -918,6 +921,8 @@ const PAGE = {
 };
 const PHONE_INTL="27810270892";
 const wa=m=>`https://wa.me/${PHONE_INTL}?text=${encodeURIComponent(m)}`;
+const BOOK_EMAIL="henkvds17@gmail.com";
+const mail=(sub,body)=>`mailto:${BOOK_EMAIL}?subject=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`;
 /* Wix gallery photos load from your Wix media library; if one can't load, a local studio photo shows instead. */
 const wixImg=(id,w=1200,h=900)=>`https://static.wixstatic.com/media/${id}/v1/fill/w_${w},h_${h},al_c,q_80,enc_auto/${id}`;
 const src=(p,w,h)=>typeof p==='string'?p:(p.wix?wixImg(p.wix,w,h):p.local);
@@ -961,7 +966,7 @@ $('#lede').textContent=PAGE.lede||'';
 $('#facts').innerHTML=PAGE.facts.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join('');
 $('#price').textContent=PAGE.price; $('#priceNote').textContent=PAGE.priceNote;
 const book=$('#book'); book.textContent=PAGE.bookLabel;
-if(PAGE.bookHref){book.href=PAGE.bookHref;} else {book.href=wa(PAGE.waMsg);book.target='_blank';book.rel='noopener';}
+if(PAGE.bookHref){book.href=PAGE.bookHref;} else {book.href=mail(PAGE.mailSubject,PAGE.waMsg);}
 $('#alt').innerHTML=PAGE.altHtml||'';
 $('#inc').innerHTML=li(PAGE.included); $('#bring').innerHTML=li(PAGE.bring);
 $('#sideTitle').textContent=PAGE.sideTitle;
