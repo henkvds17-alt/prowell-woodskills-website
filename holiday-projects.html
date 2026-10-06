@@ -374,6 +374,15 @@
   .dots{display:flex;justify-content:center;gap:7px;margin-top:14px;}
   .dots button{width:9px;height:9px;border-radius:50%;border:none;background:rgba(90,76,69,.28);cursor:pointer;padding:0;transition:background .25s,width .25s;}
   .dots button.on{background:var(--red);width:24px;border-radius:100px;}
+  .hp-video{padding:56px 0 0;}
+  .video{position:relative;width:100%;max-width:960px;margin:0 auto;aspect-ratio:16/9;border-radius:26px;overflow:hidden;box-shadow:var(--shadow);background:var(--charcoal);}
+  .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .video-poster{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;cursor:pointer;border:none;width:100%;padding:0;background:var(--charcoal);}
+  .video-poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;}
+  .video-poster .play{position:relative;z-index:1;width:84px;height:84px;border-radius:50%;background:var(--gold);color:var(--charcoal);display:flex;align-items:center;justify-content:center;font-size:30px;padding-left:6px;box-shadow:0 14px 30px -10px rgba(0,0,0,.5);transition:transform .3s var(--ease);}
+  .video-poster:hover .play{transform:scale(1.08);}
+  .video-poster .vlabel{position:relative;z-index:1;font-family:var(--display);font-weight:600;color:var(--white);font-size:17px;text-shadow:0 2px 10px rgba(0,0,0,.5);}
+  .video-poster .soon{position:relative;z-index:1;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(36,28,24,.6);color:var(--gold-light);padding:5px 12px;border-radius:100px;}
   .proj-cta{background:var(--cream-dark);text-align:center;padding:80px 0;}
   .proj-cta h2{font-size:clamp(28px,4vw,40px);margin-bottom:12px;}
   .proj-cta p{color:var(--charcoal-soft);margin:0 auto 24px;max-width:520px;}
@@ -429,6 +438,13 @@
 </section>
 <div class="draft-note"><div><strong>Draft:</strong> project names, descriptions and photo groupings are placeholders based on studio photos. Confirm or replace them before launch.</div></div>
 
+<section class="hp-video" id="video">
+  <div class="wrap">
+    <div class="section-head"><span class="eyebrow">See it for yourself</span><h2>A Kids Holiday Workshop day.</h2></div>
+    <div class="video" id="videoBox"></div>
+  </div>
+</section>
+
 <section class="projects-list">
   <div class="wrap" id="projList"></div>
 </section>
@@ -455,8 +471,8 @@
         <ul>
           <li><a href="index.html#workshops">Kids Holiday Workshop</a></li>
           <li><a href="#top">Holiday projects</a></li>
-          <li><a href="index.html#workshops">Kids Birthday Party</a></li>
-          <li><a href="index.html#workshops">Craft Together</a></li>
+          <li><a href="kids-birthday-party.html">Kids Birthday Party</a></li>
+          <li><a href="craft-together.html">Craft Together</a></li>
           <li><a href="index.html#calendar">Calendar</a></li>
         </ul>
       </div>
@@ -491,7 +507,14 @@ const PROJECTS = [
     photos:[21].map(n=>`images/studio/studio-${n}.webp`) }
 ];
 
+/* Holiday workshop video — set host ("youtube" or "vimeo") and id once uploaded. */
+const VIDEO = {host:"youtube", id:""};
+
 const $=(s,el=document)=>el.querySelector(s);
+{const vb=$('#videoBox');
+ vb.innerHTML=`<button class="video-poster" type="button" aria-label="Play video"><img src="images/studio/studio-12.webp" alt=""><span class="play">&#9658;</span><span class="vlabel">Watch a holiday workshop</span>${VIDEO.id?'':'<span class="soon">Video coming soon</span>'}</button>`;
+ if(VIDEO.id){const u=VIDEO.host==='youtube'?`https://www.youtube-nocookie.com/embed/${VIDEO.id}?autoplay=1&rel=0`:`https://player.vimeo.com/video/${VIDEO.id}?autoplay=1`;
+   $('.video-poster',vb).onclick=()=>{vb.innerHTML=`<iframe src="${u}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Kids Holiday Workshop video"></iframe>`;};}}
 $('#jumpRow').innerHTML=PROJECTS.map(p=>`<a href="#${p.id}">${p.name}</a>`).join('');
 $('#projList').innerHTML=PROJECTS.map((p,i)=>`
   <article class="proj" id="${p.id}">
