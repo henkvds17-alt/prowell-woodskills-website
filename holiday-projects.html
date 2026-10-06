@@ -2,7 +2,7 @@
 <html lang="en">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Holiday Projects · Prowell WoodSkills</title>
+<title>Kids Holiday Workshop · Prowell WoodSkills</title>
 <meta name="description" content="The woodworking projects kids build at the Prowell WoodSkills Kids Holiday Workshop in Paarl.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -153,22 +153,73 @@
   .ws-card .btn{width:100%;margin-top:6px;}
   .ws-more{align-self:center;font-weight:700;font-size:14px;color:var(--red);margin-top:4px;}
   .ws-more:hover{text-decoration:underline;}
+  .btn-ghost{background:transparent;border-color:var(--cream-dark);color:var(--charcoal);}
+  .btn-ghost:hover{border-color:var(--red);color:var(--red);transform:translateY(-3px);}
 
   /* HOW BOOKING WORKS */
-  .how{background:var(--white);}
-  .lanes{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1000px;margin:0 auto;}
-  .lane{background:var(--cream);border:2px solid var(--cream-dark);border-radius:24px;padding:30px 28px;}
-  .lane h3{font-size:22px;color:var(--red);margin-bottom:4px;}
-  .lane .lane-sub{font-size:14px;color:var(--charcoal-soft);margin-bottom:22px;}
-  .lane ol{list-style:none;display:flex;flex-direction:column;gap:14px;counter-reset:s;}
-  .lane li{display:flex;gap:14px;align-items:flex-start;counter-increment:s;font-size:15px;color:var(--charcoal-soft);}
-  .lane li::before{content:counter(s);flex:0 0 36px;height:36px;border-radius:50%;background:var(--red);color:var(--white);font-family:var(--display);font-weight:700;display:flex;align-items:center;justify-content:center;}
-  .lane li strong{color:var(--charcoal);display:block;font-family:var(--display);font-weight:600;font-size:16px;}
-  .lane .btn{margin-top:24px;}
+  .how{background:var(--charcoal);color:var(--cream);}
+  .how .section-head h2{color:var(--white);}
+  .how .section-head p{color:rgba(251,243,236,.72);}
+  .how .eyebrow{color:var(--gold-light);}
+  .pv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px;}
+  .pv-card{display:flex;flex-direction:column;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:22px;overflow:hidden;transition:transform .35s var(--ease),background .35s var(--ease);min-width:0;}
+  .pv-card:hover{transform:translateY(-6px);background:rgba(255,255,255,.09);}
+  .pv-card img{width:100%;aspect-ratio:1/1;max-width:100%;object-fit:cover;}
+  .pv-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:6px;flex:1;}
+  .pv-body h3{font-size:21px;color:var(--white);}
+  .pv-body p{font-size:14px;color:rgba(251,243,236,.72);}
+  .pv-body .go{margin-top:auto;padding-top:8px;font-weight:700;font-size:14px;color:var(--gold-light);}
+  .pv-cta{text-align:center;margin-top:34px;}
 
   /* CALENDAR */
   .calendar{background:var(--cream-dark);}
-  .cal-shell{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:start;}
+  .cal-shell{display:grid;grid-template-columns:1.65fr 1fr;gap:20px;align-items:start;}
+  .calendar{padding:72px 0;}
+  .cal-head{margin-bottom:26px;}
+  .cal-head p{font-size:15.5px;margin-top:8px;}
+  .cal-card{padding:20px 20px 16px;}
+  .cal-top{margin-bottom:12px;}
+  .cal-top h3{font-size:21px;}
+  .cal-nav button{width:36px;height:36px;font-size:16px;}
+  .pfilter{display:flex;flex-wrap:wrap;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:8px;scrollbar-width:thin;}
+  .pf{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--cream-dark);background:var(--white);border-radius:100px;padding:5px 11px 5px 7px;font-family:var(--body);font-size:12.5px;font-weight:600;color:var(--charcoal);cursor:pointer;transition:border-color .2s,background .2s;}
+  .pf i{width:12px;height:12px;border-radius:4px;display:inline-block;}
+  .pf small{color:var(--charcoal-soft);font-weight:600;}
+  .pf:hover{border-color:var(--charcoal-soft);}
+  .pf.on{border-color:var(--charcoal);background:var(--charcoal);color:var(--white);}
+  .pf.on small{color:rgba(255,255,255,.7);}
+  .pf.zero{opacity:.45;}
+  .hol-banner{margin:0 0 10px;padding:7px 12px;font-size:12.5px;}
+  .cal-dow{font-size:10.5px;padding-bottom:4px;}
+  .cal-legend{margin-top:10px;gap:12px;font-size:12px;}
+  .sess-panel{background:var(--white);border-radius:24px;box-shadow:var(--shadow-sm);padding:18px 16px 14px;display:flex;flex-direction:column;gap:10px;min-width:0;}
+  .sess-panel h3{font-size:18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .sess-panel h3 small{font-family:var(--body);font-size:12px;font-weight:600;color:var(--charcoal-soft);}
+  .srows{display:flex;flex-direction:column;gap:6px;max-height:430px;overflow-y:auto;padding-right:4px;scrollbar-width:thin;}
+  .srow{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:center;padding:8px 8px;border-radius:14px;background:var(--cream);border:2px solid transparent;transition:border-color .2s;}
+  .srow.sel{border-color:var(--red);}
+  .srow .d{width:44px;height:46px;border-radius:10px;color:var(--white);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;}
+  .srow .d b{font-family:var(--display);font-size:19px;font-weight:600;}
+  .srow .d small{font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-top:2px;}
+  .srow .n{min-width:0;}
+  .srow .n b{display:block;font-family:var(--display);font-weight:600;font-size:14.5px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .srow .n span{font-size:12px;color:var(--charcoal-soft);font-variant-numeric:tabular-nums;}
+  .srow .btn{padding:8px 14px;font-size:13px;}
+  .panel-note{font-size:12.5px;color:var(--charcoal-soft);border-top:1px solid var(--cream-dark);padding-top:10px;}
+  .panel-note a{color:var(--red);font-weight:700;}
+  .cal-empty{padding:16px 16px;border-radius:16px;box-shadow:none;}
+  .cal-empty h4{font-size:16px;}
+  .cal-empty p{font-size:13.5px;margin-bottom:12px;}
+  .cal-empty .btn{padding:12px 20px;font-size:14px;}
+  .cal-day.dim .chip{opacity:.18;}
+  /* hover preview */
+  .pop{position:fixed;z-index:200;width:230px;background:var(--white);border-radius:16px;box-shadow:0 22px 50px -16px rgba(36,28,24,.45);overflow:hidden;pointer-events:none;}
+  .pop img{width:100%;aspect-ratio:4/3;object-fit:cover;}
+  .pop div{padding:10px 12px 12px;}
+  .pop b{display:flex;align-items:center;gap:7px;font-family:var(--display);font-weight:600;font-size:15.5px;}
+  .pop b i{width:10px;height:10px;border-radius:3px;}
+  .pop p{font-size:12px;color:var(--charcoal-soft);line-height:1.4;margin-top:3px;}
+  .pop .when{display:inline-block;margin-top:6px;font-size:11.5px;font-weight:700;color:var(--red);background:rgba(191,38,38,.08);padding:2px 8px;border-radius:100px;}
   .cal-card{background:var(--white);border-radius:24px;box-shadow:var(--shadow-sm);padding:26px;min-width:0;}
   .cal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;gap:12px;}
   .cal-top h3{font-size:24px;}
@@ -178,15 +229,38 @@
   .cal-nav button:disabled{opacity:.35;cursor:default;}
   .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
   .cal-dow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--charcoal-soft);text-align:center;padding-bottom:6px;}
-  .cal-day{aspect-ratio:1/1;max-width:100%;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-variant-numeric:tabular-nums;font-weight:600;font-size:14px;color:var(--charcoal);background:var(--cream);border:2px solid transparent;position:relative;}
+  .cal-day{min-height:70px;max-width:100%;border-radius:12px;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:4px;padding:5px 5px 11px;font-variant-numeric:tabular-nums;font-weight:600;font-size:14px;color:var(--charcoal);background:var(--cream);border:2px solid transparent;position:relative;min-width:0;text-align:left;font-family:inherit;}
+  .cal-day .dn{line-height:1;}
+  .chips{display:flex;flex-direction:column;gap:3px;min-width:0;}
+  .chip{display:block;font-size:10.5px;cursor:pointer;font-weight:700;line-height:1.25;color:var(--white);border-radius:6px;padding:3px 6px;white-space:normal;overflow-wrap:break-word;hyphens:manual;min-width:0;}
+  .chip .t{display:none;}
+  .chip .sh{display:none;}
+  .proj-key{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;}
+  .proj-key span{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;background:var(--cream);border-radius:100px;padding:5px 12px 5px 6px;}
+  .proj-key i{width:16px;height:16px;border-radius:5px;display:inline-block;}
+  .proj-key small{color:var(--charcoal-soft);font-weight:600;}
+  .sess-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;}
+  .sess-extras{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;}
+  .sess-info h4 i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:7px;vertical-align:1px;}
   .cal-day.empty{background:transparent;}
   .cal-day.past{color:rgba(90,76,69,.4);background:transparent;}
   .cal-day.today{border-color:var(--gold);}
-  .cal-day.has{background:var(--red);color:var(--white);cursor:pointer;}
-  .cal-day.has:hover,.cal-day.has.sel{background:var(--red-dark);transform:scale(1.06);}
-  .cal-day.day2{background:rgba(191,38,38,.14);color:var(--red-dark);}
-  .cal-day .pip{width:6px;height:6px;border-radius:50%;background:var(--gold);}
-  .cal-day.full{background:var(--charcoal-soft);}
+  .cal-day.has{color:var(--red-dark);font-weight:800;cursor:pointer;box-shadow:inset 0 0 0 1.5px rgba(191,38,38,.35);transition:box-shadow .2s,transform .2s;}
+  .cal-day.has:hover{box-shadow:inset 0 0 0 2px var(--red);transform:translateY(-2px);}
+  .cal-day.has.sel{box-shadow:inset 0 0 0 3px var(--red);}
+    /* public school holidays: gold wash + gold underline bar (bar stays visible on workshop days) */
+  .cal-day.hol{background:var(--gold-light);}
+  .cal-day.hol::after{content:'';position:absolute;left:6px;right:6px;bottom:4px;height:3px;border-radius:3px;background:var(--gold);}
+  .hol-banner{display:flex;align-items:center;gap:10px;background:var(--gold-light);border-radius:12px;padding:9px 14px;font-size:13.5px;font-weight:600;color:var(--charcoal);margin:-4px 0 14px;}
+  .hol-banner::before{content:'';flex:0 0 18px;height:4px;border-radius:3px;background:var(--gold);}
+  .hol-banner[hidden]{display:none!important;}
+  .hol-list{background:var(--white);border-radius:18px;padding:16px 18px;box-shadow:var(--shadow-sm);border-left:4px solid var(--gold);}
+  .hol-list h4{font-size:16px;margin-bottom:8px;}
+  .hol-list li{display:flex;justify-content:space-between;gap:12px;font-size:14px;padding:6px 0;border-top:1px solid var(--cream-dark);}
+  .hol-list li:first-child{border-top:none;}
+  .hol-list li span{color:var(--charcoal-soft);}
+  .hol-list li b{font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .cal-day .pip{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 2px var(--white);}
   .cal-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:18px;font-size:12.5px;color:var(--charcoal-soft);}
   .cal-legend span{display:inline-flex;align-items:center;gap:7px;}
   .cal-legend i{width:14px;height:14px;border-radius:4px;display:inline-block;}
@@ -201,7 +275,7 @@
   .sess-info h4{font-size:16px;}
   .sess-info p{font-size:13px;color:var(--charcoal-soft);line-height:1.4;}
   .sess-time{display:inline-block;font-family:var(--display);font-weight:600;font-size:13px;color:var(--red);background:rgba(191,38,38,.08);padding:2px 10px;border-radius:100px;margin-top:4px;font-variant-numeric:tabular-nums;}
-  .cal-day .pips{display:flex;gap:3px;}
+  .cal-day .pips{display:flex;gap:4px;}
   .sess .btn{padding:10px 18px;font-size:14px;}
   .cal-empty{background:var(--white);border-radius:20px;padding:26px 24px;box-shadow:var(--shadow-sm);border:2px dashed var(--gold);}
   .cal-empty h4{font-size:19px;margin-bottom:6px;}
@@ -295,13 +369,16 @@
     .hamburger{display:flex;}
     .ws-grid{grid-template-columns:1fr 1fr;}
     .cal-shell,.visit-grid,.final-grid{grid-template-columns:1fr;}
+    .srows{max-height:360px;}
   }
   @media(max-width:860px){
     .hero{padding:120px 0 90px;}
     .hero-grid{grid-template-columns:1fr;gap:30px;}
     .hero-photos{height:360px;max-width:520px;width:100%;margin:0 auto;}
     .p1{height:230px;} .p2{height:200px;} .p3{height:200px;}
-    .lanes,.good-grid{grid-template-columns:1fr;}
+    .good-grid{grid-template-columns:1fr;}
+    .pv-grid{grid-template-columns:1fr 1fr;gap:12px;}
+    .pv-body{padding:12px 12px 14px;} .pv-body h3{font-size:16px;} .pv-body p{font-size:12.5px;}
   }
   @media(max-width:640px){
     section{padding:68px 0;}
@@ -318,7 +395,16 @@
     .polaroid{padding:8px 8px 32px;} .polaroid figcaption{font-size:14px;bottom:7px;}
     .cal-card{padding:18px 14px;}
     .cal-grid{gap:4px;}
-    .cal-day{font-size:13px;border-radius:9px;}
+    .cal-day{font-size:12px;border-radius:8px;min-height:54px;padding:4px 3px 9px;gap:3px;}
+    .chip{font-size:8.5px;padding:2px 3px;border-radius:4px;white-space:nowrap;overflow:hidden;text-overflow:clip;text-align:center;}
+    .chip .t,.chip .nm{display:none;}
+    .chip .sh{display:block;}
+    .cal-day.hol::after{left:4px;right:4px;bottom:3px;}
+    .sess-extras{grid-template-columns:1fr;}
+    .sess-grid{grid-template-columns:1fr;}
+    .srows{max-height:340px;}
+    .pfilter{flex-wrap:nowrap;}
+    .calendar{padding:56px 0;}
     .sess{flex-wrap:wrap;}
     .sess .btn{width:100%;}
     .studio-tile{height:190px;}
@@ -330,72 +416,87 @@
   }
 </style>
 <style>
-  /* HOLIDAY PROJECTS PAGE */
-  .page-hero{background:radial-gradient(circle at 18% 20%,var(--red-dark),var(--red) 55%,var(--red-deep) 100%);color:var(--white);padding:150px 0 70px;position:relative;overflow:hidden;}
-  .page-hero .shape{position:absolute;border-radius:50%;opacity:.14;background:var(--gold);width:280px;height:280px;top:10%;right:-80px;}
-  .page-hero .wrap{position:relative;z-index:2;}
-  .crumb{display:inline-flex;gap:8px;font-size:13.5px;font-weight:600;color:rgba(255,255,255,.8);margin-bottom:16px;}
-  .crumb a:hover{color:var(--gold-light);}
-  .page-hero h1{font-family:var(--logo);font-weight:800;font-size:clamp(34px,5vw,56px);line-height:1.05;margin-bottom:16px;}
-  .page-hero h1 em{font-style:normal;color:var(--gold-light);}
-  .page-hero p{max-width:620px;color:rgba(255,255,255,.9);font-size:17px;margin-bottom:24px;}
-  .jump-row{display:flex;flex-wrap:wrap;gap:10px;}
-  .jump-row a{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:var(--white);font-weight:600;font-size:14px;padding:9px 18px;border-radius:100px;transition:background .25s;}
-  .jump-row a:hover{background:rgba(255,255,255,.22);}
-  .draft-note{max-width:1180px;margin:22px auto 0;padding-inline:24px;}
-  .draft-note div{border:2px dashed var(--gold);background:var(--cream-dark);border-radius:14px;padding:12px 16px;font-size:13.5px;color:var(--charcoal-soft);}
-  .projects-list{padding:60px 0 90px;}
-  .proj{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center;padding:44px 0;border-bottom:2px dashed var(--cream-dark);}
-  .proj:last-child{border-bottom:none;}
-  .proj:nth-child(even) .slider{order:2;}
-  .proj-copy{min-width:0;}
-  .proj-num{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--red);}
-  .proj h2{font-size:clamp(28px,3.6vw,38px);margin:6px 0 12px;}
-  .proj-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
-  .proj-tags span{font-size:12px;font-weight:700;background:var(--white);border:1px solid var(--cream-dark);color:var(--charcoal-soft);padding:5px 12px;border-radius:100px;}
-  .proj-copy > p{color:var(--charcoal-soft);margin-bottom:14px;}
-  .more{border-top:1px solid var(--cream-dark);margin-top:6px;}
-  .more-btn{background:none;border:none;cursor:pointer;font-family:var(--display);font-weight:600;font-size:16px;color:var(--red);padding:14px 0;display:flex;align-items:center;gap:8px;}
-  .more-btn .chev{transition:transform .3s var(--ease);display:inline-block;}
-  .more.open .chev{transform:rotate(90deg);}
-  .more-body{max-height:0;overflow:hidden;transition:max-height .45s var(--ease);}
-  .more-body ul{display:flex;flex-direction:column;gap:9px;padding:0 0 18px;}
-  .more-body li{display:flex;gap:10px;font-size:15px;}
-  .proj .btn{margin-top:10px;}
-  /* photo slider */
-  .slider{position:relative;min-width:0;}
-  .slides{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;border-radius:24px;box-shadow:var(--shadow);scrollbar-width:none;background:var(--cream-dark);}
-  .slides::-webkit-scrollbar{display:none;}
-  .slides img{flex:0 0 100%;width:100%;aspect-ratio:4/3;max-width:100%;object-fit:cover;scroll-snap-align:start;}
-  .sl-btn{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:none;background:rgba(251,243,236,.92);color:var(--charcoal);font-size:22px;cursor:pointer;box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:center;transition:background .25s;}
-  .sl-btn:hover{background:var(--gold);}
-  .sl-prev{left:12px;} .sl-next{right:12px;}
-  .sl-btn[hidden]{display:none!important;}
-  .dots{display:flex;justify-content:center;gap:7px;margin-top:14px;}
-  .dots button{width:9px;height:9px;border-radius:50%;border:none;background:rgba(90,76,69,.28);cursor:pointer;padding:0;transition:background .25s,width .25s;}
-  .dots button.on{background:var(--red);width:24px;border-radius:100px;}
-  .hp-video{padding:56px 0 0;}
-  .video{position:relative;width:100%;max-width:960px;margin:0 auto;aspect-ratio:16/9;border-radius:26px;overflow:hidden;box-shadow:var(--shadow);background:var(--charcoal);}
-  .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
-  .video-poster{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;cursor:pointer;border:none;width:100%;padding:0;background:var(--charcoal);}
-  .video-poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;}
-  .video-poster .play{position:relative;z-index:1;width:84px;height:84px;border-radius:50%;background:var(--gold);color:var(--charcoal);display:flex;align-items:center;justify-content:center;font-size:30px;padding-left:6px;box-shadow:0 14px 30px -10px rgba(0,0,0,.5);transition:transform .3s var(--ease);}
-  .video-poster:hover .play{transform:scale(1.08);}
-  .video-poster .vlabel{position:relative;z-index:1;font-family:var(--display);font-weight:600;color:var(--white);font-size:17px;text-shadow:0 2px 10px rgba(0,0,0,.5);}
-  .video-poster .soon{position:relative;z-index:1;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(36,28,24,.6);color:var(--gold-light);padding:5px 12px;border-radius:100px;}
-  .proj-cta{background:var(--cream-dark);text-align:center;padding:80px 0;}
-  .proj-cta h2{font-size:clamp(28px,4vw,40px);margin-bottom:12px;}
-  .proj-cta p{color:var(--charcoal-soft);margin:0 auto 24px;max-width:520px;}
-  .proj-cta .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-  @media(max-width:860px){
-    .proj{grid-template-columns:1fr;gap:24px;padding:34px 0;}
-    .proj:nth-child(even) .slider{order:0;}
-  }
+  /* COMPACT WORKSHOP PAGE (product-page layout) */
+  .pd{padding:96px 0 40px;}
+  .crumb{display:flex;flex-wrap:wrap;gap:8px;font-size:13px;font-weight:600;color:var(--charcoal-soft);margin-bottom:14px;}
+  .crumb a{color:var(--red);} .crumb a:hover{text-decoration:underline;}
+  .picker{display:flex;gap:10px;overflow-x:auto;padding:2px 2px 12px;margin-bottom:8px;scrollbar-width:thin;}
+  .pick{flex:0 0 auto;display:flex;align-items:center;gap:10px;background:var(--white);border:2px solid var(--cream-dark);border-radius:14px;padding:6px 14px 6px 6px;cursor:pointer;font-family:var(--display);font-weight:600;font-size:14.5px;color:var(--charcoal);transition:border-color .2s,transform .2s;}
+  .pick img{width:42px;height:42px;border-radius:9px;object-fit:cover;}
+  .pick:hover{transform:translateY(-2px);}
+  .pick.on{border-color:var(--red);box-shadow:0 8px 18px -10px rgba(191,38,38,.6);}
+  .pd-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:34px;align-items:start;}
+  /* media viewer */
+  .media{min-width:0;position:sticky;top:84px;}
+  .stage{position:relative;border-radius:22px;overflow:hidden;box-shadow:var(--shadow);background:var(--charcoal);}
+  .track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;}
+  .track::-webkit-scrollbar{display:none;}
+  .slide{flex:0 0 100%;aspect-ratio:4/3;max-width:100%;scroll-snap-align:start;position:relative;}
+  .slide img{width:100%;height:100%;object-fit:cover;}
+  .slide iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .vposter{position:absolute;inset:0;border:none;padding:0;cursor:pointer;background:var(--charcoal);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;width:100%;}
+  .vposter img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;}
+  .vposter .play{position:relative;z-index:1;width:76px;height:76px;border-radius:50%;background:var(--gold);color:var(--charcoal);display:flex;align-items:center;justify-content:center;font-size:28px;padding-left:5px;transition:transform .3s var(--ease);}
+  .vposter:hover .play{transform:scale(1.08);}
+  .vposter .vl{position:relative;z-index:1;font-family:var(--display);font-weight:600;color:var(--white);font-size:16px;text-shadow:0 2px 10px rgba(0,0,0,.5);}
+  .vposter .soon{position:relative;z-index:1;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(36,28,24,.6);color:var(--gold-light);padding:4px 11px;border-radius:100px;}
+  .nav-btn{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:none;background:rgba(251,243,236,.92);color:var(--charcoal);font-size:22px;cursor:pointer;box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:center;z-index:2;}
+  .nav-btn:hover{background:var(--gold);} .nav-btn:disabled{opacity:.3;cursor:default;}
+  .nb-prev{left:12px;} .nb-next{right:12px;}
+  .count{position:absolute;right:12px;bottom:12px;z-index:2;background:rgba(36,28,24,.65);color:var(--white);font-size:12px;font-weight:700;padding:4px 10px;border-radius:100px;font-variant-numeric:tabular-nums;}
+  .thumbs{display:flex;gap:8px;overflow-x:auto;margin-top:10px;padding-bottom:4px;scrollbar-width:thin;}
+  .thumbs button{flex:0 0 auto;width:78px;height:58px;border-radius:10px;overflow:hidden;border:3px solid transparent;padding:0;cursor:pointer;opacity:.6;background:var(--charcoal);position:relative;transition:opacity .2s,border-color .2s;}
+  .thumbs button img{width:100%;height:100%;object-fit:cover;}
+  .thumbs button.on{border-color:var(--red);opacity:1;}
+  .thumbs .vt::after{content:'\25B6';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:16px;background:rgba(36,28,24,.35);}
+  /* info column */
+  .info{min-width:0;}
+  .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--red);background:rgba(191,38,38,.08);padding:4px 10px;border-radius:100px;margin-bottom:8px;}
+  .info h1{font-family:var(--logo);font-weight:800;font-size:clamp(30px,3.6vw,42px);line-height:1.05;margin-bottom:6px;}
+  .info h1 em{font-style:normal;color:var(--red);}
+  .sub{font-family:var(--display);font-weight:600;font-size:17px;color:var(--charcoal-soft);margin-bottom:8px;}
+  .lede{color:var(--charcoal-soft);font-size:15px;margin-bottom:14px;}
+  .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
+  .facts div{background:var(--white);border-radius:12px;padding:8px 10px;min-width:0;}
+  .facts dt{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--charcoal-soft);}
+  .facts dd{font-family:var(--display);font-weight:600;font-size:14px;line-height:1.25;}
+  .buy{display:flex;align-items:center;gap:16px;flex-wrap:wrap;background:var(--white);border-radius:18px;padding:14px 16px;box-shadow:var(--shadow-sm);margin-bottom:14px;}
+  .buy .p{display:flex;flex-direction:column;line-height:1.1;margin-right:auto;}
+  .buy .p strong{font-family:var(--display);font-size:30px;font-weight:600;color:var(--red);font-variant-numeric:tabular-nums;}
+  .buy .p span{font-size:12px;color:var(--charcoal-soft);margin-top:3px;max-width:230px;}
+  .buy .btn{padding:14px 24px;}
+  .buy .alt{flex-basis:100%;font-size:12.5px;color:var(--charcoal-soft);}
+  .buy .alt a{color:var(--red);font-weight:700;}
+  .lists{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .lists h3{font-size:15px;margin-bottom:6px;}
+  .lists ul{display:flex;flex-direction:column;gap:5px;}
+  .lists li{display:flex;gap:8px;font-size:13.5px;line-height:1.4;}
+  .lists li .check{width:16px;height:16px;font-size:9px;margin-top:2px;}
+  /* strip below */
+  .strip{display:grid;grid-template-columns:1.5fr 1fr;gap:20px;margin-top:30px;align-items:start;}
+  .card{background:var(--white);border-radius:18px;padding:18px 20px;box-shadow:var(--shadow-sm);min-width:0;}
+  .card h2{font-size:18px;margin-bottom:12px;}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;}
+  .steps div{display:flex;flex-direction:column;gap:4px;}
+  .steps b{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:600;font-size:14.5px;}
+  .steps b i{flex:0 0 26px;height:26px;border-radius:50%;background:var(--red);color:var(--white);font-style:normal;font-size:13px;display:flex;align-items:center;justify-content:center;}
+  .steps span{font-size:13px;color:var(--charcoal-soft);line-height:1.45;}
+  .chips2{display:flex;flex-wrap:wrap;gap:7px;}
+  .chips2 span{background:var(--cream);border-radius:100px;padding:6px 12px;font-size:13px;font-weight:600;}
+  .learn{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;}
+  .learn li{display:flex;gap:8px;font-size:13.5px;}
+  .learn li .check{width:16px;height:16px;font-size:9px;margin-top:2px;}
+  .contact-mini{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;font-size:13px;color:var(--charcoal-soft);}
+  .contact-mini b{color:var(--charcoal);user-select:all;}
+  header.nav{background:rgba(251,243,236,.94);backdrop-filter:blur(10px);box-shadow:0 6px 24px -14px rgba(36,28,24,.25);}
+  @media(max-width:980px){.facts{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:860px){.pd-grid,.strip{grid-template-columns:1fr;gap:22px;}.media{position:static;}}
   @media(max-width:640px){
-    .page-hero{padding:118px 0 54px;}
-    .proj-cta{padding:60px 0;text-align:left;}
-    .proj-cta .row{justify-content:flex-start;}
-    .sl-btn{width:38px;height:38px;font-size:19px;}
+    .pd{padding:84px 0 30px;}
+    .lists,.learn{grid-template-columns:1fr;}
+    .buy .btn{width:100%;}
+    .thumbs button{width:62px;height:46px;}
+    .pick{padding:5px 12px 5px 5px;font-size:13.5px;} .pick img{width:34px;height:34px;}
   }
 </style>
 <header class="nav" id="siteNav">
@@ -403,7 +504,7 @@
     <a href="index.html#top" class="brand-logo" aria-label="Prowell WoodSkills home"><img src="images/brand/logo.webp" alt="Prowell WoodSkills" width="900" height="283"></a>
     <nav class="links" aria-label="Main">
       <a href="index.html#workshops">Workshops</a>
-      <a href="#top">Holiday projects</a>
+      <a href="index.html#projects">Projects</a>
       <a href="index.html#calendar">Calendar</a>
       <a href="index.html#studio">The studio</a>
       <a href="index.html#visit">Visit</a>
@@ -417,7 +518,7 @@
 </header>
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html#workshops">Workshops</a>
-  <a href="#top">Holiday projects</a>
+  <a href="holiday-projects.html">Holiday projects</a>
   <a href="index.html#calendar">Calendar</a>
   <a href="index.html#studio">The studio</a>
   <a href="index.html#visit">Visit</a>
@@ -427,38 +528,44 @@
 </div>
 
 
-<section class="page-hero" id="top">
-  <div class="shape"></div>
+<main class="pd" id="top">
   <div class="wrap">
-    <div class="crumb"><a href="index.html">Home</a><span>/</span><span>Holiday projects</span></div>
-    <h1>Kids Holiday Workshop<br><em>projects</em></h1>
-    <p>Each holiday workshop builds one of these projects in a single day, from the first cut to the final coat. Pick the one your child wants to make, then choose a date that runs that project.</p>
-    <div class="jump-row" id="jumpRow"></div>
-  </div>
-</section>
-<div class="draft-note"><div><strong>Draft:</strong> project names, descriptions and photo groupings are placeholders based on studio photos. Confirm or replace them before launch.</div></div>
-
-<section class="hp-video" id="video">
-  <div class="wrap">
-    <div class="section-head"><span class="eyebrow">See it for yourself</span><h2>A Kids Holiday Workshop day.</h2></div>
-    <div class="video" id="videoBox"></div>
-  </div>
-</section>
-
-<section class="projects-list">
-  <div class="wrap" id="projList"></div>
-</section>
-
-<section class="proj-cta">
-  <div class="wrap">
-    <h2>Found the one?</h2>
-    <p>Check the calendar for a date running that project. Ages 8 to 16, R350 per child per project, all materials included.</p>
-    <div class="row">
-      <a class="btn btn-primary" href="index.html#calendar">See dates &amp; book</a>
-      <a class="btn btn-dark" href="index.html#contact">Ask a question</a>
+    <nav class="crumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="index.html#workshops">Workshops</a><span>/</span><span id="crumbName"></span></nav>
+    <div class="picker" id="picker" hidden></div>
+    <div class="pd-grid">
+      <div class="media">
+        <div class="stage">
+          <div class="track" id="track"></div>
+          <button class="nav-btn nb-prev" type="button" aria-label="Previous">&lsaquo;</button>
+          <button class="nav-btn nb-next" type="button" aria-label="Next">&rsaquo;</button>
+          <span class="count" id="count"></span>
+        </div>
+        <div class="thumbs" id="thumbs"></div>
+      </div>
+      <div class="info">
+        <span class="tag" id="tag"></span>
+        <h1 id="title"></h1>
+        <p class="sub" id="sub" hidden></p>
+        <p class="lede" id="lede"></p>
+        <dl class="facts" id="facts"></dl>
+        <div class="buy">
+          <div class="p"><strong id="price"></strong><span id="priceNote"></span></div>
+          <a class="btn btn-primary" id="book" href="#"></a>
+          <p class="alt" id="alt"></p>
+        </div>
+        <div class="lists">
+          <div><h3>What's included</h3><ul id="inc"></ul></div>
+          <div><h3>What to bring</h3><ul id="bring"></ul></div>
+        </div>
+      </div>
+    </div>
+    <div class="strip">
+      <div class="card"><h2 id="stripTitle"></h2><div id="stripBody"></div></div>
+      <div class="card"><h2 id="sideTitle"></h2><div id="sideBody"></div>
+        <div class="contact-mini"><span>WhatsApp / phone: <b>081 027 0892</b></span><span>Email: <b>henk@prowellkitchens.co.za</b></span></div></div>
     </div>
   </div>
-</section>
+</main>
 <footer>
   <div class="wrap">
     <div class="footer-grid">
@@ -469,8 +576,7 @@
       <div>
         <h4>Workshops</h4>
         <ul>
-          <li><a href="index.html#workshops">Kids Holiday Workshop</a></li>
-          <li><a href="#top">Holiday projects</a></li>
+          <li><a href="holiday-projects.html">Kids Holiday Workshop</a></li>
           <li><a href="kids-birthday-party.html">Kids Birthday Party</a></li>
           <li><a href="craft-together.html">Craft Together</a></li>
           <li><a href="index.html#calendar">Calendar</a></li>
@@ -489,74 +595,230 @@
   </div>
 </footer>
 <script>
-/* ================= EASILY-EDITABLE CONTENT =================
-   One entry per holiday project. `photos`: any number of images (relative paths) — the slider updates automatically.
-   Keep `name` identical to the `project` names used in the calendar on index.html. */
-const PROJECTS = [
-  { id:"step-stool", name:"Step Stool", level:"Beginner", ages:"Ages 8–16",
-    blurb:"A sturdy little stool they can actually stand on. It's the classic first build: measure, cut, join and finish a real piece of furniture.",
-    learn:["Measuring and marking accurately","Cutting straight with a saw","Joining legs and top so it stays solid","Sanding and finishing"],
-    photos:[4,9,16,24,19,3,11].map(n=>`images/studio/studio-${n}.webp`) },
-  { id:"tool-caddy", name:"Tool Caddy", level:"Beginner", ages:"Ages 8–16",
-    blurb:"An open box with a handle for carrying tools, art supplies or garden gear. It teaches how to build a square box that holds together.",
-    learn:["Building a square box","Drilling and fixing with screws","Fitting a handle","Sanding edges smooth"],
-    photos:[17,18,20].map(n=>`images/studio/studio-${n}.webp`) },
-  { id:"chopping-board", name:"Chopping Board", level:"Beginner", ages:"Ages 8–16",
-    blurb:"A striped board made by gluing strips of different woods together, then shaping and oiling it. It makes a great gift for home.",
-    learn:["Choosing and arranging timber","Gluing and clamping","Shaping and sanding a board","Finishing with food-safe oil"],
-    photos:[21].map(n=>`images/studio/studio-${n}.webp`) }
-];
+/* ================= PAGE CONTENT — edit in Website Mockups/_gen_workshop_pages.py, then re-run ================= */
+const PAGE = {
+ "name": "Kids Holiday Workshop",
+ "tag": "Kids · ages 8–16 · school holidays",
+ "titleHtml": "Kids Holiday <em>Workshop</em>",
+ "facts": [
+  [
+   "Duration",
+   "1 day · 3 hrs"
+  ],
+  [
+   "Ages",
+   "8–16"
+  ],
+  [
+   "Group",
+   "Max 6 kids"
+  ],
+  [
+   "Level",
+   "Beginner"
+  ]
+ ],
+ "price": "R350",
+ "priceNote": "per child, per project. All materials included.",
+ "bookLabel": "See dates & book",
+ "bookHref": "index.html#calendar",
+ "waQuestion": "Hi Henk! My name is [your name]. I have a question about the Kids Holiday Workshop ([project]):\n\n[your question]\n\nThank you!",
+ "included": [
+  "All timber, glue and hardware",
+  "Tools and safety gear at every bench",
+  "Step-by-step guidance from start to finish",
+  "A finished project to take home",
+  "A certificate of completion"
+ ],
+ "bring": [
+  "Closed shoes",
+  "Clothes that can take wood dust",
+  "A water bottle",
+  "A snack"
+ ],
+ "sideTitle": "How the day works",
+ "sideSteps": [
+  [
+   "Arrive & gear up",
+   "Safety gear on and a quick, simple safety briefing."
+  ],
+  [
+   "Build",
+   "Measure, cut, assemble and finish, with help at every step."
+  ],
+  [
+   "Take it home",
+   "Finished project and certificate in hand."
+  ]
+ ],
+ "videoLabel": "Watch a holiday workshop",
+ "video": {
+  "host": "youtube",
+  "id": ""
+ },
+ "videoPoster": "images/studio/studio-12.webp",
+ "projects": [
+  {
+   "id": "pot-stand",
+   "name": "Pot Stand",
+   "level": "Hand tools & glue",
+   "blurb": "A slatted stand that keeps hot pots and pans off the table. It's the perfect first build: simple to plan, satisfying to make, and the whole family will use it.",
+   "learn": [
+    "Measuring and marking with a ruler and square",
+    "Cutting straight with a pull saw and mitre box",
+    "Spacing slats evenly",
+    "Gluing and clamping a strong joint",
+    "Sanding to a smooth finish"
+   ],
+   "photos": [
+    "images/projects/pot-stand.webp",
+    "images/studio/studio-12.webp",
+    "images/studio/studio-13.webp",
+    "images/studio/studio-22.webp"
+   ]
+  },
+  {
+   "id": "book-stand",
+   "name": "Book Stand",
+   "level": "Hand tools & glue",
+   "blurb": "An angled stand that holds a recipe book, reading book or tablet. It teaches how to cut angles and build something that stands up straight.",
+   "learn": [
+    "Measuring and marking angles",
+    "Cutting accurate angles in a mitre box",
+    "Gluing a stable support",
+    "Clamping while the glue sets",
+    "Sanding edges and corners"
+   ],
+   "photos": [
+    "images/projects/book-stand.webp",
+    "images/studio/studio-9.webp",
+    "images/studio/studio-5.webp",
+    "images/studio/studio-21.webp"
+   ]
+  },
+  {
+   "id": "offcut-box",
+   "name": "Offcut Box",
+   "level": "Hand tools & glue",
+   "blurb": "A sturdy little box with grip handles on the ends, made to hold pencils, toys or workshop offcuts. Building a square box is a real woodworking milestone.",
+   "learn": [
+    "Building a square box",
+    "Making four sides fit together",
+    "Gluing and clamping a box",
+    "Adding handles",
+    "Sanding a box inside and out"
+   ],
+   "photos": [
+    "images/projects/offcut-box.webp",
+    "images/studio/studio-17.webp",
+    "images/studio/studio-18.webp",
+    "images/studio/studio-20.webp"
+   ]
+  },
+  {
+   "id": "key-rack",
+   "name": "Key Rack",
+   "level": "Drill & screws · best for 12+",
+   "blurb": "A wall-mounted key rack with brass hooks. Kids step up to a cordless drill and screws to build something that hangs by the front door for years.",
+   "learn": [
+    "Using a cordless drill safely",
+    "Pre-drilling and screwing joints",
+    "Fitting brass hooks",
+    "Building a frame",
+    "Finishing with wood oil"
+   ],
+   "photos": [
+    "images/projects/key-rack.webp",
+    "images/studio/studio-13.webp",
+    "images/studio/studio-14.webp",
+    "images/studio/studio-7.webp"
+   ]
+  },
+  {
+   "id": "coat-hook",
+   "name": "Hat / Coat Hook",
+   "level": "Drill & screws · best for 12+",
+   "blurb": "A wall rail with wooden pegs for hats, coats and school bags. A bigger, stronger build that uses a drill and screws, and finally gives the school bag a home.",
+   "learn": [
+    "Measuring and spacing pegs evenly",
+    "Drilling and screwing pegs to a rail",
+    "Making strong joints that carry weight",
+    "Sanding and finishing with wood oil",
+    "Planning a project from start to finish"
+   ],
+   "photos": [
+    "images/projects/coat-hook.webp",
+    "images/studio/studio-10.webp",
+    "images/studio/studio-2.webp",
+    "images/studio/studio-24.webp"
+   ]
+  }
+ ]
+};
+const PHONE_INTL="27810270892";
+const wa=m=>`https://wa.me/${PHONE_INTL}?text=${encodeURIComponent(m)}`;
+/* Wix gallery photos load from your Wix media library; if one can't load, a local studio photo shows instead. */
+const wixImg=(id,w=1200,h=900)=>`https://static.wixstatic.com/media/${id}/v1/fill/w_${w},h_${h},al_c,q_80,enc_auto/${id}`;
+const src=(p,w,h)=>typeof p==='string'?p:(p.wix?wixImg(p.wix,w,h):p.local);
+const fb=p=>typeof p==='string'?'':`onerror="this.onerror=null;this.src='${p.local}'"`;
+const alt=p=>typeof p==='string'?'':(p.alt||'');
+const embed=v=>v.host==='youtube'?`https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1&rel=0`:`https://player.vimeo.com/video/${v.id}?autoplay=1`;
+const $=(q,el=document)=>el.querySelector(q);
+const check='<span class="check">&#10003;</span>';
+const li=a=>a.map(x=>`<li>${check}<span>${x}</span></li>`).join('');
 
-/* Holiday workshop video — set host ("youtube" or "vimeo") and id once uploaded. */
-const VIDEO = {host:"youtube", id:""};
+function render(proj){
+  const photos = proj ? proj.photos : PAGE.photos;
+  const items = photos.map(p=>({type:'img',p})).concat([{type:'video'}]);
+  $('#track').innerHTML = items.map((it,i)=>it.type==='img'
+    ? `<div class="slide"><img src="${src(it.p)}" ${fb(it.p)} alt="${proj&&i===0?proj.name+' — the finished project':alt(it.p)||PAGE.name+' at Prowell WoodSkills'}" ${i?'loading="lazy"':''}></div>`
+    : `<div class="slide" id="vslide"><button class="vposter" type="button" aria-label="Play video"><img src="${src(PAGE.videoPoster)}" ${fb(PAGE.videoPoster)} alt=""><span class="play">&#9658;</span><span class="vl">${PAGE.videoLabel}</span>${PAGE.video.id?'':'<span class="soon">Video coming soon</span>'}</button></div>`).join('');
+  $('#thumbs').innerHTML = items.map((it,i)=>it.type==='img'
+    ? `<button type="button" aria-label="Photo ${i+1}"><img src="${src(it.p,200,150)}" ${fb(it.p)} alt=""></button>`
+    : `<button type="button" class="vt" aria-label="Video"><img src="${src(PAGE.videoPoster,200,150)}" ${fb(PAGE.videoPoster)} alt=""></button>`).join('');
+  if(PAGE.video.id){ $('#vslide .vposter').onclick=()=>{$('#vslide').innerHTML=`<iframe src="${embed(PAGE.video)}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="${PAGE.name} video"></iframe>`;}; }
+  const track=$('#track'), th=[...$('#thumbs').children], n=items.length, prev=$('.nb-prev'), next=$('.nb-next');
+  const idx=()=>Math.round(track.scrollLeft/track.clientWidth), go=i=>track.scrollTo({left:i*track.clientWidth});
+  const sync=()=>{const i=idx();th.forEach((t,j)=>t.classList.toggle('on',j===i));prev.disabled=i===0;next.disabled=i===n-1;$('#count').textContent=i===n-1?'Video':`${i+1} / ${n-1}`;};
+  th.forEach((t,i)=>t.onclick=()=>go(i)); prev.onclick=()=>go(Math.max(0,idx()-1)); next.onclick=()=>go(Math.min(n-1,idx()+1));
+  track.onscroll=()=>requestAnimationFrame(sync); track.scrollLeft=0; sync();
 
-const $=(s,el=document)=>el.querySelector(s);
-{const vb=$('#videoBox');
- vb.innerHTML=`<button class="video-poster" type="button" aria-label="Play video"><img src="images/studio/studio-12.webp" alt=""><span class="play">&#9658;</span><span class="vlabel">Watch a holiday workshop</span>${VIDEO.id?'':'<span class="soon">Video coming soon</span>'}</button>`;
- if(VIDEO.id){const u=VIDEO.host==='youtube'?`https://www.youtube-nocookie.com/embed/${VIDEO.id}?autoplay=1&rel=0`:`https://player.vimeo.com/video/${VIDEO.id}?autoplay=1`;
-   $('.video-poster',vb).onclick=()=>{vb.innerHTML=`<iframe src="${u}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Kids Holiday Workshop video"></iframe>`;};}}
-$('#jumpRow').innerHTML=PROJECTS.map(p=>`<a href="#${p.id}">${p.name}</a>`).join('');
-$('#projList').innerHTML=PROJECTS.map((p,i)=>`
-  <article class="proj" id="${p.id}">
-    <div class="slider" data-slider>
-      <div class="slides">${p.photos.map((ph,j)=>`<img src="${ph}" alt="${p.name} built at a Prowell WoodSkills holiday workshop, photo ${j+1}" loading="lazy">`).join('')}</div>
-      <button class="sl-btn sl-prev" type="button" aria-label="Previous photo">&lsaquo;</button>
-      <button class="sl-btn sl-next" type="button" aria-label="Next photo">&rsaquo;</button>
-      <div class="dots"></div>
-    </div>
-    <div class="proj-copy">
-      <span class="proj-num">Project ${i+1}</span>
-      <h2>${p.name}</h2>
-      <div class="proj-tags"><span>${p.ages}</span><span>${p.level}</span><span>1 day · 3 hrs</span><span>R350</span></div>
-      <p>${p.blurb}</p>
-      <div class="more">
-        <button class="more-btn" type="button" aria-expanded="false"><span class="chev">&rsaquo;</span>Read more: what they'll learn</button>
-        <div class="more-body"><ul>${p.learn.map(l=>`<li><span class="check">&#10003;</span><span>${l}</span></li>`).join('')}</ul></div>
-      </div>
-      <a class="btn btn-primary" href="index.html#calendar">Find a date for this project</a>
-    </div>
-  </article>`).join('');
+  if(proj){
+    $('#sub').hidden=false; $('#sub').textContent=`${proj.name} · ${proj.level}`;
+    $('#lede').textContent=proj.blurb;
+    $('#stripTitle').textContent=`What they'll learn building the ${proj.name}`;
+    $('#stripBody').innerHTML=`<ul class="learn">${li(proj.learn)}</ul>`;
+    document.querySelectorAll('.pick').forEach(b=>b.classList.toggle('on',b.dataset.id===proj.id));
+    $('#alt').innerHTML=`Pick a date that runs the ${proj.name}. Questions? <a href="${wa(PAGE.waQuestion.replace('[project]',proj.name))}" target="_blank" rel="noopener">WhatsApp us</a>`;
+  }
+}
 
-// sliders
-document.querySelectorAll('[data-slider]').forEach(sl=>{
-  const track=$('.slides',sl), imgs=[...track.children], dots=$('.dots',sl), prev=$('.sl-prev',sl), next=$('.sl-next',sl);
-  if(imgs.length<2){prev.hidden=next.hidden=true;return;}
-  dots.innerHTML=imgs.map((_,i)=>`<button type="button" aria-label="Photo ${i+1}"></button>`).join('');
-  const go=i=>track.scrollTo({left:i*track.clientWidth});
-  const idx=()=>Math.round(track.scrollLeft/track.clientWidth);
-  const sync=()=>{const i=idx();[...dots.children].forEach((d,j)=>d.classList.toggle('on',j===i));prev.disabled=i===0;next.disabled=i===imgs.length-1;};
-  [...dots.children].forEach((d,i)=>d.onclick=()=>go(i));
-  prev.onclick=()=>go(Math.max(0,idx()-1)); next.onclick=()=>go(Math.min(imgs.length-1,idx()+1));
-  track.addEventListener('scroll',()=>requestAnimationFrame(sync),{passive:true}); sync();
-});
-// read more
-document.querySelectorAll('.more').forEach(m=>{
-  const b=$('.more-btn',m), body=$('.more-body',m);
-  b.onclick=()=>{const o=m.classList.toggle('open');b.setAttribute('aria-expanded',o);body.style.maxHeight=o?body.scrollHeight+'px':0;};
-});
-// nav
-const nav=$('#siteNav'), menu=$('#mobileMenu'), hb=$('#hamburgerBtn');
-addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
+// static parts
+document.title=`${PAGE.name} · Prowell WoodSkills`;
+$('#crumbName').textContent=PAGE.name; $('#tag').textContent=PAGE.tag; $('#title').innerHTML=PAGE.titleHtml;
+$('#lede').textContent=PAGE.lede||'';
+$('#facts').innerHTML=PAGE.facts.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join('');
+$('#price').textContent=PAGE.price; $('#priceNote').textContent=PAGE.priceNote;
+const book=$('#book'); book.textContent=PAGE.bookLabel;
+if(PAGE.bookHref){book.href=PAGE.bookHref;} else {book.href=wa(PAGE.waMsg);book.target='_blank';book.rel='noopener';}
+$('#alt').innerHTML=PAGE.altHtml||'';
+$('#inc').innerHTML=li(PAGE.included); $('#bring').innerHTML=li(PAGE.bring);
+$('#sideTitle').textContent=PAGE.sideTitle;
+$('#sideBody').innerHTML=PAGE.sideSteps?`<div class="steps">${PAGE.sideSteps.map((d,i)=>`<div><b><i>${i+1}</i>${d[0]}</b><span>${d[1]}</span></div>`).join('')}</div>`:`<div class="chips2">${PAGE.perfectFor.map(x=>`<span>${x}</span>`).join('')}</div>`;
+if(!PAGE.projects){
+  $('#stripTitle').textContent=PAGE.dayTitle;
+  $('#stripBody').innerHTML=`<div class="steps">${PAGE.day.map((d,i)=>`<div><b><i>${i+1}</i>${d[0]}</b><span>${d[1]}</span></div>`).join('')}</div>`;
+  render(null);
+} else {
+  const pk=$('#picker'); pk.hidden=false;
+  pk.innerHTML=PAGE.projects.map(p=>`<button class="pick" type="button" data-id="${p.id}"><img src="${p.photos[0]}" alt="">${p.name}</button>`).join('');
+  const pickById=id=>PAGE.projects.find(p=>p.id===id)||PAGE.projects[0];
+  pk.querySelectorAll('.pick').forEach(b=>b.onclick=()=>{history.replaceState(null,'','#'+b.dataset.id);render(pickById(b.dataset.id));});
+  render(pickById(location.hash.slice(1)));
+  addEventListener('hashchange',()=>render(pickById(location.hash.slice(1))));
+}
+// nav (header stays solid on these pages)
+const menu=$('#mobileMenu'), hb=$('#hamburgerBtn'); $('#siteNav').classList.add('scrolled');
 hb.onclick=()=>{const o=menu.classList.toggle('open');document.body.classList.toggle('menu-open',o);hb.setAttribute('aria-expanded',o);};
 menu.querySelectorAll('a').forEach(a=>a.onclick=()=>{menu.classList.remove('open');document.body.classList.remove('menu-open');});
 </script>

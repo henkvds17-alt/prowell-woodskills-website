@@ -161,10 +161,10 @@
   .how .section-head h2{color:var(--white);}
   .how .section-head p{color:rgba(251,243,236,.72);}
   .how .eyebrow{color:var(--gold-light);}
-  .pv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .pv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px;}
   .pv-card{display:flex;flex-direction:column;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:22px;overflow:hidden;transition:transform .35s var(--ease),background .35s var(--ease);min-width:0;}
   .pv-card:hover{transform:translateY(-6px);background:rgba(255,255,255,.09);}
-  .pv-card img{width:100%;aspect-ratio:4/3;max-width:100%;object-fit:cover;}
+  .pv-card img{width:100%;aspect-ratio:1/1;max-width:100%;object-fit:cover;}
   .pv-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:6px;flex:1;}
   .pv-body h3{font-size:21px;color:var(--white);}
   .pv-body p{font-size:14px;color:rgba(251,243,236,.72);}
@@ -173,7 +173,53 @@
 
   /* CALENDAR */
   .calendar{background:var(--cream-dark);}
-  .cal-shell{display:grid;grid-template-columns:1fr;gap:26px;align-items:start;}
+  .cal-shell{display:grid;grid-template-columns:1.65fr 1fr;gap:20px;align-items:start;}
+  .calendar{padding:72px 0;}
+  .cal-head{margin-bottom:26px;}
+  .cal-head p{font-size:15.5px;margin-top:8px;}
+  .cal-card{padding:20px 20px 16px;}
+  .cal-top{margin-bottom:12px;}
+  .cal-top h3{font-size:21px;}
+  .cal-nav button{width:36px;height:36px;font-size:16px;}
+  .pfilter{display:flex;flex-wrap:wrap;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:8px;scrollbar-width:thin;}
+  .pf{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--cream-dark);background:var(--white);border-radius:100px;padding:5px 11px 5px 7px;font-family:var(--body);font-size:12.5px;font-weight:600;color:var(--charcoal);cursor:pointer;transition:border-color .2s,background .2s;}
+  .pf i{width:12px;height:12px;border-radius:4px;display:inline-block;}
+  .pf small{color:var(--charcoal-soft);font-weight:600;}
+  .pf:hover{border-color:var(--charcoal-soft);}
+  .pf.on{border-color:var(--charcoal);background:var(--charcoal);color:var(--white);}
+  .pf.on small{color:rgba(255,255,255,.7);}
+  .pf.zero{opacity:.45;}
+  .hol-banner{margin:0 0 10px;padding:7px 12px;font-size:12.5px;}
+  .cal-dow{font-size:10.5px;padding-bottom:4px;}
+  .cal-legend{margin-top:10px;gap:12px;font-size:12px;}
+  .sess-panel{background:var(--white);border-radius:24px;box-shadow:var(--shadow-sm);padding:18px 16px 14px;display:flex;flex-direction:column;gap:10px;min-width:0;}
+  .sess-panel h3{font-size:18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .sess-panel h3 small{font-family:var(--body);font-size:12px;font-weight:600;color:var(--charcoal-soft);}
+  .srows{display:flex;flex-direction:column;gap:6px;max-height:430px;overflow-y:auto;padding-right:4px;scrollbar-width:thin;}
+  .srow{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:center;padding:8px 8px;border-radius:14px;background:var(--cream);border:2px solid transparent;transition:border-color .2s;}
+  .srow.sel{border-color:var(--red);}
+  .srow .d{width:44px;height:46px;border-radius:10px;color:var(--white);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;}
+  .srow .d b{font-family:var(--display);font-size:19px;font-weight:600;}
+  .srow .d small{font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-top:2px;}
+  .srow .n{min-width:0;}
+  .srow .n b{display:block;font-family:var(--display);font-weight:600;font-size:14.5px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .srow .n span{font-size:12px;color:var(--charcoal-soft);font-variant-numeric:tabular-nums;}
+  .srow .btn{padding:8px 14px;font-size:13px;}
+  .panel-note{font-size:12.5px;color:var(--charcoal-soft);border-top:1px solid var(--cream-dark);padding-top:10px;}
+  .panel-note a{color:var(--red);font-weight:700;}
+  .cal-empty{padding:16px 16px;border-radius:16px;box-shadow:none;}
+  .cal-empty h4{font-size:16px;}
+  .cal-empty p{font-size:13.5px;margin-bottom:12px;}
+  .cal-empty .btn{padding:12px 20px;font-size:14px;}
+  .cal-day.dim .chip{opacity:.18;}
+  /* hover preview */
+  .pop{position:fixed;z-index:200;width:230px;background:var(--white);border-radius:16px;box-shadow:0 22px 50px -16px rgba(36,28,24,.45);overflow:hidden;pointer-events:none;}
+  .pop img{width:100%;aspect-ratio:4/3;object-fit:cover;}
+  .pop div{padding:10px 12px 12px;}
+  .pop b{display:flex;align-items:center;gap:7px;font-family:var(--display);font-weight:600;font-size:15.5px;}
+  .pop b i{width:10px;height:10px;border-radius:3px;}
+  .pop p{font-size:12px;color:var(--charcoal-soft);line-height:1.4;margin-top:3px;}
+  .pop .when{display:inline-block;margin-top:6px;font-size:11.5px;font-weight:700;color:var(--red);background:rgba(191,38,38,.08);padding:2px 8px;border-radius:100px;}
   .cal-card{background:var(--white);border-radius:24px;box-shadow:var(--shadow-sm);padding:26px;min-width:0;}
   .cal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;gap:12px;}
   .cal-top h3{font-size:24px;}
@@ -183,11 +229,11 @@
   .cal-nav button:disabled{opacity:.35;cursor:default;}
   .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
   .cal-dow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--charcoal-soft);text-align:center;padding-bottom:6px;}
-  .cal-day{min-height:92px;max-width:100%;border-radius:12px;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:4px;padding:7px 7px 12px;font-variant-numeric:tabular-nums;font-weight:600;font-size:14px;color:var(--charcoal);background:var(--cream);border:2px solid transparent;position:relative;min-width:0;text-align:left;font-family:inherit;}
+  .cal-day{min-height:70px;max-width:100%;border-radius:12px;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:4px;padding:5px 5px 11px;font-variant-numeric:tabular-nums;font-weight:600;font-size:14px;color:var(--charcoal);background:var(--cream);border:2px solid transparent;position:relative;min-width:0;text-align:left;font-family:inherit;}
   .cal-day .dn{line-height:1;}
   .chips{display:flex;flex-direction:column;gap:3px;min-width:0;}
-  .chip{display:block;font-size:11px;font-weight:700;line-height:1.25;color:var(--white);border-radius:6px;padding:3px 6px;white-space:normal;overflow-wrap:anywhere;min-width:0;}
-  .chip .t{opacity:.85;font-weight:600;margin-right:4px;}
+  .chip{display:block;font-size:10.5px;cursor:pointer;font-weight:700;line-height:1.25;color:var(--white);border-radius:6px;padding:3px 6px;white-space:normal;overflow-wrap:break-word;hyphens:manual;min-width:0;}
+  .chip .t{display:none;}
   .chip .sh{display:none;}
   .proj-key{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;}
   .proj-key span{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;background:var(--cream);border-radius:100px;padding:5px 12px 5px 6px;}
@@ -323,6 +369,7 @@
     .hamburger{display:flex;}
     .ws-grid{grid-template-columns:1fr 1fr;}
     .cal-shell,.visit-grid,.final-grid{grid-template-columns:1fr;}
+    .srows{max-height:360px;}
   }
   @media(max-width:860px){
     .hero{padding:120px 0 90px;}
@@ -330,7 +377,8 @@
     .hero-photos{height:360px;max-width:520px;width:100%;margin:0 auto;}
     .p1{height:230px;} .p2{height:200px;} .p3{height:200px;}
     .good-grid{grid-template-columns:1fr;}
-    .pv-grid{grid-template-columns:1fr;}
+    .pv-grid{grid-template-columns:1fr 1fr;gap:12px;}
+    .pv-body{padding:12px 12px 14px;} .pv-body h3{font-size:16px;} .pv-body p{font-size:12.5px;}
   }
   @media(max-width:640px){
     section{padding:68px 0;}
@@ -347,13 +395,16 @@
     .polaroid{padding:8px 8px 32px;} .polaroid figcaption{font-size:14px;bottom:7px;}
     .cal-card{padding:18px 14px;}
     .cal-grid{gap:4px;}
-    .cal-day{font-size:12px;border-radius:8px;min-height:64px;padding:4px 3px 9px;gap:3px;}
+    .cal-day{font-size:12px;border-radius:8px;min-height:54px;padding:4px 3px 9px;gap:3px;}
     .chip{font-size:8.5px;padding:2px 3px;border-radius:4px;white-space:nowrap;overflow:hidden;text-overflow:clip;text-align:center;}
     .chip .t,.chip .nm{display:none;}
     .chip .sh{display:block;}
     .cal-day.hol::after{left:4px;right:4px;bottom:3px;}
     .sess-extras{grid-template-columns:1fr;}
     .sess-grid{grid-template-columns:1fr;}
+    .srows{max-height:340px;}
+    .pfilter{flex-wrap:nowrap;}
+    .calendar{padding:56px 0;}
     .sess{flex-wrap:wrap;}
     .sess .btn{width:100%;}
     .studio-tile{height:190px;}
@@ -459,10 +510,10 @@
 
 <section class="calendar" id="calendar">
   <div class="wrap">
-    <div class="section-head reveal">
+    <div class="section-head cal-head reveal">
       <span class="eyebrow">Kids Holiday Workshop calendar</span>
       <h2>Upcoming holiday dates.</h2>
-      <p>Each workshop is one day. Tap a day with a red dot to see its workshops. Some days have two, at different times and with different projects.</p>
+      <p>One-day workshops. Pick a project to see only its dates, or tap a day to book.</p>
     </div>
     <div class="cal-shell">
       <div class="cal-card reveal">
@@ -473,18 +524,19 @@
             <button id="calNext" aria-label="Next month">&rsaquo;</button>
           </div>
         </div>
-        <div class="proj-key" id="projKey"></div>
+        <div class="pfilter" id="pFilter" role="group" aria-label="Filter by project"></div>
         <div class="hol-banner" id="holBanner" hidden></div>
         <div class="cal-grid" id="calGrid"></div>
         <div class="cal-legend">
-          <span><i style="background:var(--cream);box-shadow:inset 0 0 0 1.5px rgba(191,38,38,.5)"></i>Workshop day (tap to see times &amp; book)</span>
           <span><i style="background:var(--gold-light);box-shadow:inset 0 -3px 0 var(--gold)"></i>Public school holidays</span>
           <span><i style="border:2px solid var(--gold)"></i>Today</span>
+          <span>Hover a project for a preview</span>
         </div>
       </div>
-      <div class="sess-list reveal" id="sessList"></div>
+      <div class="sess-panel reveal" id="sessList"></div>
     </div>
   </div>
+  <div class="pop" id="projPop" hidden></div>
 </section>
 
 <section class="studio" id="studio">
@@ -603,6 +655,39 @@ const EMAIL = "henk@prowellkitchens.co.za";
 const MAP_URL = "https://maps.app.goo.gl/P7HAnz21569Az6MM8"; // Google Maps listing: Prowell WoodSkills, -33.6792966, 18.964857
 const wa = (msg) => `https://wa.me/${PHONE_INTL}?text=${encodeURIComponent(msg)}`;
 
+/* Pre-typed WhatsApp messages. Visitors only replace the [brackets]. Keep in sync with the Read more pages. */
+const WA_PARTY = `Hi Henk! My name is [your name] and I'd like to book a Kids Birthday Party at Prowell WoodSkills.
+
+🎂 Birthday child: [name], turning [age]
+📅 Preferred date: [day and date]
+🕘 Preferred start time: [e.g. 14:00]
+👥 Number of kids: [up to 8]
+🍰 Add a decorated cake (+R300): [yes / no]
+
+Please let me know if that date is available. Thank you!`;
+const WA_CRAFT = `Hi Henk! My name is [your name] and I'd like to book a Craft Together session at Prowell WoodSkills.
+
+📅 Preferred date (weekday): [day and date]
+🕘 Preferred start time: [e.g. 10:00]
+👥 Group size: [5 to 8 people]
+🎉 Occasion: [e.g. team building, birthday, friends' outing]
+
+Please let me know if that date is available. Thank you!`;
+const WA_GENERAL = `Hi Henk! My name is [your name] and I'd like to book a session at Prowell WoodSkills.
+
+🪵 Workshop: [Kids Birthday Party / Craft Together]
+📅 Preferred date: [day and date]
+🕘 Preferred start time: [time]
+👥 Number of people: [number]
+
+Please let me know if that date is available. Thank you!`;
+const WA_NOTIFY = `Hi Henk! My name is [your name]. Please let me know as soon as the next Kids Holiday Workshop dates open.
+
+👦 My child's age: [age]
+🪵 Project they'd like to build: [e.g. Key Rack]
+
+Thank you!`;
+
 const workshops = [
   { name:"Kids Holiday Workshop", audience:"Kids", tag:"Kids · ages 8–16", photo:"images/studio/studio-4.webp",
     blurb:"One day in the school holidays building a project from start to finish. Choose your project when you book.",
@@ -615,13 +700,13 @@ const workshops = [
     facts:[["Duration","3 hours"],["Group","Up to 8 kids"],["Cake","Add one for +R300"],["Language","Afr & Eng"]],
     price:"R2,900", priceNote:"flat rate for the party",
     more:{label:"Read more", href:"kids-birthday-party.html"},
-    booking:"request", cta:"Ask about a date", href: wa("Hi Henk, I'd like to book a WoodSkills birthday party. Preferred date: … Number of kids: …") },
+    booking:"request", cta:"Ask about a date", href: wa(WA_PARTY) },
   { name:"Craft Together", audience:"Adults", tag:"Adults · groups of 5–8", photo:"images/studio/studio-14.webp",
     blurb:"A relaxed group outing for friends, teams and visitors: pick a project, learn the tools and take home something you made. Coffee and tea on us.",
     facts:[["Duration","3 hours"],["Group","5 to 8 people"],["When","Weekdays"],["Language","Afr & Eng"]],
     price:"R550", priceNote:"per person",
     more:{label:"Read more", href:"craft-together.html"},
-    booking:"request", cta:"Plan a group session", href: wa("Hi Henk, I'd like to book a Craft Together session. Preferred date: … Group size: …") }
+    booking:"request", cta:"Ask about a date", href: wa(WA_CRAFT) }
 ];
 
 /* KIDS HOLIDAY WORKSHOP SESSIONS — mirrors the Wix booking calendar ("2-Day Kids Holiday Workshop").
@@ -644,18 +729,23 @@ const SCHOOL_HOLIDAYS = [
 
 /* Mockup only: sample sessions so the calendar layout can be reviewed. Remove before launch. */
 const SAMPLE_SESSIONS = [
-  {date:"2026-12-14",start:"09:00",end:"12:00",project:"Step Stool"},
-  {date:"2026-12-14",start:"13:00",end:"16:00",project:"Tool Caddy"},
-  {date:"2026-12-17",start:"09:00",end:"12:00",project:"Chopping Board"},
-  {date:"2027-01-05",start:"09:00",end:"12:00",project:"Step Stool"},
-  {date:"2027-01-05",start:"13:00",end:"16:00",project:"Chopping Board"}
+  {date:"2026-12-14",start:"09:00",end:"12:00",project:"Pot Stand"},
+  {date:"2026-12-14",start:"13:00",end:"16:00",project:"Key Rack"},
+  {date:"2026-12-16",start:"09:00",end:"12:00",project:"Book Stand"},
+  {date:"2026-12-17",start:"09:00",end:"12:00",project:"Offcut Box"},
+  {date:"2026-12-17",start:"13:00",end:"16:00",project:"Hat / Coat Hook"},
+  {date:"2027-01-05",start:"09:00",end:"12:00",project:"Pot Stand"},
+  {date:"2027-01-05",start:"13:00",end:"16:00",project:"Key Rack"},
+  {date:"2027-01-07",start:"09:00",end:"12:00",project:"Book Stand"}
 ];
 
-/* Holiday project preview on the home page — keep names in sync with holiday-projects.html (DRAFT names, to confirm). */
+/* Holiday projects (same projects as The Woodworking Guy site) — keep names in sync with holiday-projects.html and the calendar. */
 const PROJECT_PREVIEW = [
-  {id:"step-stool", name:"Step Stool", line:"A sturdy stool they can stand on. The classic first build.", photo:"images/studio/studio-4.webp"},
-  {id:"tool-caddy", name:"Tool Caddy", line:"An open box with a handle for tools or art supplies.", photo:"images/studio/studio-17.webp"},
-  {id:"chopping-board", name:"Chopping Board", line:"A striped board of glued-up woods, oiled and ready for the kitchen.", photo:"images/studio/studio-21.webp"}
+  {id:"pot-stand",  name:"Pot Stand", level:"Hand tools & glue",       short:"Pot",  line:"A slatted stand that keeps hot pots off the table.",          photo:"images/projects/pot-stand.webp"},
+  {id:"book-stand", name:"Book Stand", level:"Hand tools & glue",      short:"Book", line:"An angled stand for a recipe book, reading book or tablet.",   photo:"images/projects/book-stand.webp"},
+  {id:"offcut-box", name:"Offcut Box", level:"Hand tools & glue",      short:"Box",  line:"A sturdy little box with grip handles for odds and ends.",     photo:"images/projects/offcut-box.webp"},
+  {id:"key-rack",   name:"Key Rack", level:"Drill & screws · best for 12+",        short:"Keys", line:"A wall-mounted key rack with brass hooks, built with a drill.", photo:"images/projects/key-rack.webp"},
+  {id:"coat-hook",  name:"Hat / Coat Hook", level:"Drill & screws · best for 12+", short:"Hook", line:"A wall rail with wooden pegs for hats, coats and bags.",       photo:"images/projects/coat-hook.webp"}
 ];
 
 const studioPhotos = [3,4,9,16,12,23,7,13,10,5,21,17,2,18,8,24,6,11,19,20,1,15,22,14]
@@ -725,24 +815,31 @@ const DOW=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
 const today=new Date(); today.setHours(0,0,0,0);
 const iso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 const parse=s=>{const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d);};
-let useSample=false, viewY=today.getFullYear(), viewM=today.getMonth(), selected=null;
-const sessions=()=> (useSample?SAMPLE_SESSIONS:SESSIONS).filter(s=>parse(s.date)>=today).sort((a,b)=>(a.date+a.start).localeCompare(b.date+b.start));
+let useSample=false, viewY=today.getFullYear(), viewM=today.getMonth(), selected=null, filterProj=null;
+const allSessions=()=> (useSample?SAMPLE_SESSIONS:SESSIONS).filter(s=>parse(s.date)>=today).sort((a,b)=>(a.date+a.start).localeCompare(b.date+b.start));
+const sessions=()=> allSessions().filter(s=>!filterProj||s.project===filterProj);
 
 const fmtDay=d=>`${DOW[(d.getDay()+6)%7]} ${d.getDate()} ${MONTHS[d.getMonth()].slice(0,3)}`;
 /* One colour per project, so repeats are easy to spot on the calendar. Gold is reserved for school holidays. */
 const PROJECT_COLOURS=["#BF2626","#2E5E8C","#3F7D4E","#7A4E9C","#241C18","#C2571A"];
 const projectOrder=[]; const pc=name=>{let i=projectOrder.indexOf(name); if(i<0){projectOrder.push(name); i=projectOrder.length-1;} return PROJECT_COLOURS[i%PROJECT_COLOURS.length];};
 PROJECT_PREVIEW.forEach(p=>pc(p.name));
-const shortName=n=>{const w=n.split(' ');return w[w.length-1];}; // phone label: last word (Stool, Caddy, Board)
-function renderKey(list){
-  const counts={}; list.forEach(s=>counts[s.project]=(counts[s.project]||0)+1);
-  const names=Object.keys(counts); const k=$('#projKey'); k.hidden=!names.length;
-  k.innerHTML=names.map(n=>`<span><i style="background:${pc(n)}"></i>${n} <small>× ${counts[n]}</small></span>`).join('');
+const projInfo=n=>PROJECT_PREVIEW.find(x=>x.name===n);
+const shortName=n=>{const p=projInfo(n);return p?p.short:n.split(' ')[0];}; // phone label from PROJECT_PREVIEW.short
+
+// project filter (shows every holiday project; count = upcoming sessions)
+function renderFilter(){
+  const counts={}; allSessions().forEach(s=>counts[s.project]=(counts[s.project]||0)+1);
+  const names=[...new Set([...PROJECT_PREVIEW.map(p=>p.name),...Object.keys(counts)])];
+  const f=$('#pFilter');
+  f.innerHTML=`<button class="pf ${!filterProj?'on':''}" type="button" data-p="">All projects</button>`+
+    names.map(n=>`<button class="pf ${filterProj===n?'on':''} ${counts[n]?'':'zero'}" type="button" data-p="${n}" data-pop="${n}"><i style="background:${pc(n)}"></i>${n} <small>${counts[n]||0}</small></button>`).join('');
+  f.querySelectorAll('.pf').forEach(b=>b.onclick=()=>{filterProj=b.dataset.p||null;selected=null;jumpToStart();renderAll();});
 }
 const holidayOn=k=>SCHOOL_HOLIDAYS.find(h=>k>=h.from&&k<=h.to);
 const fmtShort=s=>{const d=parse(s);return `${d.getDate()} ${MONTHS[d.getMonth()].slice(0,3)}`;};
 const nextHoliday=()=>SCHOOL_HOLIDAYS.find(h=>h.to>=iso(today));
-function jumpToStart(){ // open on first workshop month, else on the next school holiday month
+function jumpToStart(){ // open on first (filtered) workshop month, else on the next school holiday month
   const f=sessions()[0], h=nextHoliday();
   const d=f?parse(f.date):(h?parse(h.from<iso(today)?iso(today):h.from):today);
   viewY=d.getFullYear(); viewM=d.getMonth();
@@ -768,41 +865,54 @@ function renderCal(){
     if(holidayOn(k) && dt>=today) cls+=' hol';
     if(ss){cls+=' has'; if(selected===k) cls+=' sel';}
     const el=document.createElement(ss?'button':'div'); el.className=cls;
-    el.innerHTML=`<span class="dn">${d}</span>${ss?`<span class="chips">${ss.map(s=>`<span class="chip" style="background:${pc(s.project)}" title="${s.start}–${s.end} ${s.project}"><span class="t">${s.start}</span><span class="nm">${s.project}</span><span class="sh">${shortName(s.project)}</span></span>`).join('')}</span>`:''}`;
+    el.innerHTML=`<span class="dn">${d}</span>${ss?`<span class="chips">${ss.map(s=>`<span class="chip" style="background:${pc(s.project)}" data-pop="${s.project}" data-when="${fmtDay(dt)} · ${s.start}–${s.end}"><span class="t">${s.start}</span><span class="nm">${s.project}</span><span class="sh">${shortName(s.project)}</span></span>`).join('')}</span>`:''}`;
     if(ss){el.type='button';
       el.setAttribute('aria-label',`${d} ${MONTHS[viewM]}: ${ss.map(s=>s.project+' '+s.start).join(', ')}`);
-      el.onclick=()=>{selected=k;renderCal();renderList();const t=document.querySelector(`[data-date="${k}"]`);t&&t.scrollIntoView({block:'nearest',behavior:'smooth'});};}
+      el.onclick=()=>{selected=k;renderCal();renderList();const t=document.querySelector(`.srow[data-date="${k}"]`);t&&t.scrollIntoView({block:'nearest',behavior:'smooth'});};}
     g.appendChild(el);
   }
 }
 function renderList(){
   const list=sessions(), box=$('#sessList');
   const toggle=`<button class="mock-toggle" id="mockToggle" type="button" aria-pressed="${useSample}">${useSample?'Hide sample dates':'Mockup: show sample dates'}</button>`;
-  const hols=SCHOOL_HOLIDAYS.filter(h=>h.to>=iso(today)).slice(0,3);
-  const holCard=`<div class="hol-list"><h4>Upcoming public school holidays</h4><ul>${hols.map(h=>`<li><span>${h.name}</span><b>${fmtShort(h.from)} – ${fmtShort(h.to)}${h.from.slice(0,4)!==h.to.slice(0,4)?' '+h.to.slice(0,4):''}</b></li>`).join('')}</ul></div>`;
-  const req=`<div class="sess-extras"><div class="req-note"><strong>Kids Birthday Parties &amp; Craft Together</strong> aren't on the calendar. They can run on almost any date. <a href="#contact" style="color:var(--red);font-weight:700;">Ask about your date &rarr;</a></div>${holCard}</div>`;
-  if(!list.length){
+  const note=`<p class="panel-note"><strong>Parties &amp; Craft Together</strong> run on almost any date, by request. <a href="#contact">Ask about a date &rarr;</a></p>`;
+  if(!allSessions().length){
     box.innerHTML=`<div class="cal-empty"><h4>Next holiday dates coming soon</h4>
-      <p>We're scheduling the December holiday workshops now. Send us a message and we'll let you know as soon as booking opens.</p>
-      <a class="btn btn-wa" href="${wa("Hi Henk, please let me know when the next WoodSkills holiday workshop dates open.")}" target="_blank" rel="noopener">Notify me on WhatsApp</a></div>${req}${toggle}`;
+      <p>We're scheduling the December holiday workshops now. We'll let you know as soon as booking opens.</p>
+      <a class="btn btn-wa" href="${wa(WA_NOTIFY)}" target="_blank" rel="noopener">Notify me on WhatsApp</a></div>
+      <a class="ws-more" href="holiday-projects.html">See the projects &rarr;</a>${note}${toggle}`;
   } else {
-    box.innerHTML=`<h3>Next dates${useSample?'<span class="mock-flag">SAMPLE</span>':''}</h3><div class="sess-grid">`+list.map(s=>{
-      const d=parse(s.date);
-      return `<div class="sess ${selected===s.date?'sel':''}" data-date="${s.date}">
-        <div class="sess-date"><b>${d.getDate()}</b><small>${MONTHS[d.getMonth()].slice(0,3)}</small></div>
-        <div class="sess-info"><h4><i style="background:${pc(s.project)}"></i>${s.project}</h4>
-          <p>${fmtDay(d)} · one-day workshop</p>
-          <span class="sess-time">${s.start}–${s.end}</span></div>
-        <a class="btn btn-primary" href="${HOLIDAY_BOOK_URL}" target="_blank" rel="noopener">Book</a>
-      </div>`;}).join('')+`</div><a class="ws-more" href="holiday-projects.html">What do the projects look like? &rarr;</a>`+req+toggle;
+    box.innerHTML=`<h3>${filterProj?filterProj:'Next dates'} <small>${list.length} workshop${list.length===1?'':'s'}</small>${useSample?'<span class="mock-flag">SAMPLE</span>':''}</h3>
+      <div class="srows">${list.length?list.map(s=>{const d=parse(s.date);
+        return `<div class="srow ${selected===s.date?'sel':''}" data-date="${s.date}" data-pop="${s.project}" data-when="${fmtDay(d)} · ${s.start}–${s.end}">
+          <div class="d" style="background:${pc(s.project)}"><b>${d.getDate()}</b><small>${MONTHS[d.getMonth()].slice(0,3)}</small></div>
+          <div class="n"><b>${s.project}</b><span>${fmtDay(d)} · ${s.start}–${s.end}</span></div>
+          <a class="btn btn-primary" href="${HOLIDAY_BOOK_URL}" target="_blank" rel="noopener">Book</a></div>`;}).join('')
+        :`<p class="panel-note" style="border:none;padding:0">No dates for this project yet. <a href="${wa(WA_NOTIFY.replace('[e.g. Key Rack]',filterProj||''))}" target="_blank" rel="noopener">Ask us to add one &rarr;</a></p>`}</div>
+      <a class="ws-more" href="holiday-projects.html${filterProj&&projInfo(filterProj)?'#'+projInfo(filterProj).id:''}">${filterProj?'More about the '+filterProj:'See all the projects'} &rarr;</a>${note}${toggle}`;
   }
-  $('#mockToggle').onclick=()=>{useSample=!useSample;selected=null;
-    jumpToStart(); renderCal();renderList();};
+  $('#mockToggle').onclick=()=>{useSample=!useSample;selected=null;filterProj=null;jumpToStart();renderAll();};
 }
+function renderAll(){renderFilter();renderCal();renderList();}
+
+// hover preview of a project (calendar chips, date rows, filter buttons)
+const pop=$('#projPop');
+document.addEventListener('mouseover',e=>{
+  const t=e.target.closest('#calendar [data-pop]'); if(!t){pop.hidden=true;return;}
+  if(!matchMedia('(hover:hover)').matches) return;
+  const p=projInfo(t.dataset.pop); if(!p){pop.hidden=true;return;}
+  pop.innerHTML=`<img src="${p.photo}" alt=""><div><b><i style="background:${pc(p.name)}"></i>${p.name}</b><p>${p.line}</p><p>${p.level}</p>${t.dataset.when?`<span class="when">${t.dataset.when}</span>`:''}</div>`;
+  pop.hidden=false;
+  const r=t.getBoundingClientRect(), w=230, h=pop.offsetHeight;
+  let x=Math.min(Math.max(8,r.left+r.width/2-w/2),innerWidth-w-8), y=r.top-h-10; if(y<8) y=r.bottom+10;
+  pop.style.left=x+'px'; pop.style.top=y+'px';
+});
+addEventListener('scroll',()=>pop.hidden=true,{passive:true});
+
 $('#calPrev').onclick=()=>{viewM--; if(viewM<0){viewM=11;viewY--;} renderCal();};
 $('#calNext').onclick=()=>{viewM++; if(viewM>11){viewM=0;viewY++;} renderCal();};
 jumpToStart();
-renderCal(); renderList();
+renderAll();
 
 $('#pvGrid').innerHTML=PROJECT_PREVIEW.map(p=>`<a class="pv-card reveal" href="holiday-projects.html#${p.id}"><img src="${p.photo}" alt="${p.name} built at a Kids Holiday Workshop" loading="lazy"><div class="pv-body"><h3>${p.name}</h3><p>${p.line}</p><span class="go">See the project &rarr;</span></div></a>`).join('');
 // studio gallery, skills, good-to-know, faq
@@ -820,7 +930,7 @@ faqs.forEach((f,i)=>{
 
 // contact
 $('#phoneVal').textContent=PHONE_DISPLAY; $('#emailVal').textContent=EMAIL;
-$('#waBtn').href=wa("Hi Henk, I'd like to book a WoodSkills session. Type (party / Craft Together): … Preferred date: … Group size: …");
+$('#waBtn').href=wa(WA_GENERAL);
 $('#mapLink').href=MAP_URL;
 document.querySelectorAll('.copy-btn').forEach(b=>b.addEventListener('click',()=>{
   const el=document.getElementById(b.dataset.copy), txt=el.textContent;
