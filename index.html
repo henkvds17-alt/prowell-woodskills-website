@@ -474,6 +474,45 @@
     .visit-grid{gap:22px;}
     .faq-q{padding:15px 16px;font-size:15px;}
   }
+
+  /* ===== PITCH SECTION (first black section) ===== */
+  .pitch{padding:88px 0;overflow:hidden;}
+  .pitch-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:center;}
+  .pitch-photos{position:relative;height:440px;}
+  .pp{position:absolute;margin:0;background:var(--white);padding:9px 9px 9px;border-radius:8px;box-shadow:0 28px 46px -20px rgba(0,0,0,.7);}
+  .pp img{width:100%;height:100%;object-fit:cover;border-radius:4px;}
+  .pp1{width:74%;height:330px;left:0;top:0;transform:rotate(-3deg);z-index:2;}
+  .pp2{width:52%;height:220px;right:0;bottom:0;transform:rotate(4deg);z-index:3;}
+  .pp-tag{position:absolute;font-family:var(--display);font-weight:600;font-size:15px;padding:8px 16px;border-radius:100px;z-index:4;}
+  .pp-yes{left:16px;bottom:18px;background:var(--gold);color:var(--charcoal);}
+  .pp-no{right:6%;top:24px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:rgba(251,243,236,.7);text-decoration:line-through;transform:rotate(6deg);}
+  .pitch-copy{min-width:0;}
+  .pitch h2{font-family:var(--logo);font-weight:800;font-size:clamp(32px,4.4vw,52px);line-height:1.05;color:var(--white);margin-bottom:16px;}
+  .pitch h2 em{font-style:normal;color:var(--gold-light);}
+  .pitch-lede{font-size:17px;color:rgba(251,243,236,.82);max-width:540px;margin-bottom:22px;}
+  .swap{display:flex;flex-direction:column;gap:8px;margin-bottom:22px;}
+  .swap div{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:10px 16px;}
+  .swap s{color:rgba(251,243,236,.45);font-size:14px;white-space:nowrap;}
+  .swap s::after{content:'\2192';display:inline-block;margin-left:12px;text-decoration:none;color:rgba(251,243,236,.35);}
+  .swap b{font-family:var(--display);font-weight:600;font-size:16px;color:var(--gold-light);}
+  .why3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:26px;}
+  .why3 li{border-top:3px solid var(--red);padding-top:10px;}
+  .why3 b{display:block;font-family:var(--display);font-weight:600;font-size:16px;color:var(--white);}
+  .why3 span{font-size:13px;color:rgba(251,243,236,.7);line-height:1.45;}
+  .pitch-ctas{display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+  .pitch-link{font-weight:700;font-size:15px;color:var(--gold-light);}
+  .pitch-link:hover{text-decoration:underline;}
+  @media(max-width:860px){.pitch-grid{grid-template-columns:1fr;gap:30px;}.pitch-photos{height:360px;max-width:520px;}}
+  @media(max-width:640px){
+    .pitch{padding:56px 0;}
+    .pitch-photos{height:250px;}
+    .pp1{width:78%;height:200px;transform:none;} .pp2{width:48%;height:130px;transform:none;}
+    .pp-no{display:none;} .pp-yes{font-size:13px;bottom:12px;}
+    .pitch h2{font-size:31px;}
+    .pitch-lede{font-size:15px;}
+    .swap s{font-size:12.5px;} .swap b{font-size:14.5px;} .swap div{padding:9px 12px;}
+    .why3{grid-template-columns:1fr 1fr 1fr;gap:8px;} .why3 b{font-size:14px;} .why3 span{font-size:11.5px;}
+  }
 </style>
 
 <header class="nav" id="siteNav">
@@ -481,7 +520,7 @@
     <a href="#top" class="brand-logo" aria-label="Prowell WoodSkills home"><img src="images/brand/logo.webp" alt="Prowell WoodSkills" width="900" height="283"></a>
     <nav class="links" aria-label="Main">
       <a href="#workshops">Workshops</a>
-      <a href="#projects">Projects</a>
+      <a href="holiday-projects.html">Projects</a>
       <a href="#calendar">Calendar</a>
       <a href="#studio">The studio</a>
       <a href="#visit">Visit</a>
@@ -557,16 +596,32 @@
   </div>
 </section>
 
-<section class="how" id="projects">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Kids Holiday Workshop projects</span>
-      <h2>What will your child build?</h2>
-      <p>Every holiday workshop builds one project in a single day. Choose the project, then pick a date that runs it.</p>
+<section class="how pitch" id="why">
+  <div class="wrap pitch-grid">
+    <div class="pitch-photos reveal" aria-hidden="true">
+      <figure class="pp pp1"><img src="images/studio/studio-13.webp" alt=""><span class="pp-tag pp-yes">Build time</span></figure>
+      <figure class="pp pp2"><img src="images/studio/studio-12.webp" alt=""></figure>
+      <span class="pp-tag pp-no">Screen time</span>
     </div>
-    <p class="swipe-hint">Swipe to see all projects &rarr;</p>
-    <div class="pv-grid swipe" id="pvGrid"></div>
-    <div class="pv-cta"><a class="btn btn-primary" href="holiday-projects.html">See all projects</a></div>
+    <div class="pitch-copy reveal">
+      <span class="eyebrow">This school holiday</span>
+      <h2>Get them off the couch and <em>into the workshop.</em></h2>
+      <p class="pitch-lede">Give your kids something meaningful to do this holiday. Real tools, real wood, and a project they finish with their own hands, instead of another day of scrolling.</p>
+      <div class="swap">
+        <div><s>"I'm bored."</s><b>"Look what I made!"</b></div>
+        <div><s>Scrolling</s><b>Building something real</b></div>
+        <div><s>Watching others create</s><b>Creating it themselves</b></div>
+      </div>
+      <ul class="why3">
+        <li><b>Confidence</b><span>They finish something hard, and they know it.</span></li>
+        <li><b>Focus</b><span>Measuring and cutting leave no room for a screen.</span></li>
+        <li><b>A skill for life</b><span>Working with your hands never stops being useful.</span></li>
+      </ul>
+      <div class="pitch-ctas">
+        <a class="btn btn-primary" href="#calendar">See holiday dates</a>
+        <a class="pitch-link" href="holiday-projects.html">What can they build? &rarr;</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -725,6 +780,7 @@ const WA_PARTY = `Hi Henk! My name is [your name] and I'd like to book a Kids Bi
 🕘 Preferred start time: [e.g. 14:00]
 👥 Number of kids: [up to 8]
 🍰 Add a decorated cake (+R300): [yes / no]
+🪵 Project choice or special request: [optional]
 
 Please let me know if that date is available. Thank you!`;
 const WA_CRAFT = `Hi Henk! My name is [your name] and I'd like to book a Craft Together session at Prowell WoodSkills.
@@ -733,6 +789,7 @@ const WA_CRAFT = `Hi Henk! My name is [your name] and I'd like to book a Craft T
 🕘 Preferred start time: [e.g. 10:00]
 👥 Group size: [5 to 8 people]
 🎉 Occasion: [e.g. team building, birthday, friends' outing]
+🪵 Our 3 project choices (if decided): [1. …  2. …  3. …]
 
 Please let me know if that date is available. Thank you!`;
 const WA_GENERAL = `Hi Henk! My name is [your name] and I'd like to book a session at Prowell WoodSkills.
@@ -978,7 +1035,6 @@ $('#calNext').onclick=()=>{viewM++; if(viewM>11){viewM=0;viewY++;} renderCal();}
 jumpToStart();
 renderAll();
 
-$('#pvGrid').innerHTML=PROJECT_PREVIEW.map(p=>`<a class="pv-card reveal" href="holiday-projects.html#${p.id}"><img src="${p.photo}" alt="${p.name} built at a Kids Holiday Workshop" loading="lazy"><div class="pv-body"><h3>${p.name}</h3><p>${p.line}</p><span class="go">See the project &rarr;</span></div></a>`).join('');
 // studio gallery, skills, good-to-know, faq
 $('#studioGallery').innerHTML=studioPhotos.map(s=>`<div class="studio-tile"><img src="${s.photo}" alt="${s.alt}" loading="lazy"></div>`).join('');
 $('#skillPills').innerHTML=skills.map(s=>`<span class="skill-pill">${s}</span>`).join('');

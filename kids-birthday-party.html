@@ -474,6 +474,45 @@
     .visit-grid{gap:22px;}
     .faq-q{padding:15px 16px;font-size:15px;}
   }
+
+  /* ===== PITCH SECTION (first black section) ===== */
+  .pitch{padding:88px 0;overflow:hidden;}
+  .pitch-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:center;}
+  .pitch-photos{position:relative;height:440px;}
+  .pp{position:absolute;margin:0;background:var(--white);padding:9px 9px 9px;border-radius:8px;box-shadow:0 28px 46px -20px rgba(0,0,0,.7);}
+  .pp img{width:100%;height:100%;object-fit:cover;border-radius:4px;}
+  .pp1{width:74%;height:330px;left:0;top:0;transform:rotate(-3deg);z-index:2;}
+  .pp2{width:52%;height:220px;right:0;bottom:0;transform:rotate(4deg);z-index:3;}
+  .pp-tag{position:absolute;font-family:var(--display);font-weight:600;font-size:15px;padding:8px 16px;border-radius:100px;z-index:4;}
+  .pp-yes{left:16px;bottom:18px;background:var(--gold);color:var(--charcoal);}
+  .pp-no{right:6%;top:24px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:rgba(251,243,236,.7);text-decoration:line-through;transform:rotate(6deg);}
+  .pitch-copy{min-width:0;}
+  .pitch h2{font-family:var(--logo);font-weight:800;font-size:clamp(32px,4.4vw,52px);line-height:1.05;color:var(--white);margin-bottom:16px;}
+  .pitch h2 em{font-style:normal;color:var(--gold-light);}
+  .pitch-lede{font-size:17px;color:rgba(251,243,236,.82);max-width:540px;margin-bottom:22px;}
+  .swap{display:flex;flex-direction:column;gap:8px;margin-bottom:22px;}
+  .swap div{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:10px 16px;}
+  .swap s{color:rgba(251,243,236,.45);font-size:14px;white-space:nowrap;}
+  .swap s::after{content:'\2192';display:inline-block;margin-left:12px;text-decoration:none;color:rgba(251,243,236,.35);}
+  .swap b{font-family:var(--display);font-weight:600;font-size:16px;color:var(--gold-light);}
+  .why3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:26px;}
+  .why3 li{border-top:3px solid var(--red);padding-top:10px;}
+  .why3 b{display:block;font-family:var(--display);font-weight:600;font-size:16px;color:var(--white);}
+  .why3 span{font-size:13px;color:rgba(251,243,236,.7);line-height:1.45;}
+  .pitch-ctas{display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+  .pitch-link{font-weight:700;font-size:15px;color:var(--gold-light);}
+  .pitch-link:hover{text-decoration:underline;}
+  @media(max-width:860px){.pitch-grid{grid-template-columns:1fr;gap:30px;}.pitch-photos{height:360px;max-width:520px;}}
+  @media(max-width:640px){
+    .pitch{padding:56px 0;}
+    .pitch-photos{height:250px;}
+    .pp1{width:78%;height:200px;transform:none;} .pp2{width:48%;height:130px;transform:none;}
+    .pp-no{display:none;} .pp-yes{font-size:13px;bottom:12px;}
+    .pitch h2{font-size:31px;}
+    .pitch-lede{font-size:15px;}
+    .swap s{font-size:12.5px;} .swap b{font-size:14.5px;} .swap div{padding:9px 12px;}
+    .why3{grid-template-columns:1fr 1fr 1fr;gap:8px;} .why3 b{font-size:14px;} .why3 span{font-size:11.5px;}
+  }
 </style>
 <style>
   /* COMPACT WORKSHOP PAGE (product-page layout) */
@@ -548,6 +587,28 @@
   .learn li .check{width:16px;height:16px;font-size:9px;margin-top:2px;}
   .contact-mini{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;font-size:13px;color:var(--charcoal-soft);}
   .contact-mini b{color:var(--charcoal);user-select:all;}
+  /* project options / how projects work */
+  .pblock{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px;align-items:start;}
+  .pblock.single{grid-template-columns:1fr;}
+  .pblock .card{display:flex;flex-direction:column;gap:12px;}
+  .pblock .card > p{font-size:13.5px;color:var(--charcoal-soft);}
+  .how4{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .how4 div{background:var(--cream);border-radius:14px;padding:12px 14px;}
+  .how4 b{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:600;font-size:15px;margin-bottom:3px;}
+  .how4 b i{flex:0 0 26px;height:26px;border-radius:50%;background:var(--red);color:var(--white);font-style:normal;font-size:13px;display:flex;align-items:center;justify-content:center;}
+  .how4 span{font-size:13px;color:var(--charcoal-soft);line-height:1.45;}
+  .how4 strong{color:var(--charcoal);}
+  .ideas{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;}
+  .idea{background:var(--cream);border-radius:12px;padding:10px 12px;border-left:4px solid var(--gold);}
+  .idea b{display:block;font-family:var(--display);font-weight:600;font-size:14.5px;}
+  .idea span{font-size:12px;color:var(--charcoal-soft);line-height:1.35;display:block;margin-top:2px;}
+  .pnote{display:flex;gap:10px;align-items:flex-start;background:rgba(224,168,62,.16);border-radius:12px;padding:10px 12px;font-size:13px;color:var(--charcoal);}
+  .pnote::before{content:'!';flex:0 0 20px;height:20px;border-radius:50%;background:var(--gold);color:var(--charcoal);font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;}
+  .sizebadge{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;background:var(--charcoal);color:var(--white);border-radius:12px;padding:8px 14px;font-family:var(--display);font-weight:600;font-size:15px;}
+  .sizebadge small{font-family:var(--body);font-size:11.5px;font-weight:600;color:var(--gold-light);}
+  .pblock .btn{align-self:flex-start;padding:12px 20px;font-size:14.5px;}
+  @media(max-width:860px){.pblock{grid-template-columns:1fr;}}
+  @media(max-width:640px){.how4{grid-template-columns:1fr;}.ideas{grid-template-columns:1fr 1fr;}.pblock .btn{width:100%;}}
   header.nav{background:rgba(251,243,236,.94);backdrop-filter:blur(10px);box-shadow:0 6px 24px -14px rgba(36,28,24,.25);}
   @media(max-width:980px){.facts{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:860px){.pd-grid,.strip{grid-template-columns:1fr;gap:22px;}.media{position:static;}}
@@ -564,7 +625,7 @@
     <a href="index.html#top" class="brand-logo" aria-label="Prowell WoodSkills home"><img src="images/brand/logo.webp" alt="Prowell WoodSkills" width="900" height="283"></a>
     <nav class="links" aria-label="Main">
       <a href="index.html#workshops">Workshops</a>
-      <a href="index.html#projects">Projects</a>
+      <a href="holiday-projects.html">Projects</a>
       <a href="index.html#calendar">Calendar</a>
       <a href="index.html#studio">The studio</a>
       <a href="index.html#visit">Visit</a>
@@ -619,6 +680,7 @@
         </div>
       </div>
     </div>
+    <div class="pblock" id="pblock" hidden></div>
     <div class="strip">
       <div class="card"><h2 id="stripTitle"></h2><div id="stripBody"></div></div>
       <div class="card"><h2 id="sideTitle"></h2><div id="sideBody"></div>
@@ -682,7 +744,7 @@ const PAGE = {
  "price": "R2,900",
  "priceNote": "Flat rate for the party, up to 8 kids (about R363 per child).",
  "bookLabel": "Ask about a date",
- "waMsg": "Hi Henk! My name is [your name] and I'd like to book a Kids Birthday Party at Prowell WoodSkills.\n\n🎂 Birthday child: [name], turning [age]\n📅 Preferred date: [day and date]\n🕘 Preferred start time: [e.g. 14:00]\n👥 Number of kids: [up to 8]\n🍰 Add a decorated cake (+R300): [yes / no]\n\nPlease let me know if that date is available. Thank you!",
+ "waMsg": "Hi Henk! My name is [your name] and I'd like to book a Kids Birthday Party at Prowell WoodSkills.\n\n🎂 Birthday child: [name], turning [age]\n📅 Preferred date: [day and date]\n🕘 Preferred start time: [e.g. 14:00]\n👥 Number of kids: [up to 8]\n🍰 Add a decorated cake (+R300): [yes / no]\n🪵 Project choice or special request: [optional]\n\nPlease let me know if that date is available. Thank you!",
  "altHtml": "Booked by request: we confirm your date on WhatsApp.",
  "included": [
   "Exclusive use of the workshop",
@@ -724,6 +786,37 @@ const PAGE = {
   "A party they will remember",
   "A gift that lasts"
  ],
+ "projectsBlock": {
+  "ideasTitle": "What can they build?",
+  "ideasIntro": "Each guest picks a project from a few party favourites, like these:",
+  "ideas": [
+   [
+    "Phone Stand",
+    "Holds a phone upright for videos and calls."
+   ],
+   [
+    "Name Sign",
+    "Their own name, cut, sanded and decorated."
+   ],
+   [
+    "Pencil Holder",
+    "A chunky holder for the desk or art table."
+   ],
+   [
+    "Toy Car",
+    "A wooden car with wheels that really roll."
+   ],
+   [
+    "Treasure Box",
+    "A small box with a lid for special things."
+   ],
+   [
+    "Bookends",
+    "A pair to keep their favourite books standing."
+   ]
+  ],
+  "note": "These are examples while we finalise our party project list. Got something else in mind? Special requests are welcome: just tell us when you book so we can prepare."
+ },
  "videoLabel": "Watch a party in action",
  "video": {
   "host": "youtube",
@@ -826,6 +919,13 @@ if(!PAGE.projects){
   pk.querySelectorAll('.pick').forEach(b=>b.onclick=()=>{history.replaceState(null,'','#'+b.dataset.id);render(pickById(b.dataset.id));});
   render(pickById(location.hash.slice(1)));
   addEventListener('hashchange',()=>render(pickById(location.hash.slice(1))));
+}
+// project options / how projects work
+if(PAGE.projectsBlock){
+  const P=PAGE.projectsBlock, pb=$('#pblock'); pb.hidden=false; if(!P.how) pb.classList.add('single');
+  const ideas=`<div class="card"><h2>${P.ideasTitle}</h2>${P.ideasIntro?`<p>${P.ideasIntro}</p>`:''}<div class="ideas">${P.ideas.map(i=>`<div class="idea"><b>${i[0]}</b><span>${i[1]}</span></div>`).join('')}</div>${P.note?`<div class="pnote">${P.note}</div>`:''}${P.cta?`<a class="btn btn-wa" href="${wa(P.cta.msg)}" target="_blank" rel="noopener">${P.cta.label}</a>`:''}</div>`;
+  const how=P.how?`<div class="card"><h2>${P.how.title}</h2>${P.how.size?`<span class="sizebadge">${P.how.size}</span>`:''}<div class="how4">${P.how.steps.map((st,i)=>`<div><b><i>${i+1}</i>${st[0]}</b><span>${st[1]}</span></div>`).join('')}</div></div>`:'';
+  pb.innerHTML=how+ideas;
 }
 // nav (header stays solid on these pages)
 const menu=$('#mobileMenu'), hb=$('#hamburgerBtn'); $('#siteNav').classList.add('scrolled');
