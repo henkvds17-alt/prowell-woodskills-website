@@ -821,23 +821,23 @@ const PAGE = {
  "projectsBlock": {
   "how": {
    "title": "How the projects work",
-   "size": "Max size 20 × 20 cm <small>per project</small>",
+   "size": "Max size 20 × 20 × 20 cm <small>per project</small>",
    "steps": [
     [
      "Pick 3 projects",
-     "Your group chooses <strong>3 projects</strong>: from our ideas, or your own (a photo or Pinterest pin is perfect)."
+     "From our ideas or your own (a photo works)."
     ],
     [
      "Keep it small",
-     "Each project must fit within <strong>20 × 20 cm</strong>, so everyone can finish in 3 hours."
+     "Max <strong>20 × 20 × 20 cm</strong>, so it is done in 3 hours."
     ],
     [
      "Send them 2 days before",
-     "Let us know your 3 choices at least <strong>2 days before</strong> your session (add them to your booking message if you already know), so we can prepare the timber."
+     "So we can prepare the timber."
     ],
     [
-     "Everyone chooses on the day",
-     "At the workbench, <strong>each person builds any one</strong> of your group's 3 projects."
+     "Choose on the day",
+     "Each person builds <strong>any one</strong> of the 3."
     ]
    ]
   },
@@ -868,7 +868,7 @@ const PAGE = {
     "Your number, cut and finished."
    ]
   ],
-  "note": "Not sure if your idea will work? Include a photo when you book and we will confirm it fits the 20 × 20 cm size and the 3-hour session."
+  "note": "Not sure if your idea will work? Include a photo when you book and we will confirm it fits the 20 × 20 × 20 cm size and the 3-hour session."
  },
  "videoLabel": "Watch a group in action",
  "video": {
@@ -977,7 +977,7 @@ render(null);
 // projects showcase (the experience stays the same; the project is what they take home)
 if(PAGE.projects){
   const sc=$('#showcase'); sc.hidden=false;
-  sc.innerHTML=`<div class="sc-head"><h2>${PAGE.projectsTitle}</h2><p>${PAGE.projectsIntro}</p></div>
+  sc.innerHTML=`<div class="sc-head"><h2>${PAGE.projectsTitle}</h2>${PAGE.projectsIntro?`<p>${PAGE.projectsIntro}</p>`:''}</div>
     <div class="sc-row">${PAGE.projects.map(p=>`<figure class="sc-card" id="${p.id}"><img src="${p.photos[0]}" alt="${p.name}" loading="lazy"><figcaption>${p.name}</figcaption></figure>`).join('')}</div>`;
   const hl=()=>{const el=location.hash&&document.getElementById(location.hash.slice(1));
     document.querySelectorAll('.sc-card').forEach(c=>c.classList.toggle('on',c===el));
