@@ -266,8 +266,8 @@ SP = lambda ns: [L(n) for n in ns]
 
 PAGES = {
  'holiday-projects.html': dict(
-   name='Kids Holiday Workshop', tag='Kids · ages 8–16 · school holidays',
-   titleHtml='Kids Holiday <em>Workshop</em>',
+   name='Kids Holiday Experience', tag='Kids · ages 8–16 · school holidays',
+   titleHtml='Kids Holiday <em>Experience</em>',
    lede="School holidays, but you still have to work? Don't let them spend the day at home on video games. Give your kids something meaningful to do: three hours of healthy, hands-on fun in our professional woodworking studio, where they learn real skills, use real tools safely and come home proud of something they built themselves.",
    photos=SP([12,13,3,9,16,4,22]),
    learnTitle="What every child learns",
@@ -285,7 +285,7 @@ PAGES = {
               ['Start building','Hands-on: measure, cut and assemble, with help at every step.'],
               ['Break time','Snack time, play, and a go at some of the tools they like.'],
               ['Finish & take it home','Sand, finish, and leave with the project and a certificate.']],
-   videoLabel='Watch a holiday workshop', video={'host':'youtube','id':''}, videoPoster=L(13),
+   videoLabel='Watch a holiday experience', video={'host':'youtube','id':''}, videoPoster=L(13),
    projects=[
      dict(id='pot-stand', name='Pot Stand', level='Hand tools & glue',
        blurb="A slatted stand that keeps hot pots and pans off the table. It's the perfect first build: simple to plan, satisfying to make, and the whole family will use it.",
@@ -370,7 +370,7 @@ PAGES = {
 for fname, d in PAGES.items():
     if isinstance(d.get('videoPoster'), str): pass
     hb = re.sub(r'<title>.*?</title>', f"<title>{d['name']} · Prowell WoodSkills</title>", headbits)
-    desc = (d.get('lede') or 'The woodworking projects kids build at the Prowell WoodSkills Kids Holiday Workshop in Paarl.')[:155]
+    desc = (d.get('lede') or 'The woodworking projects kids build at the Prowell WoodSkills Kids Holiday Experience in Paarl.')[:155]
     hb = re.sub(r'<meta name="description" content=".*?">', f'<meta name="description" content="{desc}">', hb)
     page = top + hb + style + '\n' + CSS + '\n' + header + BODY + footer + '\n' + SCRIPT.replace('__PAGE__', json.dumps(d, ensure_ascii=False, indent=1)) + '\n'
     open(fname, 'w').write(page)

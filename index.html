@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Prowell WoodSkills</title>
-<meta name="description" content="Hands-on woodworking experiences in Paarl for kids and adults: holiday workshops, birthday parties and Craft Together group sessions.">
+<meta name="description" content="Hands-on woodworking experiences in Paarl for kids and adults: holiday experiences, birthday parties and Craft Together group sessions.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -571,7 +571,7 @@
     <div class="hero-copy">
       <div class="hero-badge"><span class="dot"></span> Woodworking studio in Paarl</div>
       <h1>Real tools. Real wood.<br><em>Made by you.</em></h1>
-      <p class="lede">Hands-on woodworking experiences for kids and adults. Holiday workshops, birthday parties and group sessions in our professional woodworking studio in Paarl, where everyone walks out with something they built themselves.</p>
+      <p class="lede">Hands-on woodworking experiences for kids and adults. Holiday experiences, birthday parties and group sessions in our professional woodworking studio in Paarl, where everyone walks out with something they built themselves.</p>
       <div class="hero-ctas">
         <a href="#calendar" class="btn btn-primary">See holiday dates</a>
         <a href="#workshops" class="btn btn-outline">See all experiences</a>
@@ -594,7 +594,7 @@
   <div class="wrap who-grid">
     <a class="who-card" href="#workshops" data-jump="Kids">
       <span class="who-ico">8+</span>
-      <div><h3>For kids</h3><p>Holiday workshops and birthday parties, ages 8 to 16</p></div>
+      <div><h3>For kids</h3><p>Holiday experiences and birthday parties, ages 8 to 16</p></div>
       <span class="arrow">&rarr;</span>
     </a>
     <a class="who-card" href="#workshops" data-jump="Adults">
@@ -612,7 +612,7 @@
       <h2>Pick your experience.</h2>
       <p>Three ways to spend a few hours at the workbench. Everything is supplied, and every project goes home with you.</p>
     </div>
-    <div class="filter-row" id="filterRow" role="group" aria-label="Filter workshops"></div>
+    <div class="filter-row" id="filterRow" role="group" aria-label="Filter experiences"></div>
     <p class="swipe-hint">Swipe to see all experiences &rarr;</p>
     <div class="ws-grid swipe" id="wsGrid"></div>
   </div>
@@ -627,7 +627,7 @@
     </div>
     <div class="pitch-copy reveal">
       <span class="eyebrow">This school holiday</span>
-      <h2>Get them off the couch and <em>into the studio.</em></h2>
+      <h2>Get them off the couch and <em>into the workshop.</em></h2>
       <p class="pitch-lede">Give your kids something meaningful to do this holiday. Real tools, real wood, and a project they finish with their own hands, instead of another day of playing games.</p>
       <div class="swap">
         <div><s>"I'm bored."</s><b>"Look what I made!"</b></div>
@@ -650,7 +650,7 @@
 <section class="calendar" id="calendar">
   <div class="wrap">
     <div class="section-head cal-head reveal">
-      <span class="eyebrow">Kids Holiday Workshop calendar</span>
+      <span class="eyebrow">Kids Holiday Experience calendar</span>
       <h2>Upcoming holiday dates.</h2>
       <p>One-day experiences. Pick a project to see only its dates, or tap a day to book.</p>
     </div>
@@ -762,7 +762,7 @@
       <div>
         <h4>Experiences</h4>
         <ul>
-          <li><a href="holiday-projects.html">Kids Holiday Workshop</a></li>
+          <li><a href="holiday-projects.html">Kids Holiday Experience</a></li>
           <li><a href="kids-birthday-party.html">Kids Birthday Party</a></li>
           <li><a href="craft-together.html">Craft Together</a></li>
           <li><a href="#calendar">Calendar</a></li>
@@ -822,7 +822,7 @@ const WA_GENERAL = `Hi Henk! My name is [your name] and I have a question about 
 Thank you!`;
 
 const workshops = [
-  { name:"Kids Holiday Workshop", audience:"Kids", tag:"Kids · ages 8–16", photo:"images/studio/studio-4.webp",
+  { name:"Kids Holiday Experience", audience:"Kids", tag:"Kids · ages 8–16", photo:"images/studio/studio-4.webp",
     blurb:"One day in the school holidays building a project from start to finish. Choose your project when you book.",
     more:{label:"Read more", href:"holiday-projects.html"},
     facts:[["Duration","1 day · 3 hrs"],["Group","Max 8 kids"],["Level","Beginner"],["Language","Afr & Eng"]],
@@ -842,7 +842,7 @@ const workshops = [
     booking:"request", cta:"Request booking", href: mail("Craft Together booking request", WA_CRAFT) }
 ];
 
-/* KIDS HOLIDAY WORKSHOP SESSIONS — mirrors the Wix booking calendar ("2-Day Kids Holiday Workshop").
+/* KIDS HOLIDAY WORKSHOP SESSIONS — mirrors the Wix booking calendar ("2-Day Kids Holiday Experience").
    One line per session (each workshop is a single day). Two sessions on the same day are fine (different times/projects).
    Format: date "YYYY-MM-DD", start/end "HH:MM", project = name shown on the calendar
    (should match a project on holiday-projects.html). Availability/spots are handled by Wix.
@@ -894,13 +894,13 @@ const good = [
   "Take it home — every builder leaves with their project.",
   "Afrikaans & English — taught in both.",
   "What to bring — closed shoes, dusty clothes, water.",
-  "Certificates — for every Kids Holiday Workshop."
+  "Certificates — for every Kids Holiday Experience."
 ];
 
 const faqs = [
   {q:"Does my child need any experience?",a:"No. Every experience assumes they have never used a tool before. We teach safe tool use step by step, and every child completes their own project."},
   {q:"What ages are the kids experiences for?",a:"Kids aged 8 to 16. Projects are matched to the age group, and every child is guided step by step."},
-  {q:"How does the Kids Holiday Workshop work?",a:"Each workshop is a single 3-hour session on one day. Your child finishes the project and takes it home the same day. See the holiday projects page for what they can build."},
+  {q:"How does the Kids Holiday Experience work?",a:"Each experience is a single 3-hour session on one day. Your child finishes the project and takes it home the same day. See the holiday projects page for what they can build."},
   {q:"Is it safe?",a:"Yes. Groups are small and fully supervised. Kids use hand tools and selected power tools only under instruction, and closed shoes are required."},
   {q:"What should we bring?",a:"Closed shoes, clothes that can take wood dust, a water bottle and a snack. All tools and materials are supplied."},
   {q:"How do I book a Kids Birthday Party?",a:"Tap \"Request booking\" on the Kids Birthday Party card and send us your preferred date, time and number of kids (up to 8). We'll confirm a session that suits you. You bring the cake, drinks and extras, or add a decorated cake for R300."},
@@ -1011,7 +1011,7 @@ function renderList(){
   const note=`<p class="panel-note"><strong>Parties &amp; Craft Together</strong> run on almost any date, by request. <a href="#contact">Request booking &rarr;</a></p>`;
   if(!allSessions().length){
     box.innerHTML=`<div class="cal-empty"><h4>Next holiday dates coming soon</h4>
-      <p>We're scheduling the December holiday workshops now. Dates are added here before every school holiday, so check back soon.</p>
+      <p>We're scheduling the December holiday experiences now. Dates are added here before every school holiday, so check back soon.</p>
       </div>
       <a class="ws-more" href="holiday-projects.html">See the projects &rarr;</a>${note}${toggle}`;
   } else {
