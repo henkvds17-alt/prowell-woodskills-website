@@ -833,6 +833,7 @@ const workshops = [
     more:{label:"Read more", href:"kids-birthday-party.html"},
     booking:"request", cta:"Request booking", href: mail("Kids Birthday Party booking request", WA_PARTY) },
   { name:"Craft Together", audience:"Adults", tag:"Families, friends & teams · groups of 5–8", photo:"images/studio/studio-14.webp",
+    photoWix:"https://static.wixstatic.com/media/48e650_b68e59e45776478094483cdcecd335ad~mv2.jpeg/v1/fill/w_900,h_675,al_c,q_80,enc_auto/48e650_b68e59e45776478094483cdcecd335ad~mv2.jpeg", // same photo as the Craft Together page (Wix media library)
     blurb:"A relaxed group outing for families, friends and teams: pick a project, learn the tools and take home something you made. Coffee and tea on us.",
     facts:[["Duration","3 hours"],["Group","5 to 8 people"],["When","Weekdays"],["Language","Afr & Eng"]],
     price:"R550", priceNote:"per person",
@@ -924,7 +925,7 @@ workshops.forEach(w=>{
   const el=document.createElement('article');
   el.className='ws-card reveal'; el.dataset.aud=w.audience;
   const ext = w.href.startsWith('http');
-  el.innerHTML=`<div class="ws-thumb"><img src="${w.photo}" alt="${w.name} at Prowell WoodSkills" loading="lazy">
+  el.innerHTML=`<div class="ws-thumb"><img src="${w.photoWix||w.photo}" alt="${w.name} at Prowell WoodSkills" loading="lazy"${w.photoWix?` onerror="this.onerror=null;this.src='${w.photo}'"`:''}>
       <span class="ws-book ${w.booking==='online'?'':'ws-book--req'}">${w.booking==='online'?'Book online':'Book by request'}</span></div>
     <div class="ws-body">
       <span class="ws-tag">${w.tag}</span>
