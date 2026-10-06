@@ -155,16 +155,19 @@
   .ws-more:hover{text-decoration:underline;}
 
   /* HOW BOOKING WORKS */
-  .how{background:var(--white);}
-  .lanes{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1000px;margin:0 auto;}
-  .lane{background:var(--cream);border:2px solid var(--cream-dark);border-radius:24px;padding:30px 28px;}
-  .lane h3{font-size:22px;color:var(--red);margin-bottom:4px;}
-  .lane .lane-sub{font-size:14px;color:var(--charcoal-soft);margin-bottom:22px;}
-  .lane ol{list-style:none;display:flex;flex-direction:column;gap:14px;counter-reset:s;}
-  .lane li{display:flex;gap:14px;align-items:flex-start;counter-increment:s;font-size:15px;color:var(--charcoal-soft);}
-  .lane li::before{content:counter(s);flex:0 0 36px;height:36px;border-radius:50%;background:var(--red);color:var(--white);font-family:var(--display);font-weight:700;display:flex;align-items:center;justify-content:center;}
-  .lane li strong{color:var(--charcoal);display:block;font-family:var(--display);font-weight:600;font-size:16px;}
-  .lane .btn{margin-top:24px;}
+  .how{background:var(--charcoal);color:var(--cream);}
+  .how .section-head h2{color:var(--white);}
+  .how .section-head p{color:rgba(251,243,236,.72);}
+  .how .eyebrow{color:var(--gold-light);}
+  .pv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .pv-card{display:flex;flex-direction:column;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:22px;overflow:hidden;transition:transform .35s var(--ease),background .35s var(--ease);min-width:0;}
+  .pv-card:hover{transform:translateY(-6px);background:rgba(255,255,255,.09);}
+  .pv-card img{width:100%;aspect-ratio:4/3;max-width:100%;object-fit:cover;}
+  .pv-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:6px;flex:1;}
+  .pv-body h3{font-size:21px;color:var(--white);}
+  .pv-body p{font-size:14px;color:rgba(251,243,236,.72);}
+  .pv-body .go{margin-top:auto;padding-top:8px;font-weight:700;font-size:14px;color:var(--gold-light);}
+  .pv-cta{text-align:center;margin-top:34px;}
 
   /* CALENDAR */
   .calendar{background:var(--cream-dark);}
@@ -301,7 +304,8 @@
     .hero-grid{grid-template-columns:1fr;gap:30px;}
     .hero-photos{height:360px;max-width:520px;width:100%;margin:0 auto;}
     .p1{height:230px;} .p2{height:200px;} .p3{height:200px;}
-    .lanes,.good-grid{grid-template-columns:1fr;}
+    .good-grid{grid-template-columns:1fr;}
+    .pv-grid{grid-template-columns:1fr;}
   }
   @media(max-width:640px){
     section{padding:68px 0;}
@@ -335,7 +339,7 @@
     <a href="#top" class="brand-logo" aria-label="Prowell WoodSkills home"><img src="images/brand/logo.webp" alt="Prowell WoodSkills" width="900" height="283"></a>
     <nav class="links" aria-label="Main">
       <a href="#workshops">Workshops</a>
-      <a href="holiday-projects.html">Projects</a>
+      <a href="#projects">Projects</a>
       <a href="#calendar">Calendar</a>
       <a href="#studio">The studio</a>
       <a href="#visit">Visit</a>
@@ -410,35 +414,15 @@
   </div>
 </section>
 
-<section class="how" id="how">
+<section class="how" id="projects">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">How booking works</span>
-      <h2>Two ways to book.</h2>
-      <p>Holiday workshops run on set dates and book online. Parties and group sessions are arranged around your date.</p>
+      <span class="eyebrow">Kids Holiday Workshop projects</span>
+      <h2>What will your child build?</h2>
+      <p>Every holiday workshop builds one project over two days. Choose the project, then pick a date that runs it.</p>
     </div>
-    <div class="lanes">
-      <div class="lane reveal">
-        <h3>Kids Holiday Workshop</h3>
-        <p class="lane-sub">Book and pay online</p>
-        <ol>
-          <li><div><strong>Pick a date</strong>Choose a holiday date from the calendar below.</div></li>
-          <li><div><strong>Book on our booking page</strong>Secure your child's spot and pay online in a few minutes.</div></li>
-          <li><div><strong>Arrive and build</strong>Day 2 is the next day at the same time. The project goes home at the end.</div></li>
-        </ol>
-        <a href="#calendar" class="btn btn-primary">See holiday dates</a>
-      </div>
-      <div class="lane reveal">
-        <h3>Kids Birthday Party &amp; Craft Together</h3>
-        <p class="lane-sub">Booked by request</p>
-        <ol>
-          <li><div><strong>Send us a message</strong>Tell us your preferred date, time and group size.</div></li>
-          <li><div><strong>We confirm your session</strong>Henk sets up a session that suits your group.</div></li>
-          <li><div><strong>Bring your people</strong>We supply tools, timber and guidance. You bring the celebration.</div></li>
-        </ol>
-        <a href="#contact" class="btn btn-wa">Message us on WhatsApp</a>
-      </div>
-    </div>
+    <div class="pv-grid" id="pvGrid"></div>
+    <div class="pv-cta"><a class="btn btn-primary" href="holiday-projects.html">See all projects</a></div>
   </div>
 </section>
 
@@ -622,6 +606,13 @@ const SAMPLE_SESSIONS = [
   {date:"2027-01-05",start:"13:00",end:"16:00",project:"Chopping Board"}
 ];
 
+/* Holiday project preview on the home page — keep names in sync with holiday-projects.html (DRAFT names, to confirm). */
+const PROJECT_PREVIEW = [
+  {id:"step-stool", name:"Step Stool", line:"A sturdy stool they can stand on. The classic first build.", photo:"images/studio/studio-4.webp"},
+  {id:"tool-caddy", name:"Tool Caddy", line:"An open box with a handle for tools or art supplies.", photo:"images/studio/studio-17.webp"},
+  {id:"chopping-board", name:"Chopping Board", line:"A striped board of glued-up woods, oiled and ready for the kitchen.", photo:"images/studio/studio-21.webp"}
+];
+
 const studioPhotos = [3,4,9,16,12,23,7,13,10,5,21,17,2,18,8,24,6,11,19,20,1,15,22,14]
   .map(n=>({photo:`images/studio/studio-${n}.webp`,alt:"Students at the Prowell WoodSkills studio with their finished projects"}));
 
@@ -742,6 +733,7 @@ $('#calNext').onclick=()=>{viewM++; if(viewM>11){viewM=0;viewY++;} renderCal();}
 {const f=sessions()[0]; if(f){const d=parse(f.date);viewY=d.getFullYear();viewM=d.getMonth();}}
 renderCal(); renderList();
 
+$('#pvGrid').innerHTML=PROJECT_PREVIEW.map(p=>`<a class="pv-card reveal" href="holiday-projects.html#${p.id}"><img src="${p.photo}" alt="${p.name} built at a Kids Holiday Workshop" loading="lazy"><div class="pv-body"><h3>${p.name}</h3><p>${p.line}</p><span class="go">See the project &rarr;</span></div></a>`).join('');
 // studio gallery, skills, good-to-know, faq
 $('#studioGallery').innerHTML=studioPhotos.map(s=>`<div class="studio-tile"><img src="${s.photo}" alt="${s.alt}" loading="lazy"></div>`).join('');
 $('#skillPills').innerHTML=skills.map(s=>`<span class="skill-pill">${s}</span>`).join('');
