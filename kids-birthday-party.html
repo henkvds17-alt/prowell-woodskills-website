@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Kids Birthday Party · Prowell WoodSkills</title>
-<meta name="description" content="Every guest gets their own workbench, real tools and a project to build from start to finish. Then it's cake time at the birthday table. They go home proud">
+<meta name="description" content="You choose one project for the party, and every guest builds it from start to finish at their own workbench, with real tools. Then it's cake time at the bi">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -103,7 +103,7 @@
   .check{flex:0 0 auto;width:18px;height:18px;border-radius:50%;background:var(--gold);color:var(--charcoal);display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;}
   /* polaroid stack of real studio photos */
   .hero-photos{position:relative;height:460px;}
-  .polaroid{position:absolute;background:var(--white);padding:10px 10px 38px;border-radius:6px;box-shadow:0 26px 40px -18px rgba(20,12,10,.55);transition:transform .45s var(--ease);}
+  .polaroid{position:absolute;background:var(--white);padding:10px 10px 26px;border-radius:6px;box-shadow:0 26px 40px -18px rgba(20,12,10,.55);transition:transform .45s var(--ease);}
   .polaroid img{width:100%;height:100%;object-fit:cover;border-radius:3px;}
   .polaroid figcaption{position:absolute;left:0;right:0;bottom:9px;text-align:center;font-family:var(--logo);font-weight:700;font-size:15px;color:var(--charcoal);}
   .polaroid:hover{transform:rotate(0) scale(1.04)!important;z-index:5;}
@@ -394,7 +394,7 @@
     .hero-photos{height:auto;}
     .p2,.p3{display:none;}
     .p1{position:relative;width:100%;height:230px;transform:none;}
-    .polaroid{padding:8px 8px 32px;} .polaroid figcaption{font-size:14px;bottom:7px;}
+    .polaroid{padding:8px 8px 22px;} .polaroid figcaption{font-size:14px;bottom:7px;}
     .cal-card{padding:18px 14px;}
     .cal-grid{gap:4px;}
     .cal-day{font-size:12px;border-radius:8px;min-height:54px;padding:4px 3px 9px;gap:3px;}
@@ -524,7 +524,7 @@
     .hero-badge{grid-area:badge;justify-self:start;font-size:11.5px;padding:6px 12px;margin-bottom:12px;}
     .hero h1{grid-area:title;font-size:30px;line-height:1.06;margin:0;}
     .hero-photos{grid-area:photo;height:auto;max-width:none;width:auto;margin:0;align-self:center;}
-    .hero-photos .p1{position:relative;width:100%;height:150px;transform:rotate(3deg);padding:5px 5px 22px;border-radius:5px;}
+    .hero-photos .p1{position:relative;width:100%;height:150px;transform:rotate(3deg);padding:5px 5px 14px;border-radius:5px;}
     .hero-photos .p1 figcaption{font-size:10.5px;bottom:4px;}
     .hero-photos .tape{width:50px;height:16px;top:-8px;}
     .hero .lede{grid-area:lede;font-size:14px;line-height:1.5;margin:14px 0 16px;}
@@ -753,7 +753,7 @@ const PAGE = {
  "name": "Kids Birthday Party",
  "tag": "Kids · ages 8–16 · booked by request",
  "titleHtml": "The party where they <em>build their own gift.</em>",
- "lede": "Every guest gets their own workbench, real tools and a project to build from start to finish. Then it's cake time at the birthday table. They go home proud, with something they made themselves.",
+ "lede": "You choose one project for the party, and every guest builds it from start to finish at their own workbench, with real tools. Then it's cake time at the birthday table. They go home proud, with something they made themselves.",
  "facts": [
   [
    "Duration",
@@ -775,7 +775,7 @@ const PAGE = {
  "price": "R2,900",
  "priceNote": "Flat rate for the party, up to 8 kids (about R363 per child).",
  "bookLabel": "Request booking",
- "waMsg": "Hi Henk! My name is [your name] and I'd like to book a Kids Birthday Party at Prowell WoodSkills.\n\n🎂 Birthday child: [name], turning [age]\n📅 Preferred date: [day and date]\n🕘 Preferred start time: [e.g. 14:00]\n👥 Number of kids: [up to 8]\n🍰 Add a decorated cake (+R300): [yes / no]\n🪵 Project choice or special request: [optional]\n\nPlease let me know if that date is available. Thank you!",
+ "waMsg": "Hi Henk! My name is [your name] and I'd like to book a Kids Birthday Party at Prowell WoodSkills.\n\n🎂 Birthday child: [name], turning [age]\n📅 Preferred date: [day and date]\n🕘 Preferred start time: [e.g. 14:00]\n👥 Number of kids: [up to 8]\n🍰 Add a decorated cake (+R300): [yes / no]\n🪵 Project for the group (everyone builds the same one): [e.g. Phone Stand, Name Sign, Toy Car, or your own idea]\n\nPlease let me know if that date is available. Thank you!",
  "mailSubject": "Kids Birthday Party booking request",
  "altHtml": "Booked by request: tell us your preferred date and we will confirm it.",
  "included": [
@@ -799,8 +799,8 @@ const PAGE = {
    "Safety gear on and a quick, friendly briefing."
   ],
   [
-   "Pick a project",
-   "Each child chooses from a selection of fun designs."
+   "Same project, together",
+   "The whole group builds the project you chose when booking, side by side."
   ],
   [
    "Build it",
@@ -819,8 +819,8 @@ const PAGE = {
   "A gift that lasts"
  ],
  "projectsBlock": {
-  "ideasTitle": "What can they build?",
-  "ideasIntro": "Each guest picks a project from a few party favourites, like these:",
+  "ideasTitle": "Choose the party project",
+  "ideasIntro": "Pick one project for the whole group when you book. Everyone builds the same one, like these party favourites:",
   "ideas": [
    [
     "Phone Stand",
@@ -847,7 +847,7 @@ const PAGE = {
     "A pair to keep their favourite books standing."
    ]
   ],
-  "note": "These are examples while we finalise our party project list. Got something else in mind? Special requests are welcome: just tell us when you book so we can prepare."
+  "note": "Tell us your choice when you book, at least 2 days before the party, so we can prepare the timber. These are examples while we finalise our party project list; special requests are welcome."
  },
  "videoLabel": "Watch a party in action",
  "video": {

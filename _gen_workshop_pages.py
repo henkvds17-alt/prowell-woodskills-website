@@ -311,7 +311,7 @@ PAGES = {
  'kids-birthday-party.html': dict(
    name='Kids Birthday Party', tag='Kids · ages 8–16 · booked by request',
    titleHtml='The party where they <em>build their own gift.</em>',
-   lede="Every guest gets their own workbench, real tools and a project to build from start to finish. Then it's cake time at the birthday table. They go home proud, with something they made themselves.",
+   lede="You choose one project for the party, and every guest builds it from start to finish at their own workbench, with real tools. Then it's cake time at the birthday table. They go home proud, with something they made themselves.",
    facts=[['Duration','3 hours'],['Ages','8–16'],['Guests','Up to 8 kids'],['Studio','All yours']],
    price='R2,900', priceNote='Flat rate for the party, up to 8 kids (about R363 per child).',
    bookLabel='Request booking', waMsg=WA['WA_PARTY'], mailSubject='Kids Birthday Party booking request',
@@ -319,13 +319,13 @@ PAGES = {
    included=['Exclusive use of the studio','A bench, tools and safety gear for every guest','All timber and hardware','A finished project for every guest','A birthday table for cake and drinks','Music throughout'],
    bring=['Closed shoes for every child','Clothes that can take wood dust','Birthday cake, drinks and extras','Or add a decorated cake for R300'],
    dayTitle='How the party works',
-   day=[['Welcome & safety','Safety gear on and a quick, friendly briefing.'],['Pick a project','Each child chooses from a selection of fun designs.'],['Build it','Their own bench, guided from first cut to final sanding.'],['Cake time','Birthday table, candles, and every guest takes their project home.']],
+   day=[['Welcome & safety','Safety gear on and a quick, friendly briefing.'],['Same project, together','The whole group builds the project you chose when booking, side by side.'],['Build it','Their own bench, guided from first cut to final sanding.'],['Cake time','Birthday table, candles, and every guest takes their project home.']],
    sideTitle='Perfect for', perfectFor=['Birthdays (ages 8–16)','Kids who love making things','A party they will remember','A gift that lasts'],
    projectsBlock=dict(
-     ideasTitle='What can they build?',
-     ideasIntro='Each guest picks a project from a few party favourites, like these:',
+     ideasTitle='Choose the party project',
+     ideasIntro='Pick one project for the whole group when you book. Everyone builds the same one, like these party favourites:',
      ideas=[['Phone Stand','Holds a phone upright for videos and calls.'],['Name Sign','Their own name, cut, sanded and decorated.'],['Pencil Holder','A chunky holder for the desk or art table.'],['Toy Car','A wooden car with wheels that really roll.'],['Treasure Box','A small box with a lid for special things.'],['Bookends','A pair to keep their favourite books standing.']],
-     note='These are examples while we finalise our party project list. Got something else in mind? Special requests are welcome: just tell us when you book so we can prepare.'),
+     note='Tell us your choice when you book, at least 2 days before the party, so we can prepare the timber. These are examples while we finalise our party project list; special requests are welcome.'),
    videoLabel='Watch a party in action', video={'host':'youtube','id':''}, videoPoster={'local':L(16)},
    photos=[
      {'wix':'48e650_784ace91e4b743058e09c1dcc53023b2~mv2.jpg','local':L(23),'alt':'Kids at a woodworking birthday party'},
