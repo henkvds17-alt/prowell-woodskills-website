@@ -725,8 +725,7 @@
     <div class="pblock" id="pblock" hidden></div>
     <div class="strip">
       <div class="card"><h2 id="stripTitle"></h2><div id="stripBody"></div></div>
-      <div class="card"><h2 id="sideTitle"></h2><div id="sideBody"></div>
-        <div class="contact-mini"><span>WhatsApp / phone: <b>081 027 0892</b></span><span>Email: <b>henk@prowellkitchens.co.za</b></span></div></div>
+      <div class="card"><h2 id="sideTitle"></h2><div id="sideBody"></div></div>
     </div>
   </div>
 </main>
@@ -787,7 +786,7 @@ const PAGE = {
  "priceNote": "Per person, for groups of 5 to 8. All materials included.",
  "bookLabel": "Ask about a date",
  "waMsg": "Hi Henk! My name is [your name] and I'd like to book a Craft Together session at Prowell WoodSkills.\n\n📅 Preferred date (weekday): [day and date]\n🕘 Preferred start time: [e.g. 10:00]\n👥 Group size: [5 to 8 people]\n🎉 Occasion: [e.g. team building, birthday, friends' outing]\n🪵 Our 3 project choices (if decided): [1. …  2. …  3. …]\n\nPlease let me know if that date is available. Thank you!",
- "altHtml": "Groups only, on weekdays. We confirm your date on WhatsApp.",
+ "altHtml": "Groups only, on weekdays. Tell us your preferred date and we will confirm it.",
  "included": [
   "A facilitator guiding your group",
   "All tools and equipment",
@@ -844,7 +843,7 @@ const PAGE = {
     ],
     [
      "Send them 2 days before",
-     "WhatsApp us your 3 choices at least <strong>2 days before</strong> your session, so we can prepare the timber."
+     "Let us know your 3 choices at least <strong>2 days before</strong> your session (add them to your booking message if you already know), so we can prepare the timber."
     ],
     [
      "Everyone chooses on the day",
@@ -879,11 +878,7 @@ const PAGE = {
     "Your number, cut and finished."
    ]
   ],
-  "note": "Not sure if your idea will work? Send us a photo and we will confirm it fits the 20 × 20 cm size and the 3-hour session.",
-  "cta": {
-   "label": "Send us your 3 projects",
-   "msg": "Hi Henk! My name is [your name]. Here are our 3 project choices for our Craft Together session on [date]:\n\n1. [project, or link/photo]\n2. [project, or link/photo]\n3. [project, or link/photo]\n\nAll within 20 × 20 cm. Thank you!"
-  }
+  "note": "Not sure if your idea will work? Include a photo when you book and we will confirm it fits the 20 × 20 cm size and the 3-hour session."
  },
  "videoLabel": "Watch a group in action",
  "video": {
@@ -965,7 +960,7 @@ function render(proj){
     $('#stripTitle').textContent=`What they'll learn building the ${proj.name}`;
     $('#stripBody').innerHTML=`<ul class="learn">${li(proj.learn)}</ul>`;
     document.querySelectorAll('.pick').forEach(b=>b.classList.toggle('on',b.dataset.id===proj.id));
-    $('#alt').innerHTML=`Pick a date that runs the ${proj.name}. Questions? <a href="${wa(PAGE.waQuestion.replace('[project]',proj.name))}" target="_blank" rel="noopener">WhatsApp us</a>`;
+
   }
 }
 
@@ -1006,7 +1001,7 @@ if(PAGE.projects){
 // project options / how projects work
 if(PAGE.projectsBlock){
   const P=PAGE.projectsBlock, pb=$('#pblock'); pb.hidden=false; if(!P.how) pb.classList.add('single');
-  const ideas=`<div class="card"><h2>${P.ideasTitle}</h2>${P.ideasIntro?`<p>${P.ideasIntro}</p>`:''}<div class="ideas">${P.ideas.map(i=>`<div class="idea"><b>${i[0]}</b><span>${i[1]}</span></div>`).join('')}</div>${P.note?`<div class="pnote">${P.note}</div>`:''}${P.cta?`<a class="btn btn-wa" href="${wa(P.cta.msg)}" target="_blank" rel="noopener">${P.cta.label}</a>`:''}</div>`;
+  const ideas=`<div class="card"><h2>${P.ideasTitle}</h2>${P.ideasIntro?`<p>${P.ideasIntro}</p>`:''}<div class="ideas">${P.ideas.map(i=>`<div class="idea"><b>${i[0]}</b><span>${i[1]}</span></div>`).join('')}</div>${P.note?`<div class="pnote">${P.note}</div>`:''}</div>`;
   const how=P.how?`<div class="card"><h2>${P.how.title}</h2>${P.how.size?`<span class="sizebadge">${P.how.size}</span>`:''}<div class="how4">${P.how.steps.map((st,i)=>`<div><b><i>${i+1}</i>${st[0]}</b><span>${st[1]}</span></div>`).join('')}</div></div>`:'';
   pb.innerHTML=how+ideas;
 }
