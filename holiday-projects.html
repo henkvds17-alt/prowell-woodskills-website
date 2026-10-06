@@ -2,8 +2,8 @@
 <html lang="en">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Prowell WoodSkills</title>
-<meta name="description" content="Hands-on woodworking workshops in Paarl for kids and adults: holiday workshops, birthday parties and Craft Together group sessions.">
+<title>Holiday Projects · Prowell WoodSkills</title>
+<meta name="description" content="The woodworking projects kids build at the Prowell WoodSkills Kids Holiday Workshop in Paarl.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -329,452 +329,211 @@
     .footer-bottom{text-align:left;}
   }
 </style>
-
+<style>
+  /* HOLIDAY PROJECTS PAGE */
+  .page-hero{background:radial-gradient(circle at 18% 20%,var(--red-dark),var(--red) 55%,var(--red-deep) 100%);color:var(--white);padding:150px 0 70px;position:relative;overflow:hidden;}
+  .page-hero .shape{position:absolute;border-radius:50%;opacity:.14;background:var(--gold);width:280px;height:280px;top:10%;right:-80px;}
+  .page-hero .wrap{position:relative;z-index:2;}
+  .crumb{display:inline-flex;gap:8px;font-size:13.5px;font-weight:600;color:rgba(255,255,255,.8);margin-bottom:16px;}
+  .crumb a:hover{color:var(--gold-light);}
+  .page-hero h1{font-family:var(--logo);font-weight:800;font-size:clamp(34px,5vw,56px);line-height:1.05;margin-bottom:16px;}
+  .page-hero h1 em{font-style:normal;color:var(--gold-light);}
+  .page-hero p{max-width:620px;color:rgba(255,255,255,.9);font-size:17px;margin-bottom:24px;}
+  .jump-row{display:flex;flex-wrap:wrap;gap:10px;}
+  .jump-row a{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:var(--white);font-weight:600;font-size:14px;padding:9px 18px;border-radius:100px;transition:background .25s;}
+  .jump-row a:hover{background:rgba(255,255,255,.22);}
+  .draft-note{max-width:1180px;margin:22px auto 0;padding-inline:24px;}
+  .draft-note div{border:2px dashed var(--gold);background:var(--cream-dark);border-radius:14px;padding:12px 16px;font-size:13.5px;color:var(--charcoal-soft);}
+  .projects-list{padding:60px 0 90px;}
+  .proj{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center;padding:44px 0;border-bottom:2px dashed var(--cream-dark);}
+  .proj:last-child{border-bottom:none;}
+  .proj:nth-child(even) .slider{order:2;}
+  .proj-copy{min-width:0;}
+  .proj-num{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--red);}
+  .proj h2{font-size:clamp(28px,3.6vw,38px);margin:6px 0 12px;}
+  .proj-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+  .proj-tags span{font-size:12px;font-weight:700;background:var(--white);border:1px solid var(--cream-dark);color:var(--charcoal-soft);padding:5px 12px;border-radius:100px;}
+  .proj-copy > p{color:var(--charcoal-soft);margin-bottom:14px;}
+  .more{border-top:1px solid var(--cream-dark);margin-top:6px;}
+  .more-btn{background:none;border:none;cursor:pointer;font-family:var(--display);font-weight:600;font-size:16px;color:var(--red);padding:14px 0;display:flex;align-items:center;gap:8px;}
+  .more-btn .chev{transition:transform .3s var(--ease);display:inline-block;}
+  .more.open .chev{transform:rotate(90deg);}
+  .more-body{max-height:0;overflow:hidden;transition:max-height .45s var(--ease);}
+  .more-body ul{display:flex;flex-direction:column;gap:9px;padding:0 0 18px;}
+  .more-body li{display:flex;gap:10px;font-size:15px;}
+  .proj .btn{margin-top:10px;}
+  /* photo slider */
+  .slider{position:relative;min-width:0;}
+  .slides{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;border-radius:24px;box-shadow:var(--shadow);scrollbar-width:none;background:var(--cream-dark);}
+  .slides::-webkit-scrollbar{display:none;}
+  .slides img{flex:0 0 100%;width:100%;aspect-ratio:4/3;max-width:100%;object-fit:cover;scroll-snap-align:start;}
+  .sl-btn{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:none;background:rgba(251,243,236,.92);color:var(--charcoal);font-size:22px;cursor:pointer;box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:center;transition:background .25s;}
+  .sl-btn:hover{background:var(--gold);}
+  .sl-prev{left:12px;} .sl-next{right:12px;}
+  .sl-btn[hidden]{display:none!important;}
+  .dots{display:flex;justify-content:center;gap:7px;margin-top:14px;}
+  .dots button{width:9px;height:9px;border-radius:50%;border:none;background:rgba(90,76,69,.28);cursor:pointer;padding:0;transition:background .25s,width .25s;}
+  .dots button.on{background:var(--red);width:24px;border-radius:100px;}
+  .proj-cta{background:var(--cream-dark);text-align:center;padding:80px 0;}
+  .proj-cta h2{font-size:clamp(28px,4vw,40px);margin-bottom:12px;}
+  .proj-cta p{color:var(--charcoal-soft);margin:0 auto 24px;max-width:520px;}
+  .proj-cta .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  @media(max-width:860px){
+    .proj{grid-template-columns:1fr;gap:24px;padding:34px 0;}
+    .proj:nth-child(even) .slider{order:0;}
+  }
+  @media(max-width:640px){
+    .page-hero{padding:118px 0 54px;}
+    .proj-cta{padding:60px 0;text-align:left;}
+    .proj-cta .row{justify-content:flex-start;}
+    .sl-btn{width:38px;height:38px;font-size:19px;}
+  }
+</style>
 <header class="nav" id="siteNav">
   <div class="wrap nav-inner">
-    <a href="#top" class="brand-logo" aria-label="Prowell WoodSkills home"><img src="images/brand/logo.webp" alt="Prowell WoodSkills" width="900" height="283"></a>
+    <a href="index.html#top" class="brand-logo" aria-label="Prowell WoodSkills home"><img src="images/brand/logo.webp" alt="Prowell WoodSkills" width="900" height="283"></a>
     <nav class="links" aria-label="Main">
-      <a href="#workshops">Workshops</a>
-      <a href="holiday-projects.html">Projects</a>
-      <a href="#calendar">Calendar</a>
-      <a href="#studio">The studio</a>
-      <a href="#visit">Visit</a>
-      <a href="#faq">FAQ</a>
+      <a href="index.html#workshops">Workshops</a>
+      <a href="#top">Holiday projects</a>
+      <a href="index.html#calendar">Calendar</a>
+      <a href="index.html#studio">The studio</a>
+      <a href="index.html#visit">Visit</a>
+      <a href="index.html#faq">FAQ</a>
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-primary" href="#calendar">Book a holiday spot</a>
+      <a class="btn btn-primary" href="index.html#calendar">Book a holiday spot</a>
       <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#workshops">Workshops</a>
-  <a href="holiday-projects.html">Holiday projects</a>
-  <a href="#calendar">Calendar</a>
-  <a href="#studio">The studio</a>
-  <a href="#visit">Visit</a>
-  <a href="#faq">FAQ</a>
-  <a href="#contact">Contact</a>
-  <a class="btn btn-primary" href="#calendar">Book a holiday spot</a>
+  <a href="index.html#workshops">Workshops</a>
+  <a href="#top">Holiday projects</a>
+  <a href="index.html#calendar">Calendar</a>
+  <a href="index.html#studio">The studio</a>
+  <a href="index.html#visit">Visit</a>
+  <a href="index.html#faq">FAQ</a>
+  <a href="index.html#contact">Contact</a>
+  <a class="btn btn-primary" href="index.html#calendar">Book a holiday spot</a>
 </div>
 
-<section class="hero" id="top">
-  <div class="shape s1"></div><div class="shape s2"></div>
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <div class="hero-badge"><span class="dot"></span> Woodworking studio in Paarl</div>
-      <h1>Real tools. Real wood.<br><em>Made by you.</em></h1>
-      <p class="lede">Hands-on woodworking workshops for kids and adults. Holiday workshops, birthday parties and group sessions in our Paarl studio, where everyone walks out with something they built themselves.</p>
-      <div class="hero-ctas">
-        <a href="#calendar" class="btn btn-primary">See holiday dates</a>
-        <a href="#contact" class="btn btn-outline">Plan a party or group</a>
-      </div>
-      <ul class="hero-stats">
-        <li><span class="check">&#10003;</span>No experience needed</li>
-        <li><span class="check">&#10003;</span>Safely guided, start to finish</li>
-        <li><span class="check">&#10003;</span>Take your project home</li>
-      </ul>
-    </div>
-    <div class="hero-photos" aria-hidden="true">
-      <figure class="polaroid p1"><span class="tape"></span><img src="images/studio/studio-3.webp" alt=""><figcaption>Built it ourselves!</figcaption></figure>
-      <figure class="polaroid p2"><img src="images/studio/studio-12.webp" alt=""><figcaption>Sanding day</figcaption></figure>
-      <figure class="polaroid p3"><span class="tape"></span><img src="images/studio/studio-16.webp" alt=""><figcaption>Sertifikaat &#10003;</figcaption></figure>
-    </div>
-  </div>
-</section>
 
-<section class="who">
-  <div class="wrap who-grid">
-    <a class="who-card" href="#workshops" data-jump="Kids">
-      <span class="who-ico">8+</span>
-      <div><h3>For kids</h3><p>Holiday workshops and birthday parties, ages 8 to 16</p></div>
-      <span class="arrow">&rarr;</span>
-    </a>
-    <a class="who-card" href="#workshops" data-jump="Adults">
-      <span class="who-ico">18+</span>
-      <div><h3>For adults</h3><p>Craft Together sessions for friends, teams and visitors</p></div>
-      <span class="arrow">&rarr;</span>
-    </a>
-  </div>
-</section>
-
-<section id="workshops">
+<section class="page-hero" id="top">
+  <div class="shape"></div>
   <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Our workshops</span>
-      <h2>Pick your workshop.</h2>
-      <p>Three ways to spend a few hours at the workbench. Everything is supplied, and every project goes home with you.</p>
-    </div>
-    <div class="filter-row" id="filterRow" role="group" aria-label="Filter workshops"></div>
-    <div class="ws-grid" id="wsGrid"></div>
+    <div class="crumb"><a href="index.html">Home</a><span>/</span><span>Holiday projects</span></div>
+    <h1>Kids Holiday Workshop<br><em>projects</em></h1>
+    <p>Each holiday workshop builds one of these projects over two days, from the first cut to the final coat. Pick the one your child wants to make, then choose a date that runs that project.</p>
+    <div class="jump-row" id="jumpRow"></div>
   </div>
 </section>
+<div class="draft-note"><div><strong>Draft:</strong> project names, descriptions and photo groupings are placeholders based on studio photos. Confirm or replace them before launch.</div></div>
 
-<section class="how" id="how">
+<section class="projects-list">
+  <div class="wrap" id="projList"></div>
+</section>
+
+<section class="proj-cta">
   <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">How booking works</span>
-      <h2>Two ways to book.</h2>
-      <p>Holiday workshops run on set dates and book online. Parties and group sessions are arranged around your date.</p>
-    </div>
-    <div class="lanes">
-      <div class="lane reveal">
-        <h3>Kids Holiday Workshop</h3>
-        <p class="lane-sub">Book and pay online</p>
-        <ol>
-          <li><div><strong>Pick a date</strong>Choose a holiday date from the calendar below.</div></li>
-          <li><div><strong>Book on our booking page</strong>Secure your child's spot and pay online in a few minutes.</div></li>
-          <li><div><strong>Arrive and build</strong>Day 2 is the next day at the same time. The project goes home at the end.</div></li>
-        </ol>
-        <a href="#calendar" class="btn btn-primary">See holiday dates</a>
-      </div>
-      <div class="lane reveal">
-        <h3>Kids Birthday Party &amp; Craft Together</h3>
-        <p class="lane-sub">Booked by request</p>
-        <ol>
-          <li><div><strong>Send us a message</strong>Tell us your preferred date, time and group size.</div></li>
-          <li><div><strong>We confirm your session</strong>Henk sets up a session that suits your group.</div></li>
-          <li><div><strong>Bring your people</strong>We supply tools, timber and guidance. You bring the celebration.</div></li>
-        </ol>
-        <a href="#contact" class="btn btn-wa">Message us on WhatsApp</a>
-      </div>
+    <h2>Found the one?</h2>
+    <p>Check the calendar for a date running that project. Ages 8 to 16, R800 per child, all materials included.</p>
+    <div class="row">
+      <a class="btn btn-primary" href="index.html#calendar">See dates &amp; book</a>
+      <a class="btn btn-dark" href="index.html#contact">Ask a question</a>
     </div>
   </div>
 </section>
-
-<section class="calendar" id="calendar">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Kids Holiday Workshop calendar</span>
-      <h2>Upcoming holiday dates.</h2>
-      <p>Pick a date and time to book. Some days have two workshops, each building a different project. Day 2 is the following day at the same time.</p>
-    </div>
-    <div class="cal-shell">
-      <div class="cal-card reveal">
-        <div class="cal-top">
-          <h3 id="calMonth">Month</h3>
-          <div class="cal-nav">
-            <button id="calPrev" aria-label="Previous month">&lsaquo;</button>
-            <button id="calNext" aria-label="Next month">&rsaquo;</button>
-          </div>
-        </div>
-        <div class="cal-grid" id="calGrid"></div>
-        <div class="cal-legend">
-          <span><i style="background:var(--red)"></i>Workshop Day 1 (dots = workshops that day)</span>
-          <span><i style="background:rgba(191,38,38,.14)"></i>Day 2</span>
-          <span><i style="border:2px solid var(--gold)"></i>Today</span>
-        </div>
-      </div>
-      <div class="sess-list reveal" id="sessList"></div>
-    </div>
-  </div>
-</section>
-
-<section class="studio" id="studio">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Inside the studio</span>
-      <h2>Kids love woodworking. Trust us.</h2>
-      <p>Every workshop ends the same way: proud faces, a finished project and a certificate. These are real students from our Paarl studio.</p>
-    </div>
-  </div>
-  <div class="studio-scroll" id="studioGallery"></div>
-  <p class="scroll-hint">&larr; Scroll to see more &rarr;</p>
-  <div class="wrap">
-    <p class="eyebrow" style="display:flex;justify-content:center;">By the last cut, they can</p>
-    <div class="skill-pills" id="skillPills"></div>
-  </div>
-</section>
-
-<section class="good">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Good to know</span>
-      <h2>Everything is ready when you arrive.</h2>
-    </div>
-    <div class="good-grid" id="goodGrid"></div>
-  </div>
-</section>
-
-<section id="visit">
-  <div class="wrap visit-grid">
-    <div class="visit-photo reveal">
-      <img src="images/studio/studio-22.webp" alt="The Prowell WoodSkills workshop floor with workbenches and students">
-      <div class="visit-pin"><span class="pin"></span><div><b>Prowell WoodSkills</b><span>Paarl, Western Cape</span></div></div>
-    </div>
-    <div class="visit-copy reveal">
-      <span class="eyebrow">Visit the studio</span>
-      <h2>A real workshop in Paarl.</h2>
-      <p>Our studio in Paarl is a fully equipped woodworking workshop, so you build at proper workbenches with proper tools, in a space set up for making things. Find us on Google Maps as Prowell WoodSkills.</p>
-      <ul class="visit-list">
-        <li><span class="check">&#10003;</span><span>Individual workbenches for every builder</span></li>
-        <li><span class="check">&#10003;</span><span>Hand tools and selected power tools, used under supervision</span></li>
-        <li><span class="check">&#10003;</span><span>Music on, coffee and tea for the adults</span></li>
-        <li><span class="check">&#10003;</span><span>Easy to reach from Stellenbosch, Wellington and Franschhoek</span></li>
-      </ul>
-      <a class="btn btn-dark" id="mapLink" href="#" target="_blank" rel="noopener">Get directions &rarr;</a>
-    </div>
-  </div>
-</section>
-
-<section class="faq" id="faq">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Questions people ask</span>
-      <h2>Everything you're wondering, answered.</h2>
-    </div>
-    <div class="faq-list" id="faqList"></div>
-  </div>
-</section>
-
-<section class="final-cta" id="contact">
-  <div class="wrap final-grid">
-    <div class="reveal">
-      <div class="hero-badge"><span class="dot"></span> Ready to build?</div>
-      <h2>Swap a screen for a <em>workbench</em>.</h2>
-      <p class="lead">Book a holiday spot online, or send us a message to plan a birthday party or a Craft Together session for your group.</p>
-      <a href="#calendar" class="btn btn-primary">See holiday dates</a>
-    </div>
-    <div class="contact-card reveal">
-      <h3>Talk to Henk</h3>
-      <p>Parties and group sessions are booked by request. Send your date, time and group size.</p>
-      <div class="contact-row"><div><span class="lbl">WhatsApp / phone</span><span class="val" id="phoneVal"></span></div><button class="copy-btn" data-copy="phoneVal">Copy</button></div>
-      <div class="contact-row"><div><span class="lbl">Email</span><span class="val" id="emailVal"></span></div><button class="copy-btn" data-copy="emailVal">Copy</button></div>
-      <a class="btn btn-wa" id="waBtn" href="#" target="_blank" rel="noopener">Message us on WhatsApp</a>
-    </div>
-  </div>
-</section>
-
 <footer>
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <a href="#top" class="brand-logo brand-logo--footer"><img src="images/brand/logo.webp" alt="Prowell WoodSkills" width="900" height="283"></a>
+        <a href="index.html#top" class="brand-logo brand-logo--footer"><img src="images/brand/logo.webp" alt="Prowell WoodSkills" width="900" height="283"></a>
         <p style="max-width:280px;font-size:14px;margin-top:18px;">Hands-on woodworking workshops for kids and adults in Paarl, Western Cape.</p>
       </div>
       <div>
         <h4>Workshops</h4>
         <ul>
-          <li><a href="#workshops">Kids Holiday Workshop</a></li>
-          <li><a href="holiday-projects.html">Holiday projects</a></li>
-          <li><a href="#workshops">Kids Birthday Party</a></li>
-          <li><a href="#workshops">Craft Together</a></li>
-          <li><a href="#calendar">Calendar</a></li>
+          <li><a href="index.html#workshops">Kids Holiday Workshop</a></li>
+          <li><a href="#top">Holiday projects</a></li>
+          <li><a href="index.html#workshops">Kids Birthday Party</a></li>
+          <li><a href="index.html#workshops">Craft Together</a></li>
+          <li><a href="index.html#calendar">Calendar</a></li>
         </ul>
       </div>
       <div>
         <h4>Studio</h4>
         <ul>
-          <li><a href="#visit">Visit us</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="index.html#visit">Visit us</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">&copy; 2026 Prowell WoodSkills, Paarl. All rights reserved.</div>
   </div>
 </footer>
-
 <script>
 /* ================= EASILY-EDITABLE CONTENT =================
-   Prices and details below come from the live Wix Bookings services (5 Oct 2026).
-   Bookings stay on Wix: buttons link to the Wix booking pages. */
-const WIX = "https://www.prowellwoodskills.co.za";
-const HOLIDAY_BOOK_URL = WIX + "/booking-calendar/2-day-kids-holiday-workshop";
-const PHONE_DISPLAY = "081 027 0892";
-const PHONE_INTL = "27810270892";
-const EMAIL = "henk@prowellkitchens.co.za";
-const MAP_URL = "https://maps.app.goo.gl/P7HAnz21569Az6MM8"; // Google Maps listing: Prowell WoodSkills, -33.6792966, 18.964857
-const wa = (msg) => `https://wa.me/${PHONE_INTL}?text=${encodeURIComponent(msg)}`;
-
-const workshops = [
-  { name:"Kids Holiday Workshop", audience:"Kids", tag:"Kids · ages 8–16", photo:"images/studio/studio-4.webp",
-    blurb:"Two days in the school holidays building one project from start to finish. Choose your project when you book.",
-    more:{label:"See the projects", href:"holiday-projects.html"},
-    facts:[["Duration","2 days × 3 hrs"],["Group","Max 6 kids"],["Level","Beginner"],["Language","Afr & Eng"]],
-    price:"R800", priceNote:"per child, materials included",
-    booking:"online", cta:"See dates & book", href:"#calendar" },
-  { name:"Kids Birthday Party", audience:"Kids", tag:"Kids · ages 8–16", photo:"images/studio/studio-23.webp",
-    blurb:"Every guest gets their own bench and builds a gift to take home, then it's cake time at the birthday table. The workshop is yours for the party.",
-    facts:[["Duration","3 hours"],["Group","Up to 8 kids"],["Cake","Add one for +R300"],["Language","Afr & Eng"]],
-    price:"R2,900", priceNote:"flat rate for the party",
-    booking:"request", cta:"Ask about a date", href: wa("Hi Henk, I'd like to book a WoodSkills birthday party. Preferred date: … Number of kids: …") },
-  { name:"Craft Together", audience:"Adults", tag:"Adults · groups of 5–8", photo:"images/studio/studio-14.webp",
-    blurb:"A relaxed group outing for friends, teams and visitors: pick a project, learn the tools and take home something you made. Coffee and tea on us.",
-    facts:[["Duration","3 hours"],["Group","5 to 8 people"],["When","Weekdays"],["Language","Afr & Eng"]],
-    price:"R550", priceNote:"per person",
-    booking:"request", cta:"Plan a group session", href: wa("Hi Henk, I'd like to book a Craft Together session. Preferred date: … Group size: …") }
+   One entry per holiday project. `photos`: any number of images (relative paths) — the slider updates automatically.
+   Keep `name` identical to the `project` names used in the calendar on index.html. */
+const PROJECTS = [
+  { id:"step-stool", name:"Step Stool", level:"Beginner", ages:"Ages 8–16",
+    blurb:"A sturdy little stool they can actually stand on. It's the classic first build: measure, cut, join and finish a real piece of furniture.",
+    learn:["Measuring and marking accurately","Cutting straight with a saw","Joining legs and top so it stays solid","Sanding and finishing"],
+    photos:[4,9,16,24,19,3,11].map(n=>`images/studio/studio-${n}.webp`) },
+  { id:"tool-caddy", name:"Tool Caddy", level:"Beginner", ages:"Ages 8–16",
+    blurb:"An open box with a handle for carrying tools, art supplies or garden gear. It teaches how to build a square box that holds together.",
+    learn:["Building a square box","Drilling and fixing with screws","Fitting a handle","Sanding edges smooth"],
+    photos:[17,18,20].map(n=>`images/studio/studio-${n}.webp`) },
+  { id:"chopping-board", name:"Chopping Board", level:"Beginner", ages:"Ages 8–16",
+    blurb:"A striped board made by gluing strips of different woods together, then shaping and oiling it. It makes a great gift for home.",
+    learn:["Choosing and arranging timber","Gluing and clamping","Shaping and sanding a board","Finishing with food-safe oil"],
+    photos:[21].map(n=>`images/studio/studio-${n}.webp`) }
 ];
 
-/* KIDS HOLIDAY WORKSHOP SESSIONS — mirrors the Wix booking calendar ("2-Day Kids Holiday Workshop").
-   One line per Day 1 session. Two sessions on the same day are fine (different times/projects).
-   Format: date "YYYY-MM-DD", start/end "HH:MM", project = name shown on the calendar
-   (should match a project on holiday-projects.html). Availability/spots are handled by Wix.
-   Currently empty: Wix has no holiday sessions scheduled after 13 July 2026 (checked 6 Oct 2026). */
-const SESSIONS = [];
+const $=(s,el=document)=>el.querySelector(s);
+$('#jumpRow').innerHTML=PROJECTS.map(p=>`<a href="#${p.id}">${p.name}</a>`).join('');
+$('#projList').innerHTML=PROJECTS.map((p,i)=>`
+  <article class="proj" id="${p.id}">
+    <div class="slider" data-slider>
+      <div class="slides">${p.photos.map((ph,j)=>`<img src="${ph}" alt="${p.name} built at a Prowell WoodSkills holiday workshop, photo ${j+1}" loading="lazy">`).join('')}</div>
+      <button class="sl-btn sl-prev" type="button" aria-label="Previous photo">&lsaquo;</button>
+      <button class="sl-btn sl-next" type="button" aria-label="Next photo">&rsaquo;</button>
+      <div class="dots"></div>
+    </div>
+    <div class="proj-copy">
+      <span class="proj-num">Project ${i+1}</span>
+      <h2>${p.name}</h2>
+      <div class="proj-tags"><span>${p.ages}</span><span>${p.level}</span><span>2 days × 3 hrs</span></div>
+      <p>${p.blurb}</p>
+      <div class="more">
+        <button class="more-btn" type="button" aria-expanded="false"><span class="chev">&rsaquo;</span>Read more: what they'll learn</button>
+        <div class="more-body"><ul>${p.learn.map(l=>`<li><span class="check">&#10003;</span><span>${l}</span></li>`).join('')}</ul></div>
+      </div>
+      <a class="btn btn-primary" href="index.html#calendar">Find a date for this project</a>
+    </div>
+  </article>`).join('');
 
-/* Mockup only: sample sessions so the calendar layout can be reviewed. Remove before launch. */
-const SAMPLE_SESSIONS = [
-  {date:"2026-12-08",start:"09:00",end:"12:00",project:"Step Stool"},
-  {date:"2026-12-08",start:"13:00",end:"16:00",project:"Tool Caddy"},
-  {date:"2026-12-15",start:"09:00",end:"12:00",project:"Chopping Board"},
-  {date:"2027-01-05",start:"09:00",end:"12:00",project:"Step Stool"},
-  {date:"2027-01-05",start:"13:00",end:"16:00",project:"Chopping Board"}
-];
-
-const studioPhotos = [3,4,9,16,12,23,7,13,10,5,21,17,2,18,8,24,6,11,19,20,1,15,22,14]
-  .map(n=>({photo:`images/studio/studio-${n}.webp`,alt:"Students at the Prowell WoodSkills studio with their finished projects"}));
-
-const skills = ["Measure","Mark","Saw","Drill","Sand","Assemble","Finish","Use real tools safely","Follow a plan","Finish what they start"];
-
-const good = [
-  "Everything supplied — tools, timber, hardware and safety gear are ready at your bench.",
-  "Small groups — a handful of builders per instructor, so everyone gets real attention.",
-  "No experience needed — every workshop starts from zero.",
-  "Real tools, safely — hand tools and selected power tools, always supervised.",
-  "Take it home — every builder leaves with a finished project they made.",
-  "Afrikaans & English — sessions are taught in both languages.",
-  "What to bring — closed shoes, clothes that can take wood dust and a water bottle.",
-  "Kids get a certificate — a proud moment to finish every holiday workshop."
-];
-
-const faqs = [
-  {q:"Does my child need any experience?",a:"No. Every workshop assumes they have never used a tool before. We teach safe tool use step by step, and every child completes their own project."},
-  {q:"What ages are the kids workshops for?",a:"Kids aged 8 to 16. Projects are matched to the age group, and every child is guided step by step."},
-  {q:"How does the Kids Holiday Workshop work?",a:"Each workshop runs over two consecutive days, 3 hours per day. Some days have two workshops at different times, each building a different project. The calendar shows Day 1; Day 2 is the next day at the same time. See the holiday projects page for what your child can build."},
-  {q:"Is it safe?",a:"Yes. Groups are small and fully supervised. Kids use hand tools and selected power tools only under instruction, and closed shoes are required."},
-  {q:"What should we bring?",a:"Closed shoes, clothes that can take wood dust, a water bottle and a snack. All tools and materials are supplied."},
-  {q:"How do I book a Kids Birthday Party?",a:"Send us a WhatsApp or email with your preferred date, time and number of kids (up to 8). We'll confirm a session that suits you. You bring the cake, drinks and extras, or add a decorated cake for R300."},
-  {q:"Can adults join?",a:"Yes. Craft Together is our adult workshop for groups of 5 to 8, such as friends celebrating, work teams or visitors to the Winelands. It runs on weekdays and is booked by request."},
-  {q:"Where is the studio?",a:"Our studio is in Paarl, Western Cape. Search for Prowell WoodSkills on Google Maps, or use the directions button in the Visit section."},
-  {q:"What language are sessions in?",a:"Afrikaans and English. Instructors switch freely so everyone follows along."}
-];
-
-/* ================= RENDER ================= */
-const $ = (s,el=document)=>el.querySelector(s);
-
-// workshops + filter
-const wsGrid = $('#wsGrid'), filterRow = $('#filterRow');
-workshops.forEach(w=>{
-  const el=document.createElement('article');
-  el.className='ws-card reveal'; el.dataset.aud=w.audience;
-  const ext = w.href.startsWith('http');
-  el.innerHTML=`<div class="ws-thumb"><img src="${w.photo}" alt="${w.name} at Prowell WoodSkills" loading="lazy">
-      <span class="ws-book ${w.booking==='online'?'':'ws-book--req'}">${w.booking==='online'?'Book online':'Book by request'}</span></div>
-    <div class="ws-body">
-      <span class="ws-tag">${w.tag}</span>
-      <h3>${w.name}</h3>
-      <p>${w.blurb}</p>
-      <dl class="ws-facts">${w.facts.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
-      <div class="ws-price"><strong>${w.price}</strong><span>${w.priceNote}</span></div>
-      <a class="btn ${w.booking==='online'?'btn-primary':'btn-dark'}" href="${w.href}" ${ext?'target="_blank" rel="noopener"':''}>${w.cta}</a>
-      ${w.more?`<a class="ws-more" href="${w.more.href}">${w.more.label} &rarr;</a>`:''}
-    </div>`;
-  wsGrid.appendChild(el);
+// sliders
+document.querySelectorAll('[data-slider]').forEach(sl=>{
+  const track=$('.slides',sl), imgs=[...track.children], dots=$('.dots',sl), prev=$('.sl-prev',sl), next=$('.sl-next',sl);
+  if(imgs.length<2){prev.hidden=next.hidden=true;return;}
+  dots.innerHTML=imgs.map((_,i)=>`<button type="button" aria-label="Photo ${i+1}"></button>`).join('');
+  const go=i=>track.scrollTo({left:i*track.clientWidth});
+  const idx=()=>Math.round(track.scrollLeft/track.clientWidth);
+  const sync=()=>{const i=idx();[...dots.children].forEach((d,j)=>d.classList.toggle('on',j===i));prev.disabled=i===0;next.disabled=i===imgs.length-1;};
+  [...dots.children].forEach((d,i)=>d.onclick=()=>go(i));
+  prev.onclick=()=>go(Math.max(0,idx()-1)); next.onclick=()=>go(Math.min(imgs.length-1,idx()+1));
+  track.addEventListener('scroll',()=>requestAnimationFrame(sync),{passive:true}); sync();
 });
-function setFilter(t){
-  filterRow.querySelectorAll('.filter-pill').forEach(b=>{const on=b.textContent===t;b.classList.toggle('active',on);b.setAttribute('aria-pressed',on);});
-  wsGrid.querySelectorAll('.ws-card').forEach(c=>c.hidden = !(t==='All'||c.dataset.aud===t));
-}
-["All","Kids","Adults"].forEach(t=>{
-  const b=document.createElement('button'); b.className='filter-pill'; b.textContent=t; b.type='button';
-  b.onclick=()=>setFilter(t); filterRow.appendChild(b);
+// read more
+document.querySelectorAll('.more').forEach(m=>{
+  const b=$('.more-btn',m), body=$('.more-body',m);
+  b.onclick=()=>{const o=m.classList.toggle('open');b.setAttribute('aria-expanded',o);body.style.maxHeight=o?body.scrollHeight+'px':0;};
 });
-setFilter('All');
-document.querySelectorAll('[data-jump]').forEach(a=>a.addEventListener('click',()=>setFilter(a.dataset.jump)));
-
-// calendar
-const MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
-const DOW=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
-const today=new Date(); today.setHours(0,0,0,0);
-const iso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-const parse=s=>{const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d);};
-let useSample=false, viewY=today.getFullYear(), viewM=today.getMonth(), selected=null;
-const sessions=()=> (useSample?SAMPLE_SESSIONS:SESSIONS).filter(s=>parse(s.date)>=today).sort((a,b)=>(a.date+a.start).localeCompare(b.date+b.start));
-
-const fmtDay=d=>`${DOW[(d.getDay()+6)%7]} ${d.getDate()} ${MONTHS[d.getMonth()].slice(0,3)}`;
-function renderCal(){
-  const list=sessions(), byDate={};
-  list.forEach(s=>(byDate[s.date]=byDate[s.date]||[]).push(s));
-  const day2=new Set(list.map(s=>{const d=parse(s.date);d.setDate(d.getDate()+1);return iso(d);}));
-  $('#calMonth').textContent=`${MONTHS[viewM]} ${viewY}`;
-  $('#calPrev').disabled = (viewY===today.getFullYear() && viewM===today.getMonth());
-  const g=$('#calGrid'); g.innerHTML=DOW.map(d=>`<div class="cal-dow">${d}</div>`).join('');
-  const first=new Date(viewY,viewM,1), lead=(first.getDay()+6)%7, days=new Date(viewY,viewM+1,0).getDate();
-  for(let i=0;i<lead;i++) g.insertAdjacentHTML('beforeend','<div class="cal-day empty"></div>');
-  for(let d=1;d<=days;d++){
-    const dt=new Date(viewY,viewM,d), k=iso(dt), ss=byDate[k];
-    let cls='cal-day'; if(dt<today) cls+=' past'; if(+dt===+today) cls+=' today';
-    if(ss){cls+=' has'; if(selected===k) cls+=' sel';} else if(day2.has(k)) cls+=' day2';
-    const el=document.createElement(ss?'button':'div'); el.className=cls;
-    el.innerHTML=`${d}${ss?`<span class="pips">${ss.map(()=>'<span class="pip"></span>').join('')}</span>`:''}`;
-    if(ss){el.type='button';
-      el.setAttribute('aria-label',`${d} ${MONTHS[viewM]}: ${ss.map(s=>s.project+' '+s.start).join(', ')}`);
-      el.onclick=()=>{selected=k;renderCal();renderList();const t=document.querySelector(`[data-date="${k}"]`);t&&t.scrollIntoView({block:'nearest',behavior:'smooth'});};}
-    g.appendChild(el);
-  }
-}
-function renderList(){
-  const list=sessions(), box=$('#sessList');
-  const toggle=`<button class="mock-toggle" id="mockToggle" type="button" aria-pressed="${useSample}">${useSample?'Hide sample dates':'Mockup: show sample dates'}</button>`;
-  const req=`<div class="req-note"><strong>Kids Birthday Parties &amp; Craft Together</strong> aren't on the calendar. They can run on almost any date. <a href="#contact" style="color:var(--red);font-weight:700;">Ask about your date &rarr;</a></div>`;
-  if(!list.length){
-    box.innerHTML=`<div class="cal-empty"><h4>Next holiday dates coming soon</h4>
-      <p>We're scheduling the December holiday workshops now. Send us a message and we'll let you know as soon as booking opens.</p>
-      <a class="btn btn-wa" href="${wa("Hi Henk, please let me know when the next WoodSkills holiday workshop dates open.")}" target="_blank" rel="noopener">Notify me on WhatsApp</a></div>${req}${toggle}`;
-  } else {
-    box.innerHTML=`<h3>Next dates${useSample?'<span class="mock-flag">SAMPLE</span>':''}</h3>`+list.map(s=>{
-      const d=parse(s.date), d2=new Date(d); d2.setDate(d.getDate()+1);
-      return `<div class="sess ${selected===s.date?'sel':''}" data-date="${s.date}">
-        <div class="sess-date"><b>${d.getDate()}</b><small>${MONTHS[d.getMonth()].slice(0,3)}</small></div>
-        <div class="sess-info"><h4>${s.project}</h4>
-          <p>${fmtDay(d)} &amp; ${fmtDay(d2)}</p>
-          <span class="sess-time">${s.start}–${s.end}</span></div>
-        <a class="btn btn-primary" href="${HOLIDAY_BOOK_URL}" target="_blank" rel="noopener">Book</a>
-      </div>`;}).join('')+`<a class="ws-more" href="holiday-projects.html">What do the projects look like? &rarr;</a>`+req+toggle;
-  }
-  $('#mockToggle').onclick=()=>{useSample=!useSample;selected=null;
-    const f=sessions()[0]; if(f){const d=parse(f.date);viewY=d.getFullYear();viewM=d.getMonth();} else {viewY=today.getFullYear();viewM=today.getMonth();}
-    renderCal();renderList();};
-}
-$('#calPrev').onclick=()=>{viewM--; if(viewM<0){viewM=11;viewY--;} renderCal();};
-$('#calNext').onclick=()=>{viewM++; if(viewM>11){viewM=0;viewY++;} renderCal();};
-{const f=sessions()[0]; if(f){const d=parse(f.date);viewY=d.getFullYear();viewM=d.getMonth();}}
-renderCal(); renderList();
-
-// studio gallery, skills, good-to-know, faq
-$('#studioGallery').innerHTML=studioPhotos.map(s=>`<div class="studio-tile"><img src="${s.photo}" alt="${s.alt}" loading="lazy"></div>`).join('');
-$('#skillPills').innerHTML=skills.map(s=>`<span class="skill-pill">${s}</span>`).join('');
-$('#goodGrid').innerHTML=good.map(g=>{const c=g.indexOf(' — ');return `<div class="good-item reveal"><span class="check">&#10003;</span><p><strong>${g.slice(0,c)}</strong> — ${g.slice(c+3)}</p></div>`;}).join('');
-const faqList=$('#faqList');
-faqs.forEach((f,i)=>{
-  const it=document.createElement('div'); it.className='faq-item';
-  it.innerHTML=`<button class="faq-q" id="faq-${i}" aria-expanded="false">${f.q}<span class="plus">+</span></button><div class="faq-a"><p>${f.a}</p></div>`;
-  const q=it.querySelector('.faq-q'), a=it.querySelector('.faq-a');
-  q.onclick=()=>{const open=it.classList.toggle('open');q.setAttribute('aria-expanded',open);a.style.maxHeight=open?a.scrollHeight+'px':0;};
-  faqList.appendChild(it);
-});
-
-// contact
-$('#phoneVal').textContent=PHONE_DISPLAY; $('#emailVal').textContent=EMAIL;
-$('#waBtn').href=wa("Hi Henk, I'd like to book a WoodSkills session. Type (party / Craft Together): … Preferred date: … Group size: …");
-$('#mapLink').href=MAP_URL;
-document.querySelectorAll('.copy-btn').forEach(b=>b.addEventListener('click',()=>{
-  const el=document.getElementById(b.dataset.copy), txt=el.textContent;
-  const done=()=>{b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1600);};
-  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(()=>sel(el));}else sel(el);
-  function sel(n){const r=document.createRange();r.selectNodeContents(n);const s=getSelection();s.removeAllRanges();s.addRange(r);}
-}));
-
-// nav + mobile menu
+// nav
 const nav=$('#siteNav'), menu=$('#mobileMenu'), hb=$('#hamburgerBtn');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
 hb.onclick=()=>{const o=menu.classList.toggle('open');document.body.classList.toggle('menu-open',o);hb.setAttribute('aria-expanded',o);};
-menu.querySelectorAll('a').forEach(a=>a.onclick=()=>{menu.classList.remove('open');document.body.classList.remove('menu-open');hb.setAttribute('aria-expanded',false);});
-
-// reveal: only items below the fold start hidden, and only when IntersectionObserver exists
-if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches){
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target);}}),{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>{if(el.getBoundingClientRect().top>innerHeight){el.classList.add('pre');io.observe(el);}});
-}
+menu.querySelectorAll('a').forEach(a=>a.onclick=()=>{menu.classList.remove('open');document.body.classList.remove('menu-open');});
 </script>
