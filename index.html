@@ -185,20 +185,22 @@
   .cal-day.empty{background:transparent;}
   .cal-day.past{color:rgba(90,76,69,.4);background:transparent;}
   .cal-day.today{border-color:var(--gold);}
-  .cal-day.has{background:var(--red);color:var(--white);cursor:pointer;}
-  .cal-day.has:hover,.cal-day.has.sel{background:var(--red-dark);transform:scale(1.06);}
-  .cal-day.day2{background:rgba(191,38,38,.14);color:var(--red-dark);}
-  /* public school holidays: gold wash + gold underline bar (bar stays visible on workshop days) */
+  .cal-day.has{color:var(--red-dark);font-weight:800;cursor:pointer;box-shadow:inset 0 0 0 1.5px rgba(191,38,38,.35);transition:box-shadow .2s,transform .2s;}
+  .cal-day.has:hover{box-shadow:inset 0 0 0 2px var(--red);transform:scale(1.05);}
+  .cal-day.has.sel{box-shadow:inset 0 0 0 3px var(--red);}
+    /* public school holidays: gold wash + gold underline bar (bar stays visible on workshop days) */
   .cal-day.hol{background:var(--gold-light);}
   .cal-day.hol::after{content:'';position:absolute;left:6px;right:6px;bottom:4px;height:3px;border-radius:3px;background:var(--gold);}
-  .cal-day.hol.has{background:var(--red);}
-  .cal-day.hol.has:hover,.cal-day.hol.has.sel{background:var(--red-dark);}
-  .cal-day.hol.day2{background:rgba(191,38,38,.14);}
   .hol-banner{display:flex;align-items:center;gap:10px;background:var(--gold-light);border-radius:12px;padding:9px 14px;font-size:13.5px;font-weight:600;color:var(--charcoal);margin:-4px 0 14px;}
   .hol-banner::before{content:'';flex:0 0 18px;height:4px;border-radius:3px;background:var(--gold);}
   .hol-banner[hidden]{display:none!important;}
-  .cal-day .pip{width:6px;height:6px;border-radius:50%;background:var(--gold);}
-  .cal-day.full{background:var(--charcoal-soft);}
+  .hol-list{background:var(--white);border-radius:18px;padding:16px 18px;box-shadow:var(--shadow-sm);border-left:4px solid var(--gold);}
+  .hol-list h4{font-size:16px;margin-bottom:8px;}
+  .hol-list li{display:flex;justify-content:space-between;gap:12px;font-size:14px;padding:6px 0;border-top:1px solid var(--cream-dark);}
+  .hol-list li:first-child{border-top:none;}
+  .hol-list li span{color:var(--charcoal-soft);}
+  .hol-list li b{font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .cal-day .pip{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 2px var(--white);}
   .cal-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:18px;font-size:12.5px;color:var(--charcoal-soft);}
   .cal-legend span{display:inline-flex;align-items:center;gap:7px;}
   .cal-legend i{width:14px;height:14px;border-radius:4px;display:inline-block;}
@@ -213,7 +215,7 @@
   .sess-info h4{font-size:16px;}
   .sess-info p{font-size:13px;color:var(--charcoal-soft);line-height:1.4;}
   .sess-time{display:inline-block;font-family:var(--display);font-weight:600;font-size:13px;color:var(--red);background:rgba(191,38,38,.08);padding:2px 10px;border-radius:100px;margin-top:4px;font-variant-numeric:tabular-nums;}
-  .cal-day .pips{display:flex;gap:3px;}
+  .cal-day .pips{display:flex;gap:4px;}
   .sess .btn{padding:10px 18px;font-size:14px;}
   .cal-empty{background:var(--white);border-radius:20px;padding:26px 24px;box-shadow:var(--shadow-sm);border:2px dashed var(--gold);}
   .cal-empty h4{font-size:19px;margin-bottom:6px;}
@@ -428,7 +430,7 @@
     <div class="section-head reveal">
       <span class="eyebrow">Kids Holiday Workshop projects</span>
       <h2>What will your child build?</h2>
-      <p>Every holiday workshop builds one project over two days. Choose the project, then pick a date that runs it.</p>
+      <p>Every holiday workshop builds one project in a single day. Choose the project, then pick a date that runs it.</p>
     </div>
     <div class="pv-grid" id="pvGrid"></div>
     <div class="pv-cta"><a class="btn btn-primary" href="holiday-projects.html">See all projects</a></div>
@@ -440,7 +442,7 @@
     <div class="section-head reveal">
       <span class="eyebrow">Kids Holiday Workshop calendar</span>
       <h2>Upcoming holiday dates.</h2>
-      <p>Pick a date and time to book. Some days have two workshops, each building a different project. Day 2 is the following day at the same time.</p>
+      <p>Each workshop is one day. Tap a day with a red dot to see its workshops. Some days have two, at different times and with different projects.</p>
     </div>
     <div class="cal-shell">
       <div class="cal-card reveal">
@@ -454,8 +456,7 @@
         <div class="hol-banner" id="holBanner" hidden></div>
         <div class="cal-grid" id="calGrid"></div>
         <div class="cal-legend">
-          <span><i style="background:var(--red)"></i>Workshop Day 1 (dots = workshops that day)</span>
-          <span><i style="background:rgba(191,38,38,.14)"></i>Day 2</span>
+          <span><i style="width:10px;height:10px;border-radius:50%;background:var(--red)"></i>Workshop day (one dot per workshop, tap to book)</span>
           <span><i style="background:var(--gold-light);box-shadow:inset 0 -3px 0 var(--gold)"></i>Public school holidays</span>
           <span><i style="border:2px solid var(--gold)"></i>Today</span>
         </div>
@@ -584,10 +585,10 @@ const wa = (msg) => `https://wa.me/${PHONE_INTL}?text=${encodeURIComponent(msg)}
 
 const workshops = [
   { name:"Kids Holiday Workshop", audience:"Kids", tag:"Kids · ages 8–16", photo:"images/studio/studio-4.webp",
-    blurb:"Two days in the school holidays building one project from start to finish. Choose your project when you book.",
+    blurb:"One day in the school holidays building a project from start to finish. Choose your project when you book.",
     more:{label:"See the projects", href:"holiday-projects.html"},
-    facts:[["Duration","2 days × 3 hrs"],["Group","Max 6 kids"],["Level","Beginner"],["Language","Afr & Eng"]],
-    price:"R800", priceNote:"per child, materials included",
+    facts:[["Duration","1 day · 3 hrs"],["Group","Max 6 kids"],["Level","Beginner"],["Language","Afr & Eng"]],
+    price:"R350", priceNote:"per child, per project, materials included",
     booking:"online", cta:"See dates & book", href:"#calendar" },
   { name:"Kids Birthday Party", audience:"Kids", tag:"Kids · ages 8–16", photo:"images/studio/studio-23.webp",
     blurb:"Every guest gets their own bench and builds a gift to take home, then it's cake time at the birthday table. The workshop is yours for the party.",
@@ -602,7 +603,7 @@ const workshops = [
 ];
 
 /* KIDS HOLIDAY WORKSHOP SESSIONS — mirrors the Wix booking calendar ("2-Day Kids Holiday Workshop").
-   One line per Day 1 session. Two sessions on the same day are fine (different times/projects).
+   One line per session (each workshop is a single day). Two sessions on the same day are fine (different times/projects).
    Format: date "YYYY-MM-DD", start/end "HH:MM", project = name shown on the calendar
    (should match a project on holiday-projects.html). Availability/spots are handled by Wix.
    Currently empty: Wix has no holiday sessions scheduled after 13 July 2026 (checked 6 Oct 2026). */
@@ -654,7 +655,7 @@ const good = [
 const faqs = [
   {q:"Does my child need any experience?",a:"No. Every workshop assumes they have never used a tool before. We teach safe tool use step by step, and every child completes their own project."},
   {q:"What ages are the kids workshops for?",a:"Kids aged 8 to 16. Projects are matched to the age group, and every child is guided step by step."},
-  {q:"How does the Kids Holiday Workshop work?",a:"Each workshop runs over two consecutive days, 3 hours per day. Some days have two workshops at different times, each building a different project. The calendar shows Day 1; Day 2 is the next day at the same time. See the holiday projects page for what your child can build."},
+  {q:"How does the Kids Holiday Workshop work?",a:"Each workshop is a single 3-hour session on one day. Some days have two workshops at different times, each building a different project. Your child finishes the project and takes it home the same day. See the holiday projects page for what they can build."},
   {q:"Is it safe?",a:"Yes. Groups are small and fully supervised. Kids use hand tools and selected power tools only under instruction, and closed shoes are required."},
   {q:"What should we bring?",a:"Closed shoes, clothes that can take wood dust, a water bottle and a snack. All tools and materials are supplied."},
   {q:"How do I book a Kids Birthday Party?",a:"Send us a WhatsApp or email with your preferred date, time and number of kids (up to 8). We'll confirm a session that suits you. You bring the cake, drinks and extras, or add a decorated cake for R300."},
@@ -708,9 +709,15 @@ const sessions=()=> (useSample?SAMPLE_SESSIONS:SESSIONS).filter(s=>parse(s.date)
 const fmtDay=d=>`${DOW[(d.getDay()+6)%7]} ${d.getDate()} ${MONTHS[d.getMonth()].slice(0,3)}`;
 const holidayOn=k=>SCHOOL_HOLIDAYS.find(h=>k>=h.from&&k<=h.to);
 const fmtShort=s=>{const d=parse(s);return `${d.getDate()} ${MONTHS[d.getMonth()].slice(0,3)}`;};
+const nextHoliday=()=>SCHOOL_HOLIDAYS.find(h=>h.to>=iso(today));
+function jumpToStart(){ // open on first workshop month, else on the next school holiday month
+  const f=sessions()[0], h=nextHoliday();
+  const d=f?parse(f.date):(h?parse(h.from<iso(today)?iso(today):h.from):today);
+  viewY=d.getFullYear(); viewM=d.getMonth();
+}
 function renderHolBanner(){
   const mStart=iso(new Date(viewY,viewM,1)), mEnd=iso(new Date(viewY,viewM+1,0));
-  const h=SCHOOL_HOLIDAYS.filter(h=>h.from<=mEnd&&h.to>=mStart);
+  const h=SCHOOL_HOLIDAYS.filter(h=>h.from<=mEnd&&h.to>=mStart&&h.to>=iso(today));
   const b=$('#holBanner'); b.hidden=!h.length;
   b.textContent=h.map(h=>`School ${h.name.toLowerCase()}: ${fmtShort(h.from)} – ${fmtShort(h.to)}${h.from.slice(0,4)!==h.to.slice(0,4)?' '+h.to.slice(0,4):''}`).join(' · ');
 }
@@ -718,7 +725,6 @@ function renderCal(){
   renderHolBanner();
   const list=sessions(), byDate={};
   list.forEach(s=>(byDate[s.date]=byDate[s.date]||[]).push(s));
-  const day2=new Set(list.map(s=>{const d=parse(s.date);d.setDate(d.getDate()+1);return iso(d);}));
   $('#calMonth').textContent=`${MONTHS[viewM]} ${viewY}`;
   $('#calPrev').disabled = (viewY===today.getFullYear() && viewM===today.getMonth());
   const g=$('#calGrid'); g.innerHTML=DOW.map(d=>`<div class="cal-dow">${d}</div>`).join('');
@@ -727,8 +733,8 @@ function renderCal(){
   for(let d=1;d<=days;d++){
     const dt=new Date(viewY,viewM,d), k=iso(dt), ss=byDate[k];
     let cls='cal-day'; if(dt<today) cls+=' past'; if(+dt===+today) cls+=' today';
-    if(holidayOn(k)) cls+=' hol';
-    if(ss){cls+=' has'; if(selected===k) cls+=' sel';} else if(day2.has(k)) cls+=' day2';
+    if(holidayOn(k) && dt>=today) cls+=' hol';
+    if(ss){cls+=' has'; if(selected===k) cls+=' sel';}
     const el=document.createElement(ss?'button':'div'); el.className=cls;
     el.innerHTML=`${d}${ss?`<span class="pips">${ss.map(()=>'<span class="pip"></span>').join('')}</span>`:''}`;
     if(ss){el.type='button';
@@ -740,29 +746,30 @@ function renderCal(){
 function renderList(){
   const list=sessions(), box=$('#sessList');
   const toggle=`<button class="mock-toggle" id="mockToggle" type="button" aria-pressed="${useSample}">${useSample?'Hide sample dates':'Mockup: show sample dates'}</button>`;
-  const req=`<div class="req-note"><strong>Kids Birthday Parties &amp; Craft Together</strong> aren't on the calendar. They can run on almost any date. <a href="#contact" style="color:var(--red);font-weight:700;">Ask about your date &rarr;</a></div>`;
+  const hols=SCHOOL_HOLIDAYS.filter(h=>h.to>=iso(today)).slice(0,3);
+  const holCard=`<div class="hol-list"><h4>Upcoming public school holidays</h4><ul>${hols.map(h=>`<li><span>${h.name}</span><b>${fmtShort(h.from)} – ${fmtShort(h.to)}${h.from.slice(0,4)!==h.to.slice(0,4)?' '+h.to.slice(0,4):''}</b></li>`).join('')}</ul></div>`;
+  const req=`<div class="req-note"><strong>Kids Birthday Parties &amp; Craft Together</strong> aren't on the calendar. They can run on almost any date. <a href="#contact" style="color:var(--red);font-weight:700;">Ask about your date &rarr;</a></div>`+holCard;
   if(!list.length){
     box.innerHTML=`<div class="cal-empty"><h4>Next holiday dates coming soon</h4>
       <p>We're scheduling the December holiday workshops now. Send us a message and we'll let you know as soon as booking opens.</p>
       <a class="btn btn-wa" href="${wa("Hi Henk, please let me know when the next WoodSkills holiday workshop dates open.")}" target="_blank" rel="noopener">Notify me on WhatsApp</a></div>${req}${toggle}`;
   } else {
     box.innerHTML=`<h3>Next dates${useSample?'<span class="mock-flag">SAMPLE</span>':''}</h3>`+list.map(s=>{
-      const d=parse(s.date), d2=new Date(d); d2.setDate(d.getDate()+1);
+      const d=parse(s.date);
       return `<div class="sess ${selected===s.date?'sel':''}" data-date="${s.date}">
         <div class="sess-date"><b>${d.getDate()}</b><small>${MONTHS[d.getMonth()].slice(0,3)}</small></div>
         <div class="sess-info"><h4>${s.project}</h4>
-          <p>${fmtDay(d)} &amp; ${fmtDay(d2)}</p>
+          <p>${fmtDay(d)} · one-day workshop</p>
           <span class="sess-time">${s.start}–${s.end}</span></div>
         <a class="btn btn-primary" href="${HOLIDAY_BOOK_URL}" target="_blank" rel="noopener">Book</a>
       </div>`;}).join('')+`<a class="ws-more" href="holiday-projects.html">What do the projects look like? &rarr;</a>`+req+toggle;
   }
   $('#mockToggle').onclick=()=>{useSample=!useSample;selected=null;
-    const f=sessions()[0]; if(f){const d=parse(f.date);viewY=d.getFullYear();viewM=d.getMonth();} else {viewY=today.getFullYear();viewM=today.getMonth();}
-    renderCal();renderList();};
+    jumpToStart(); renderCal();renderList();};
 }
 $('#calPrev').onclick=()=>{viewM--; if(viewM<0){viewM=11;viewY--;} renderCal();};
 $('#calNext').onclick=()=>{viewM++; if(viewM>11){viewM=0;viewY++;} renderCal();};
-{const f=sessions()[0]; if(f){const d=parse(f.date);viewY=d.getFullYear();viewM=d.getMonth();}}
+jumpToStart();
 renderCal(); renderList();
 
 $('#pvGrid').innerHTML=PROJECT_PREVIEW.map(p=>`<a class="pv-card reveal" href="holiday-projects.html#${p.id}"><img src="${p.photo}" alt="${p.name} built at a Kids Holiday Workshop" loading="lazy"><div class="pv-body"><h3>${p.name}</h3><p>${p.line}</p><span class="go">See the project &rarr;</span></div></a>`).join('');
