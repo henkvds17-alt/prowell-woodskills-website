@@ -598,8 +598,8 @@
       <span class="arrow">&rarr;</span>
     </a>
     <a class="who-card" href="#workshops" data-jump="Adults">
-      <span class="who-ico">18+</span>
-      <div><h3>For adults</h3><p>Craft Together sessions for friends, teams and visitors</p></div>
+      <span class="who-ico">All</span>
+      <div><h3>For adults &amp; families</h3><p>Craft Together sessions for families, friends and teams. Kids 8+ welcome with a parent</p></div>
       <span class="arrow">&rarr;</span>
     </a>
   </div>
@@ -811,7 +811,8 @@ const WA_CRAFT = `Hi Henk! My name is [your name] and I'd like to book a Craft T
 📅 Preferred date (weekday): [day and date]
 🕘 Preferred start time: [e.g. 10:00]
 👥 Group size: [5 to 8 people]
-🎉 Occasion: [e.g. team building, birthday, friends' outing]
+👧 Kids in the group (and their ages): [none / e.g. 2 kids, ages 9 and 12]
+🎉 Occasion: [e.g. family outing, team building, birthday, friends' outing]
 🪵 Our 3 project choices (if decided): [1. …  2. …  3. …]
 
 Please let me know if that date is available. Thank you!`;
@@ -834,8 +835,8 @@ const workshops = [
     price:"R2,900", priceNote:"flat rate for the party",
     more:{label:"Read more", href:"kids-birthday-party.html"},
     booking:"request", cta:"Request booking", href: mail("Kids Birthday Party booking request", WA_PARTY) },
-  { name:"Craft Together", audience:"Adults", tag:"Adults · groups of 5–8", photo:"images/studio/studio-14.webp",
-    blurb:"A relaxed group outing for friends, teams and visitors: pick a project, learn the tools and take home something you made. Coffee and tea on us.",
+  { name:"Craft Together", audience:"Adults Kids", tag:"Families, friends & teams · groups of 5–8", photo:"images/studio/studio-14.webp",
+    blurb:"A relaxed group outing for families, friends and teams. Kids (8+) build alongside their parents: pick a project, learn the tools and everyone takes home something they made. Coffee and tea on us.",
     facts:[["Duration","3 hours"],["Group","5 to 8 people"],["When","Weekdays"],["Language","Afr & Eng"]],
     price:"R550", priceNote:"per person",
     more:{label:"Read more", href:"craft-together.html"},
@@ -904,7 +905,7 @@ const faqs = [
   {q:"Is it safe?",a:"Yes. Groups are small and fully supervised. Kids use hand tools and selected power tools only under instruction, and closed shoes are required."},
   {q:"What should we bring?",a:"Closed shoes, clothes that can take wood dust, a water bottle and a snack. All tools and materials are supplied."},
   {q:"How do I book a Kids Birthday Party?",a:"Tap \"Request booking\" on the Kids Birthday Party card and send us your preferred date, time and number of kids (up to 8). We'll confirm a session that suits you. You bring the cake, drinks and extras, or add a decorated cake for R300."},
-  {q:"Can adults join?",a:"Yes. Craft Together is our adult workshop for groups of 5 to 8, such as friends celebrating, work teams or visitors to the Winelands. It runs on weekdays and is booked by request."},
+  {q:"Can adults or whole families join?",a:"Yes. Craft Together is our group workshop for 5 to 8 people: families, friends celebrating, work teams or visitors to the Winelands. Kids aged 8 and up are welcome with a parent, at the same price per person. It runs on weekdays and is booked by request."},
   {q:"Where is the studio?",a:"Our studio is in Paarl, Western Cape. Search for Prowell WoodSkills on Google Maps, or use the directions button in the Visit section."},
   {q:"What language are sessions in?",a:"Afrikaans and English. Instructors switch freely so everyone follows along."}
 ];
@@ -933,7 +934,7 @@ workshops.forEach(w=>{
 });
 function setFilter(t){
   filterRow.querySelectorAll('.filter-pill').forEach(b=>{const on=b.textContent===t;b.classList.toggle('active',on);b.setAttribute('aria-pressed',on);});
-  wsGrid.querySelectorAll('.ws-card').forEach(c=>c.hidden = !(t==='All'||c.dataset.aud===t));
+  wsGrid.querySelectorAll('.ws-card').forEach(c=>c.hidden = !(t==='All'||c.dataset.aud.split(' ').includes(t)));
 }
 ["All","Kids","Adults"].forEach(t=>{
   const b=document.createElement('button'); b.className='filter-pill'; b.textContent=t; b.type='button';
