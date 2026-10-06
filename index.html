@@ -64,7 +64,7 @@
   header.nav.scrolled .brand-logo img{height:42px;}
   .brand-logo--footer img{height:70px;}
   @media(max-width:640px){.brand-logo img{height:42px;} header.nav.scrolled .brand-logo img{height:36px;}}
-  nav.links{display:flex;align-items:center;gap:30px;}
+  nav.links{display:flex;align-items:center;gap:24px;}
   nav.links a{font-weight:600;font-size:14.5px;color:var(--white);position:relative;padding:4px 0;transition:color .25s;}
   header.nav.scrolled nav.links a{color:var(--charcoal-soft);}
   nav.links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--gold);transition:width .3s var(--ease);border-radius:2px;}
@@ -513,12 +513,31 @@
     .swap s{font-size:12.5px;} .swap b{font-size:14.5px;} .swap div{padding:9px 12px;}
     .why3{grid-template-columns:1fr 1fr 1fr;gap:8px;} .why3 b{font-size:14px;} .why3 span{font-size:11.5px;}
   }
+
+  /* ===== MOBILE HERO (compact, Oct 2026) ===== */
+  @media(max-width:640px){
+    .hero{padding:88px 0 52px;}
+    .hero-grid{display:grid;grid-template-columns:1fr 36%;grid-template-areas:"badge badge" "title photo" "lede lede" "ctas ctas";column-gap:12px;row-gap:0;align-items:center;}
+    .hero-copy{display:contents;}
+    .hero-badge{grid-area:badge;justify-self:start;font-size:11.5px;padding:6px 12px;margin-bottom:12px;}
+    .hero h1{grid-area:title;font-size:30px;line-height:1.06;margin:0;}
+    .hero-photos{grid-area:photo;height:auto;max-width:none;width:auto;margin:0;align-self:center;}
+    .hero-photos .p1{position:relative;width:100%;height:150px;transform:rotate(3deg);padding:5px 5px 22px;border-radius:5px;}
+    .hero-photos .p1 figcaption{font-size:10.5px;bottom:4px;}
+    .hero-photos .tape{width:50px;height:16px;top:-8px;}
+    .hero .lede{grid-area:lede;font-size:14px;line-height:1.5;margin:14px 0 16px;}
+    .hero-ctas{grid-area:ctas;display:flex;flex-wrap:nowrap;gap:8px;margin:0;}
+    .hero-ctas .btn{flex:1 1 0;padding:12px 10px;font-size:14px;white-space:nowrap;}
+    .hero-stats{display:none;}
+    .who{margin-top:-26px;}
+  }
 </style>
 
 <header class="nav" id="siteNav">
   <div class="wrap nav-inner">
     <a href="#top" class="brand-logo" aria-label="Prowell WoodSkills home"><img src="images/brand/logo.webp" alt="Prowell WoodSkills" width="900" height="283"></a>
     <nav class="links" aria-label="Main">
+      <a href="#top">Home</a>
       <a href="#workshops">Workshops</a>
       <a href="holiday-projects.html">Projects</a>
       <a href="#calendar">Calendar</a>
@@ -533,6 +552,7 @@
   </div>
 </header>
 <div class="mobile-menu" id="mobileMenu">
+  <a href="#top">Home</a>
   <a href="#workshops">Workshops</a>
   <a href="holiday-projects.html">Holiday projects</a>
   <a href="#calendar">Calendar</a>
@@ -552,7 +572,7 @@
       <p class="lede">Hands-on woodworking workshops for kids and adults. Holiday workshops, birthday parties and group sessions in our Paarl studio, where everyone walks out with something they built themselves.</p>
       <div class="hero-ctas">
         <a href="#calendar" class="btn btn-primary">See holiday dates</a>
-        <a href="#contact" class="btn btn-outline">Plan a party or group</a>
+        <a href="#contact" class="btn btn-outline">Party or group</a>
       </div>
       <ul class="hero-stats">
         <li><span class="check">&#10003;</span>No experience needed</li>
@@ -685,13 +705,13 @@
 <section id="visit">
   <div class="wrap visit-grid">
     <div class="visit-photo reveal">
-      <img src="images/studio/studio-22.webp" alt="The Prowell WoodSkills workshop floor with workbenches and students">
+      <img src="images/studio/studio-22.webp" alt="The Prowell WoodSkills woodworking studio in Paarl, with workbenches and students">
       <div class="visit-pin"><span class="pin"></span><div><b>Prowell WoodSkills</b><span>Paarl, Western Cape</span></div></div>
     </div>
     <div class="visit-copy reveal">
-      <span class="eyebrow">Visit the studio</span>
-      <h2>A real workshop in Paarl.</h2>
-      <p>Our studio in Paarl is a fully equipped woodworking workshop, so you build at proper workbenches with proper tools, in a space set up for making things. Find us on Google Maps as Prowell WoodSkills.</p>
+      <span class="eyebrow">Visit us</span>
+      <h2>Our professional woodworking studio in Paarl.</h2>
+      <p>Everything happens in our professional woodworking studio in Paarl: proper workbenches, quality tools and plenty of space to make things. Find us on Google Maps as Prowell WoodSkills.</p>
       <ul class="visit-list">
         <li><span class="check">&#10003;</span><span>Individual workbenches for every builder</span></li>
         <li><span class="check">&#10003;</span><span>Hand tools and selected power tools, used under supervision</span></li>
@@ -815,7 +835,7 @@ const workshops = [
     price:"R350", priceNote:"per child, per project, materials included",
     booking:"online", cta:"See dates & book", href:"#calendar" },
   { name:"Kids Birthday Party", audience:"Kids", tag:"Kids · ages 8–16", photo:"images/studio/studio-23.webp",
-    blurb:"Every guest gets their own bench and builds a gift to take home, then it's cake time at the birthday table. The workshop is yours for the party.",
+    blurb:"Every guest gets their own bench and builds a gift to take home, then it's cake time at the birthday table. The studio is yours for the party.",
     facts:[["Duration","3 hours"],["Group","Up to 8 kids"],["Cake","Add one for +R300"],["Language","Afr & Eng"]],
     price:"R2,900", priceNote:"flat rate for the party",
     more:{label:"Read more", href:"kids-birthday-party.html"},
