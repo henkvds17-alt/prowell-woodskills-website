@@ -136,7 +136,7 @@ CSS = '''<style>
 BODY = '''
 <main class="pd" id="top">
   <div class="wrap">
-    <nav class="crumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="index.html#workshops">Workshops</a><span>/</span><span id="crumbName"></span></nav>
+    <nav class="crumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="index.html#workshops">Experiences</a><span>/</span><span id="crumbName"></span></nav>
     <div class="picker" id="picker" hidden></div>
     <div class="pd-grid">
       <div class="media">
@@ -277,7 +277,7 @@ PAGES = {
    facts=[['Duration','1 day · 3 hrs'],['Ages','8–16'],['Group','Max 8 kids'],['Level','Beginner']],
    price='R350', priceNote='per child, per project. All materials included.',
    bookLabel='See dates & book', bookHref='index.html#calendar',
-   altHtml='One-day workshops in the school holidays. Pick a date on the calendar.',
+   altHtml='One-day experiences in the school holidays. Pick a date on the calendar.',
    included=['All timber, glue and hardware','Tools and safety gear at every bench','Step-by-step guidance from start to finish','A finished project to take home','A certificate of completion'],
    bring=['Closed shoes','Clothes that can take wood dust','A water bottle','A snack'],
    sideTitle='How the day works',
@@ -338,7 +338,7 @@ PAGES = {
    name='Craft Together', tag='Families, friends & teams · groups of 5–8 · booked by request',
    titleHtml='Skip the wine farm. <em>Build something together.</em>',
    lede="Round up your family, friends or team for a session you will all be talking about. Craft Together is a social, hands-on group outing: the music is on, the coffee is flowing, and everyone gets stuck in with real tools, side by side, with a facilitator guiding the way. There is plenty of laughter, a bit of friendly competition, and three hours later every one of you walks out with something you made yourself.",
-   facts=[['Duration','3 hours'],['Group','5 to 8 people'],['When','Weekdays'],['Skill','None needed']],
+   facts=[['Duration','3 hours'],['Group','5 to 8 people'],['When','Weekdays'],['Skill','All levels']],
    price='R550', priceNote='Per person, for groups of 5 to 8. All materials included.',
    bookLabel='Request booking', waMsg=WA['WA_CRAFT'], mailSubject='Craft Together booking request',
    altHtml='Groups only, on weekdays. Tell us your preferred date and we will confirm it.',
@@ -346,7 +346,7 @@ PAGES = {
    bring=['Closed shoes','Comfortable clothes that can get dusty','Something to drink and a snack','Your group of 5 to 8 people'],
    dayTitle='How the session works',
    day=[['Coffee & welcome','Meet your facilitator and get a quick safety briefing.'],['Plan & design','Each guest picks one of the 3 projects, plans and designs it, and selects their own timber and materials.'],['Build it, guided','Measure, cut, join and finish with real tools.'],['Take it home','Group photo, and your finished piece goes home with you.']],
-   sideTitle='Perfect for', perfectFor=['Family outings','Friends celebrating','Team building','Visitors to the Winelands','Birthdays and get-togethers','Trying woodworking for the first time'],
+   sideTitle='Perfect for', perfectFor=['Family outings','Friends celebrating','Team building','Visitors to the Winelands','Birthdays and get-togethers','All levels, first-timers welcome'],
    projectsBlock=dict(
      how=dict(title='How the projects work', size='Max size 20 × 20 × 20 cm <small>per project</small>',
        steps=[['Pick 3 projects','From our ideas or your own (a photo works).'],
