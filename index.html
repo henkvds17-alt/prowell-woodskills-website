@@ -414,6 +414,66 @@
     .footer-grid{justify-content:flex-start;gap:30px;}
     .footer-bottom{text-align:left;}
   }
+
+  .swipe-hint{display:none;}
+  /* ===== CONDENSED LAYOUT (Oct 2026): single booking button, compact good-to-know, phone swipe rows ===== */
+  .srow{grid-template-columns:40px 1fr;padding:6px 8px;cursor:pointer;gap:10px;}
+  .srow:hover{border-color:var(--cream-dark);}
+  .srow .d{width:40px;height:40px;border-radius:9px;}
+  .srow .d b{font-size:17px;} .srow .d small{font-size:9px;}
+  .srow .n b{font-size:14px;} .srow .n span{font-size:11.5px;}
+  .srows{gap:4px;max-height:380px;}
+  .panel-book{width:100%;padding:13px 20px;}
+  .good{padding:72px 0;}
+  .good .section-head{margin-bottom:26px;}
+  .good-grid{grid-template-columns:repeat(4,1fr);gap:10px;max-width:1100px;}
+  .good-item{padding:12px 14px;gap:10px;border-radius:14px;}
+  .good-item .check{flex:0 0 20px;width:20px;height:20px;font-size:11px;}
+  .good-item p{font-size:13px;line-height:1.45;}
+  .good-item strong{display:block;font-size:14px;}
+  @media(max-width:980px){.good-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:640px){
+    section{padding:52px 0;}
+    .section-head{margin-bottom:20px;}
+    .section-head h2{font-size:25px;}
+    .section-head p{font-size:14.5px;margin-top:8px;}
+    .hero{padding:104px 0 70px;}
+    .hero .lede{margin-bottom:18px;}
+    .hero-ctas{margin-bottom:16px;}
+    .p1{height:200px;}
+    /* who cards side by side */
+    .who{margin-top:-30px;}
+    .who-grid{grid-template-columns:1fr 1fr;gap:10px;}
+    .who-card{padding:12px;gap:10px;border-radius:16px;flex-wrap:wrap;}
+    .who-card .who-ico{flex:0 0 38px;height:38px;border-radius:11px;font-size:14px;}
+    .who-card h3{font-size:16px;} .who-card p{font-size:12px;} .who-card .arrow{display:none;}
+    /* swipe rows: workshops + holiday projects */
+    .swipe{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -18px;padding:4px 18px 14px;scrollbar-width:none;}
+    .swipe::-webkit-scrollbar{display:none;}
+    .ws-grid.swipe > .ws-card{flex:0 0 84%;scroll-snap-align:center;}
+    .ws-grid.swipe > .ws-card[hidden]{display:none!important;}
+    .ws-thumb{height:150px;}
+    .ws-body{padding:16px 16px 18px;gap:8px;}
+    .ws-body h3{font-size:21px;} .ws-body > p{font-size:13.5px;}
+    .ws-facts{gap:6px;} .ws-facts div{padding:7px 10px;} .ws-facts dd{font-size:13.5px;}
+    .ws-price strong{font-size:24px;}
+    .ws-card .btn{padding:13px 18px;font-size:15px;}
+    .pv-grid.swipe > .pv-card{flex:0 0 58%;scroll-snap-align:center;}
+    .pv-cta{margin-top:18px;}
+    .swipe-hint{display:block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--charcoal-soft);margin:-8px 0 8px;}
+    .how .swipe-hint{color:rgba(251,243,236,.55);}
+    /* calendar */
+    .srows{max-height:300px;}
+    /* good to know: 2 columns, tight */
+    .good-grid{grid-template-columns:1fr 1fr;gap:8px;}
+    .good-item{padding:10px 10px;gap:8px;}
+    .good-item .check{display:none;}
+    .good-item p{font-size:12px;} .good-item strong{font-size:13px;}
+    .studio{padding-bottom:52px;}
+    .scroll-hint{margin-bottom:24px;}
+    .visit-grid{gap:22px;}
+    .faq-q{padding:15px 16px;font-size:15px;}
+  }
 </style>
 
 <header class="nav" id="siteNav">
@@ -492,7 +552,8 @@
       <p>Three ways to spend a few hours at the workbench. Everything is supplied, and every project goes home with you.</p>
     </div>
     <div class="filter-row" id="filterRow" role="group" aria-label="Filter workshops"></div>
-    <div class="ws-grid" id="wsGrid"></div>
+    <p class="swipe-hint">Swipe to see all workshops &rarr;</p>
+    <div class="ws-grid swipe" id="wsGrid"></div>
   </div>
 </section>
 
@@ -503,7 +564,8 @@
       <h2>What will your child build?</h2>
       <p>Every holiday workshop builds one project in a single day. Choose the project, then pick a date that runs it.</p>
     </div>
-    <div class="pv-grid" id="pvGrid"></div>
+    <p class="swipe-hint">Swipe to see all projects &rarr;</p>
+    <div class="pv-grid swipe" id="pvGrid"></div>
     <div class="pv-cta"><a class="btn btn-primary" href="holiday-projects.html">See all projects</a></div>
   </div>
 </section>
@@ -754,14 +816,14 @@ const studioPhotos = [3,4,9,16,12,23,7,13,10,5,21,17,2,18,8,24,6,11,19,20,1,15,2
 const skills = ["Measure","Mark","Saw","Drill","Sand","Assemble","Finish","Use real tools safely","Follow a plan","Finish what they start"];
 
 const good = [
-  "Everything supplied — tools, timber, hardware and safety gear are ready at your bench.",
-  "Small groups — a handful of builders per instructor, so everyone gets real attention.",
+  "Everything supplied — tools, timber, hardware and safety gear.",
+  "Small groups — real attention for every builder.",
   "No experience needed — every workshop starts from zero.",
-  "Real tools, safely — hand tools and selected power tools, always supervised.",
-  "Take it home — every builder leaves with a finished project they made.",
-  "Afrikaans & English — sessions are taught in both languages.",
-  "What to bring — closed shoes, clothes that can take wood dust and a water bottle.",
-  "Kids get a certificate — a proud moment to finish every holiday workshop."
+  "Real tools, safely — always supervised.",
+  "Take it home — every builder leaves with their project.",
+  "Afrikaans & English — taught in both.",
+  "What to bring — closed shoes, dusty clothes, water.",
+  "Certificates — for every Kids Holiday Workshop."
 ];
 
 const faqs = [
@@ -887,10 +949,12 @@ function renderList(){
         return `<div class="srow ${selected===s.date?'sel':''}" data-date="${s.date}" data-pop="${s.project}" data-when="${fmtDay(d)} · ${s.start}–${s.end}">
           <div class="d" style="background:${pc(s.project)}"><b>${d.getDate()}</b><small>${MONTHS[d.getMonth()].slice(0,3)}</small></div>
           <div class="n"><b>${s.project}</b><span>${fmtDay(d)} · ${s.start}–${s.end}</span></div>
-          <a class="btn btn-primary" href="${HOLIDAY_BOOK_URL}" target="_blank" rel="noopener">Book</a></div>`;}).join('')
+          </div>`;}).join('')
         :`<p class="panel-note" style="border:none;padding:0">No dates for this project yet. <a href="${wa(WA_NOTIFY.replace('[e.g. Key Rack]',filterProj||''))}" target="_blank" rel="noopener">Ask us to add one &rarr;</a></p>`}</div>
+      <a class="btn btn-primary panel-book" href="${HOLIDAY_BOOK_URL}" target="_blank" rel="noopener">Book a date</a>
       <a class="ws-more" href="holiday-projects.html${filterProj&&projInfo(filterProj)?'#'+projInfo(filterProj).id:''}">${filterProj?'More about the '+filterProj:'See all the projects'} &rarr;</a>${note}${toggle}`;
   }
+  box.querySelectorAll('.srow').forEach(r=>r.onclick=()=>{selected=r.dataset.date;const d=parse(r.dataset.date);viewY=d.getFullYear();viewM=d.getMonth();renderCal();renderList();});
   $('#mockToggle').onclick=()=>{useSample=!useSample;selected=null;filterProj=null;jumpToStart();renderAll();};
 }
 function renderAll(){renderFilter();renderCal();renderList();}

@@ -414,6 +414,66 @@
     .footer-grid{justify-content:flex-start;gap:30px;}
     .footer-bottom{text-align:left;}
   }
+
+  .swipe-hint{display:none;}
+  /* ===== CONDENSED LAYOUT (Oct 2026): single booking button, compact good-to-know, phone swipe rows ===== */
+  .srow{grid-template-columns:40px 1fr;padding:6px 8px;cursor:pointer;gap:10px;}
+  .srow:hover{border-color:var(--cream-dark);}
+  .srow .d{width:40px;height:40px;border-radius:9px;}
+  .srow .d b{font-size:17px;} .srow .d small{font-size:9px;}
+  .srow .n b{font-size:14px;} .srow .n span{font-size:11.5px;}
+  .srows{gap:4px;max-height:380px;}
+  .panel-book{width:100%;padding:13px 20px;}
+  .good{padding:72px 0;}
+  .good .section-head{margin-bottom:26px;}
+  .good-grid{grid-template-columns:repeat(4,1fr);gap:10px;max-width:1100px;}
+  .good-item{padding:12px 14px;gap:10px;border-radius:14px;}
+  .good-item .check{flex:0 0 20px;width:20px;height:20px;font-size:11px;}
+  .good-item p{font-size:13px;line-height:1.45;}
+  .good-item strong{display:block;font-size:14px;}
+  @media(max-width:980px){.good-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:640px){
+    section{padding:52px 0;}
+    .section-head{margin-bottom:20px;}
+    .section-head h2{font-size:25px;}
+    .section-head p{font-size:14.5px;margin-top:8px;}
+    .hero{padding:104px 0 70px;}
+    .hero .lede{margin-bottom:18px;}
+    .hero-ctas{margin-bottom:16px;}
+    .p1{height:200px;}
+    /* who cards side by side */
+    .who{margin-top:-30px;}
+    .who-grid{grid-template-columns:1fr 1fr;gap:10px;}
+    .who-card{padding:12px;gap:10px;border-radius:16px;flex-wrap:wrap;}
+    .who-card .who-ico{flex:0 0 38px;height:38px;border-radius:11px;font-size:14px;}
+    .who-card h3{font-size:16px;} .who-card p{font-size:12px;} .who-card .arrow{display:none;}
+    /* swipe rows: workshops + holiday projects */
+    .swipe{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -18px;padding:4px 18px 14px;scrollbar-width:none;}
+    .swipe::-webkit-scrollbar{display:none;}
+    .ws-grid.swipe > .ws-card{flex:0 0 84%;scroll-snap-align:center;}
+    .ws-grid.swipe > .ws-card[hidden]{display:none!important;}
+    .ws-thumb{height:150px;}
+    .ws-body{padding:16px 16px 18px;gap:8px;}
+    .ws-body h3{font-size:21px;} .ws-body > p{font-size:13.5px;}
+    .ws-facts{gap:6px;} .ws-facts div{padding:7px 10px;} .ws-facts dd{font-size:13.5px;}
+    .ws-price strong{font-size:24px;}
+    .ws-card .btn{padding:13px 18px;font-size:15px;}
+    .pv-grid.swipe > .pv-card{flex:0 0 58%;scroll-snap-align:center;}
+    .pv-cta{margin-top:18px;}
+    .swipe-hint{display:block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--charcoal-soft);margin:-8px 0 8px;}
+    .how .swipe-hint{color:rgba(251,243,236,.55);}
+    /* calendar */
+    .srows{max-height:300px;}
+    /* good to know: 2 columns, tight */
+    .good-grid{grid-template-columns:1fr 1fr;gap:8px;}
+    .good-item{padding:10px 10px;gap:8px;}
+    .good-item .check{display:none;}
+    .good-item p{font-size:12px;} .good-item strong{font-size:13px;}
+    .studio{padding-bottom:52px;}
+    .scroll-hint{margin-bottom:24px;}
+    .visit-grid{gap:22px;}
+    .faq-q{padding:15px 16px;font-size:15px;}
+  }
 </style>
 <style>
   /* COMPACT WORKSHOP PAGE (product-page layout) */
