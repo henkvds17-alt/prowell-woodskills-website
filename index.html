@@ -92,6 +92,14 @@
   .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;}
   .hero-copy{min-width:0;}
   .hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:var(--white);font-size:13px;font-weight:600;padding:8px 18px;border-radius:100px;margin-bottom:18px;backdrop-filter:blur(6px);}
+  .hero-notice{display:inline-flex;align-items:center;gap:9px;background:var(--gold);color:var(--charcoal);font-size:13.5px;font-weight:600;padding:8px 16px 8px 12px;border-radius:100px;margin:0 0 12px;box-shadow:0 10px 24px -12px rgba(0,0,0,.45);width:max-content;max-width:100%;}
+  .hero-notice b{font-weight:800;}
+  .hero-notice:hover{transform:translateY(-2px);}
+  .hero-copy .hero-notice + .hero-badge{display:flex;width:max-content;}
+  .cal-notice{display:flex;gap:14px;align-items:flex-start;background:var(--gold-light);border:1px solid var(--gold);color:var(--charcoal);border-radius:18px;padding:16px 20px;margin:0 0 22px;}
+  .cal-notice svg{flex:0 0 auto;color:var(--red);margin-top:3px;}
+  .cal-notice p{font-size:15px;line-height:1.5;margin:0;}
+  .dec-notice[hidden]{display:none!important;}
   .hero-badge .pin{color:var(--gold);flex:0 0 auto;}
   .hero h1 em{position:relative;display:inline-block;}
   .hero h1 .swoosh{position:absolute;left:0;bottom:-.2em;width:62%;height:.26em;}
@@ -527,8 +535,9 @@
     .brand-logo img{height:50px;}
     .hero{padding:96px 0 78px;align-items:flex-start;}
     .hero::after{content:'';position:absolute;left:-15%;right:-15%;bottom:-1px;height:64px;background:var(--cream);border-radius:50% 50% 0 0/100% 100% 0 0;z-index:1;}
-    .hero-grid{display:grid;grid-template-columns:54% 1fr;grid-template-areas:"badge badge" "title title" "lede photos" "ctas ctas";column-gap:10px;row-gap:0;align-items:start;}
+    .hero-grid{display:grid;grid-template-columns:54% 1fr;grid-template-areas:"notice notice" "badge badge" "title title" "lede photos" "ctas ctas";column-gap:10px;row-gap:0;align-items:start;}
     .hero-copy{display:contents;}
+    .hero-notice{grid-area:notice;font-size:13px;padding:8px 14px 8px 11px;margin-bottom:10px;}
     .hero-badge{grid-area:badge;justify-self:start;font-size:13.5px;padding:9px 16px 9px 12px;margin-bottom:18px;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3);}
     .hero h1{grid-area:title;font-size:clamp(44px,12.4vw,54px);line-height:1;margin:0 0 26px;letter-spacing:-.015em;}
     .hero h1 .swoosh{bottom:-.3em;width:70%;}
@@ -586,6 +595,7 @@
   <div class="shape s1"></div><div class="shape s2"></div>
   <div class="wrap hero-grid">
     <div class="hero-copy">
+      <a class="hero-notice dec-notice" href="#calendar" hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg><span><b>December holiday dates</b> will be released soon</span></a>
       <div class="hero-badge"><svg class="pin" width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.6A2.6 2.6 0 1 1 12 6.4a2.6 2.6 0 0 1 0 5.2z"/></svg> Woodworking studio in Paarl</div>
       <h1>Real tools. Real skills.<br><em>Real fun.<svg class="swoosh" viewBox="0 0 200 18" preserveAspectRatio="none" aria-hidden="true"><path d="M4 13C55 4 135 3 196 9" fill="none" stroke="#E0A83E" stroke-width="6" stroke-linecap="round"/></svg></em></h1>
       <p class="lede">Discover the joy of making something with your own hands. Hands-on woodworking experiences for kids and adults.</p>
@@ -672,6 +682,7 @@
       <h2>Upcoming holiday dates.</h2>
       <p>One-day experiences. Pick a project to see only its dates, or tap a day to book.</p>
     </div>
+    <div class="cal-notice dec-notice reveal" hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg><p><b>December holiday dates will be released soon.</b> We're planning the summer holiday experiences now, so check back here soon.</p></div>
     <div class="cal-shell">
       <div class="cal-card reveal">
         <div class="cal-top">
@@ -866,16 +877,8 @@ const workshops = [
    One line per session (each workshop is a single day). Two sessions on the same day are fine (different times/projects).
    Format: date "YYYY-MM-DD", start/end "HH:MM", project = name shown on the calendar
    (should match a project on holiday-projects.html). Availability/spots are handled by Wix.
-   Synced from Wix on 6 Oct 2026. */
-const SESSIONS = [
-  {date:"2026-11-30",start:"08:00",end:"11:00",project:"Pot Stand"},
-  {date:"2026-11-30",start:"14:00",end:"17:00",project:"Book Stand"},
-  {date:"2026-12-01",start:"08:00",end:"11:00",project:"Book Stand"},
-  {date:"2026-12-01",start:"14:00",end:"17:00",project:"Pot Stand"},
-  {date:"2026-12-02",start:"08:00",end:"11:00",project:"Book Stand"},
-  {date:"2026-12-02",start:"14:00",end:"17:00",project:"Pot Stand"},
-  {date:"2026-12-03",start:"08:00",end:"11:00",project:"Pot Stand"}
-];
+   Synced from Wix on 6 Oct 2026: no sessions scheduled yet (sample dates removed). */
+const SESSIONS = [];
 
 /* PUBLIC SCHOOL HOLIDAYS (learners) — national DBE calendar, followed by all provinces incl. Western Cape.
    Source: DBE school calendars gazetted 25 Feb 2025 (Gazettes 52177 & 52178). Inclusive dates. Add new years as they're gazetted. */
@@ -1098,5 +1101,8 @@ if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: red
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target);}}),{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>{if(el.getBoundingClientRect().top>innerHeight){el.classList.add('pre');io.observe(el);}});
 }
+/* December-holiday notice: shows until a session in the summer school holiday (10 Dec 2026 – 12 Jan 2027) is added to SESSIONS, then hides itself. */
+(function(){const hasDec=SESSIONS.some(s=>s.date>="2026-12-10"&&s.date<="2027-01-12"); const over=new Date()>new Date("2027-01-12");
+  if(!hasDec&&!over) document.querySelectorAll('.dec-notice').forEach(e=>{ if(e.classList.contains('cal-notice')&&!SESSIONS.length) return; /* empty calendar already says dates are coming */ e.hidden=false;});})();
 </script>
 <script>if(location.hash==="#workshops"){history.replaceState(null,"","#experiences");document.getElementById("experiences").scrollIntoView();}</script>
