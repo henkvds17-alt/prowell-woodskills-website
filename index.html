@@ -784,7 +784,7 @@
    Prices and details below come from the live Wix Bookings services (5 Oct 2026).
    Bookings stay on Wix: buttons link to the Wix booking pages. */
 const WIX = "https://www.prowellwoodskills.co.za";
-const HOLIDAY_BOOK_URL = WIX + "/booking-calendar/2-day-kids-holiday-workshop";
+const HOLIDAY_BOOK_URL = WIX + "/"; // Wix home page = the Kids Holiday Experiences booking calendar
 const PHONE_DISPLAY = "081 027 0892";
 const PHONE_INTL = "27810270892";
 const MAP_URL = "https://maps.app.goo.gl/P7HAnz21569Az6MM8"; // Google Maps listing: Prowell WoodSkills, -33.6792966, 18.964857
@@ -844,8 +844,16 @@ const workshops = [
    One line per session (each workshop is a single day). Two sessions on the same day are fine (different times/projects).
    Format: date "YYYY-MM-DD", start/end "HH:MM", project = name shown on the calendar
    (should match a project on holiday-projects.html). Availability/spots are handled by Wix.
-   Currently empty: Wix has no holiday sessions scheduled after 13 July 2026 (checked 6 Oct 2026). */
-const SESSIONS = [];
+   Synced from Wix on 6 Oct 2026. */
+const SESSIONS = [
+  {date:"2026-11-30",start:"08:00",end:"11:00",project:"Pot Stand"},
+  {date:"2026-11-30",start:"14:00",end:"17:00",project:"Book Stand"},
+  {date:"2026-12-01",start:"08:00",end:"11:00",project:"Book Stand"},
+  {date:"2026-12-01",start:"14:00",end:"17:00",project:"Pot Stand"},
+  {date:"2026-12-02",start:"08:00",end:"11:00",project:"Book Stand"},
+  {date:"2026-12-02",start:"14:00",end:"17:00",project:"Pot Stand"},
+  {date:"2026-12-03",start:"08:00",end:"11:00",project:"Pot Stand"}
+];
 
 /* PUBLIC SCHOOL HOLIDAYS (learners) — national DBE calendar, followed by all provinces incl. Western Cape.
    Source: DBE school calendars gazetted 25 Feb 2025 (Gazettes 52177 & 52178). Inclusive dates. Add new years as they're gazetted. */
