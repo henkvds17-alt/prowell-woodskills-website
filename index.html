@@ -188,6 +188,15 @@
   .cal-day.has{background:var(--red);color:var(--white);cursor:pointer;}
   .cal-day.has:hover,.cal-day.has.sel{background:var(--red-dark);transform:scale(1.06);}
   .cal-day.day2{background:rgba(191,38,38,.14);color:var(--red-dark);}
+  /* public school holidays: gold wash + gold underline bar (bar stays visible on workshop days) */
+  .cal-day.hol{background:var(--gold-light);}
+  .cal-day.hol::after{content:'';position:absolute;left:6px;right:6px;bottom:4px;height:3px;border-radius:3px;background:var(--gold);}
+  .cal-day.hol.has{background:var(--red);}
+  .cal-day.hol.has:hover,.cal-day.hol.has.sel{background:var(--red-dark);}
+  .cal-day.hol.day2{background:rgba(191,38,38,.14);}
+  .hol-banner{display:flex;align-items:center;gap:10px;background:var(--gold-light);border-radius:12px;padding:9px 14px;font-size:13.5px;font-weight:600;color:var(--charcoal);margin:-4px 0 14px;}
+  .hol-banner::before{content:'';flex:0 0 18px;height:4px;border-radius:3px;background:var(--gold);}
+  .hol-banner[hidden]{display:none!important;}
   .cal-day .pip{width:6px;height:6px;border-radius:50%;background:var(--gold);}
   .cal-day.full{background:var(--charcoal-soft);}
   .cal-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:18px;font-size:12.5px;color:var(--charcoal-soft);}
@@ -442,10 +451,12 @@
             <button id="calNext" aria-label="Next month">&rsaquo;</button>
           </div>
         </div>
+        <div class="hol-banner" id="holBanner" hidden></div>
         <div class="cal-grid" id="calGrid"></div>
         <div class="cal-legend">
           <span><i style="background:var(--red)"></i>Workshop Day 1 (dots = workshops that day)</span>
           <span><i style="background:rgba(191,38,38,.14)"></i>Day 2</span>
+          <span><i style="background:var(--gold-light);box-shadow:inset 0 -3px 0 var(--gold)"></i>Public school holidays</span>
           <span><i style="border:2px solid var(--gold)"></i>Today</span>
         </div>
       </div>
@@ -597,11 +608,22 @@ const workshops = [
    Currently empty: Wix has no holiday sessions scheduled after 13 July 2026 (checked 6 Oct 2026). */
 const SESSIONS = [];
 
+/* PUBLIC SCHOOL HOLIDAYS (learners) — national DBE calendar, followed by all provinces incl. Western Cape.
+   Source: DBE school calendars gazetted 25 Feb 2025 (Gazettes 52177 & 52178). Inclusive dates. Add new years as they're gazetted. */
+const SCHOOL_HOLIDAYS = [
+  {name:"Spring holidays",  from:"2026-09-24", to:"2026-10-05"},
+  {name:"Summer holidays",  from:"2026-12-10", to:"2027-01-12"},
+  {name:"Autumn holidays",  from:"2027-03-20", to:"2027-04-05"},
+  {name:"Winter holidays",  from:"2027-06-26", to:"2027-07-19"},
+  {name:"Spring holidays",  from:"2027-09-23", to:"2027-10-04"},
+  {name:"Summer holidays",  from:"2027-12-09", to:"2028-01-11"}
+];
+
 /* Mockup only: sample sessions so the calendar layout can be reviewed. Remove before launch. */
 const SAMPLE_SESSIONS = [
-  {date:"2026-12-08",start:"09:00",end:"12:00",project:"Step Stool"},
-  {date:"2026-12-08",start:"13:00",end:"16:00",project:"Tool Caddy"},
-  {date:"2026-12-15",start:"09:00",end:"12:00",project:"Chopping Board"},
+  {date:"2026-12-14",start:"09:00",end:"12:00",project:"Step Stool"},
+  {date:"2026-12-14",start:"13:00",end:"16:00",project:"Tool Caddy"},
+  {date:"2026-12-17",start:"09:00",end:"12:00",project:"Chopping Board"},
   {date:"2027-01-05",start:"09:00",end:"12:00",project:"Step Stool"},
   {date:"2027-01-05",start:"13:00",end:"16:00",project:"Chopping Board"}
 ];
@@ -684,7 +706,16 @@ let useSample=false, viewY=today.getFullYear(), viewM=today.getMonth(), selected
 const sessions=()=> (useSample?SAMPLE_SESSIONS:SESSIONS).filter(s=>parse(s.date)>=today).sort((a,b)=>(a.date+a.start).localeCompare(b.date+b.start));
 
 const fmtDay=d=>`${DOW[(d.getDay()+6)%7]} ${d.getDate()} ${MONTHS[d.getMonth()].slice(0,3)}`;
+const holidayOn=k=>SCHOOL_HOLIDAYS.find(h=>k>=h.from&&k<=h.to);
+const fmtShort=s=>{const d=parse(s);return `${d.getDate()} ${MONTHS[d.getMonth()].slice(0,3)}`;};
+function renderHolBanner(){
+  const mStart=iso(new Date(viewY,viewM,1)), mEnd=iso(new Date(viewY,viewM+1,0));
+  const h=SCHOOL_HOLIDAYS.filter(h=>h.from<=mEnd&&h.to>=mStart);
+  const b=$('#holBanner'); b.hidden=!h.length;
+  b.textContent=h.map(h=>`School ${h.name.toLowerCase()}: ${fmtShort(h.from)} – ${fmtShort(h.to)}${h.from.slice(0,4)!==h.to.slice(0,4)?' '+h.to.slice(0,4):''}`).join(' · ');
+}
 function renderCal(){
+  renderHolBanner();
   const list=sessions(), byDate={};
   list.forEach(s=>(byDate[s.date]=byDate[s.date]||[]).push(s));
   const day2=new Set(list.map(s=>{const d=parse(s.date);d.setDate(d.getDate()+1);return iso(d);}));
@@ -696,6 +727,7 @@ function renderCal(){
   for(let d=1;d<=days;d++){
     const dt=new Date(viewY,viewM,d), k=iso(dt), ss=byDate[k];
     let cls='cal-day'; if(dt<today) cls+=' past'; if(+dt===+today) cls+=' today';
+    if(holidayOn(k)) cls+=' hol';
     if(ss){cls+=' has'; if(selected===k) cls+=' sel';} else if(day2.has(k)) cls+=' day2';
     const el=document.createElement(ss?'button':'div'); el.className=cls;
     el.innerHTML=`${d}${ss?`<span class="pips">${ss.map(()=>'<span class="pip"></span>').join('')}</span>`:''}`;
