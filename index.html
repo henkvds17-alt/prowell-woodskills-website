@@ -54,6 +54,12 @@
   .brand .b1{font-size:14px;color:var(--gold);letter-spacing:.04em;text-shadow:1.5px 0 #fff,-1.5px 0 #fff,0 1.5px #fff,0 -1.5px #fff;}
   .brand .b2{font-size:26px;color:var(--red);text-shadow:2px 0 #fff,-2px 0 #fff,0 2px #fff,0 -2px #fff,2px 2px #fff,-2px -2px #fff;border-bottom:3px solid var(--gold);padding-bottom:2px;}
   .brand--lg .b1{font-size:18px;} .brand--lg .b2{font-size:34px;}
+  /* real logo (images/brand/logo.webp) — white outline is built in, so it reads on red and cream */
+  .brand-logo{display:inline-flex;align-items:center;flex-shrink:0;}
+  .brand-logo img{height:52px;width:auto;transition:height .35s var(--ease);}
+  header.nav.scrolled .brand-logo img{height:42px;}
+  .brand-logo--footer img{height:70px;}
+  @media(max-width:640px){.brand-logo img{height:42px;} header.nav.scrolled .brand-logo img{height:36px;}}
   nav.links{display:flex;align-items:center;gap:30px;}
   nav.links a{font-weight:600;font-size:14.5px;color:var(--white);position:relative;padding:4px 0;transition:color .25s;}
   header.nav.scrolled nav.links a{color:var(--charcoal-soft);}
@@ -323,7 +329,7 @@
 
 <header class="nav" id="siteNav">
   <div class="wrap nav-inner">
-    <a href="#top" class="brand" aria-label="Prowell WoodSkills home"><span class="b1">Prowell</span><span class="b2">WoodSkills</span></a>
+    <a href="#top" class="brand-logo" aria-label="Prowell WoodSkills home"><img src="images/brand/logo.webp" alt="Prowell WoodSkills" width="900" height="283"></a>
     <nav class="links" aria-label="Main">
       <a href="#workshops">Workshops</a>
       <a href="#calendar">Calendar</a>
@@ -539,7 +545,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <a href="#top" class="brand brand--lg"><span class="b1">Prowell</span><span class="b2">WoodSkills</span></a>
+        <a href="#top" class="brand-logo brand-logo--footer"><img src="images/brand/logo.webp" alt="Prowell WoodSkills" width="900" height="283"></a>
         <p style="max-width:280px;font-size:14px;margin-top:18px;">Hands-on woodworking workshops for kids and adults in Paarl, Western Cape.</p>
       </div>
       <div>
