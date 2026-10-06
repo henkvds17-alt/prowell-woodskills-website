@@ -650,7 +650,7 @@
     <div class="section-head cal-head reveal">
       <span class="eyebrow">Kids Holiday Workshop calendar</span>
       <h2>Upcoming holiday dates.</h2>
-      <p>One-day Kids Holiday Workshops in the school holidays. Tap a day to see the times.</p>
+      <p>One-day workshops. Pick a project to see only its dates, or tap a day to book.</p>
     </div>
     <div class="cal-shell">
       <div class="cal-card reveal">
@@ -661,12 +661,13 @@
             <button id="calNext" aria-label="Next month">&rsaquo;</button>
           </div>
         </div>
-        
+        <div class="pfilter" id="pFilter" role="group" aria-label="Filter by project"></div>
         <div class="hol-banner" id="holBanner" hidden></div>
         <div class="cal-grid" id="calGrid"></div>
         <div class="cal-legend">
           <span><i style="background:var(--gold-light);box-shadow:inset 0 -3px 0 var(--gold)"></i>Public school holidays</span>
           <span><i style="border:2px solid var(--gold)"></i>Today</span>
+          <span>Hover a project for a preview</span>
         </div>
       </div>
       <div class="sess-panel reveal" id="sessList"></div>
@@ -744,6 +745,7 @@
       <h3>Talk to Henk</h3>
       <p>Parties and group sessions are booked by request. Send your date, time and group size.</p>
       <div class="contact-row"><div><span class="lbl">WhatsApp / phone</span><span class="val" id="phoneVal"></span></div><button class="copy-btn" data-copy="phoneVal">Copy</button></div>
+      <div class="contact-row"><div><span class="lbl">Email</span><span class="val" id="emailVal"></span></div><button class="copy-btn" data-copy="emailVal">Copy</button></div>
       <a class="btn btn-wa" id="waBtn" href="#" target="_blank" rel="noopener">Message us on WhatsApp</a>
     </div>
   </div>
@@ -786,6 +788,7 @@ const WIX = "https://www.prowellwoodskills.co.za";
 const HOLIDAY_BOOK_URL = WIX + "/booking-calendar/2-day-kids-holiday-workshop";
 const PHONE_DISPLAY = "081 027 0892";
 const PHONE_INTL = "27810270892";
+const EMAIL = "henk@prowellkitchens.co.za";
 const MAP_URL = "https://maps.app.goo.gl/P7HAnz21569Az6MM8"; // Google Maps listing: Prowell WoodSkills, -33.6792966, 18.964857
 const wa = (msg) => `https://wa.me/${PHONE_INTL}?text=${encodeURIComponent(msg)}`;
 
@@ -817,6 +820,12 @@ const WA_GENERAL = `Hi Henk! My name is [your name] and I'd like to book a sessi
 👥 Number of people: [number]
 
 Please let me know if that date is available. Thank you!`;
+const WA_NOTIFY = `Hi Henk! My name is [your name]. Please let me know as soon as the next Kids Holiday Workshop dates open.
+
+👦 My child's age: [age]
+🪵 Project they'd like to build: [e.g. Key Rack]
+
+Thank you!`;
 
 const workshops = [
   { name:"Kids Holiday Workshop", audience:"Kids", tag:"Kids · ages 8–16", photo:"images/studio/studio-4.webp",
@@ -841,7 +850,7 @@ const workshops = [
 
 /* KIDS HOLIDAY WORKSHOP SESSIONS — mirrors the Wix booking calendar ("2-Day Kids Holiday Workshop").
    One line per session (each workshop is a single day). Two sessions on the same day are fine (different times/projects).
-   Format: date "YYYY-MM-DD", start/end "HH:MM", project = for Henk's own planning only (not shown on the site: the workshop experience is the focus)
+   Format: date "YYYY-MM-DD", start/end "HH:MM", project = name shown on the calendar
    (should match a project on holiday-projects.html). Availability/spots are handled by Wix.
    Currently empty: Wix has no holiday sessions scheduled after 13 July 2026 (checked 6 Oct 2026). */
 const SESSIONS = [];
@@ -900,7 +909,7 @@ const faqs = [
   {q:"How does the Kids Holiday Workshop work?",a:"Each workshop is a single 3-hour session on one day. Some days have two workshops at different times, each building a different project. Your child finishes the project and takes it home the same day. See the holiday projects page for what they can build."},
   {q:"Is it safe?",a:"Yes. Groups are small and fully supervised. Kids use hand tools and selected power tools only under instruction, and closed shoes are required."},
   {q:"What should we bring?",a:"Closed shoes, clothes that can take wood dust, a water bottle and a snack. All tools and materials are supplied."},
-  {q:"How do I book a Kids Birthday Party?",a:"Tap \"Ask about a date\" on the Kids Birthday Party card and send us your preferred date, time and number of kids (up to 8). We'll confirm a session that suits you. You bring the cake, drinks and extras, or add a decorated cake for R300."},
+  {q:"How do I book a Kids Birthday Party?",a:"Send us a WhatsApp or email with your preferred date, time and number of kids (up to 8). We'll confirm a session that suits you. You bring the cake, drinks and extras, or add a decorated cake for R300."},
   {q:"Can adults join?",a:"Yes. Craft Together is our adult workshop for groups of 5 to 8, such as friends celebrating, work teams or visitors to the Winelands. It runs on weekdays and is booked by request."},
   {q:"Where is the studio?",a:"Our studio is in Paarl, Western Cape. Search for Prowell WoodSkills on Google Maps, or use the directions button in the Visit section."},
   {q:"What language are sessions in?",a:"Afrikaans and English. Instructors switch freely so everyone follows along."}
@@ -952,13 +961,13 @@ const sessions=()=> allSessions().filter(s=>!filterProj||s.project===filterProj)
 const fmtDay=d=>`${DOW[(d.getDay()+6)%7]} ${d.getDate()} ${MONTHS[d.getMonth()].slice(0,3)}`;
 /* One colour per project, so repeats are easy to spot on the calendar. Gold is reserved for school holidays. */
 const PROJECT_COLOURS=["#BF2626","#2E5E8C","#3F7D4E","#7A4E9C","#241C18","#C2571A"];
-const projectOrder=[]; const pc=name=>'var(--red)'; // every session is the same Kids Holiday Workshop experience — one colour
+const projectOrder=[]; const pc=name=>{let i=projectOrder.indexOf(name); if(i<0){projectOrder.push(name); i=projectOrder.length-1;} return PROJECT_COLOURS[i%PROJECT_COLOURS.length];};
 PROJECT_PREVIEW.forEach(p=>pc(p.name));
 const projInfo=n=>PROJECT_PREVIEW.find(x=>x.name===n);
 const shortName=n=>{const p=projInfo(n);return p?p.short:n.split(' ')[0];}; // phone label from PROJECT_PREVIEW.short
 
 // project filter (shows every holiday project; count = upcoming sessions)
-function renderFilter(){ return; /* project filter removed Oct 2026: the experience is the focus, not the project */
+function renderFilter(){
   const counts={}; allSessions().forEach(s=>counts[s.project]=(counts[s.project]||0)+1);
   const names=[...new Set([...PROJECT_PREVIEW.map(p=>p.name),...Object.keys(counts)])];
   const f=$('#pFilter');
@@ -995,9 +1004,9 @@ function renderCal(){
     if(holidayOn(k) && dt>=today) cls+=' hol';
     if(ss){cls+=' has'; if(selected===k) cls+=' sel';}
     const el=document.createElement(ss?'button':'div'); el.className=cls;
-    el.innerHTML=`<span class="dn">${d}</span>${ss?`<span class="chips">${ss.map(s=>`<span class="chip" style="background:var(--red)"><span class="nm">${s.start}–${s.end}</span><span class="sh">${s.start}</span></span>`).join('')}</span>`:''}`;
+    el.innerHTML=`<span class="dn">${d}</span>${ss?`<span class="chips">${ss.map(s=>`<span class="chip" style="background:${pc(s.project)}" data-pop="${s.project}" data-when="${fmtDay(dt)} · ${s.start}–${s.end}"><span class="t">${s.start}</span><span class="nm">${s.project}</span><span class="sh">${shortName(s.project)}</span></span>`).join('')}</span>`:''}`;
     if(ss){el.type='button';
-      el.setAttribute('aria-label',`${d} ${MONTHS[viewM]}: Kids Holiday Workshop ${ss.map(s=>s.start).join(' and ')}`);
+      el.setAttribute('aria-label',`${d} ${MONTHS[viewM]}: ${ss.map(s=>s.project+' '+s.start).join(', ')}`);
       el.onclick=()=>{selected=k;renderCal();renderList();const t=document.querySelector(`.srow[data-date="${k}"]`);t&&t.scrollIntoView({block:'nearest',behavior:'smooth'});};}
     g.appendChild(el);
   }
@@ -1008,19 +1017,19 @@ function renderList(){
   const note=`<p class="panel-note"><strong>Parties &amp; Craft Together</strong> run on almost any date, by request. <a href="#contact">Ask about a date &rarr;</a></p>`;
   if(!allSessions().length){
     box.innerHTML=`<div class="cal-empty"><h4>Next holiday dates coming soon</h4>
-      <p>We're scheduling the December holiday workshops now. Dates are added here before every school holiday, so check back soon.</p>
-      </div>
-      <a class="ws-more" href="holiday-projects.html">What happens on the day &rarr;</a>${note}${toggle}`;
+      <p>We're scheduling the December holiday workshops now. We'll let you know as soon as booking opens.</p>
+      <a class="btn btn-wa" href="${wa(WA_NOTIFY)}" target="_blank" rel="noopener">Notify me on WhatsApp</a></div>
+      <a class="ws-more" href="holiday-projects.html">See the projects &rarr;</a>${note}${toggle}`;
   } else {
-    box.innerHTML=`<h3>Next dates <small>${list.length} workshop${list.length===1?'':'s'}</small>${useSample?'<span class="mock-flag">SAMPLE</span>':''}</h3>
+    box.innerHTML=`<h3>${filterProj?filterProj:'Next dates'} <small>${list.length} workshop${list.length===1?'':'s'}</small>${useSample?'<span class="mock-flag">SAMPLE</span>':''}</h3>
       <div class="srows">${list.length?list.map(s=>{const d=parse(s.date);
-        return `<div class="srow ${selected===s.date?'sel':''}" data-date="${s.date}">
+        return `<div class="srow ${selected===s.date?'sel':''}" data-date="${s.date}" data-pop="${s.project}" data-when="${fmtDay(d)} · ${s.start}–${s.end}">
           <div class="d" style="background:${pc(s.project)}"><b>${d.getDate()}</b><small>${MONTHS[d.getMonth()].slice(0,3)}</small></div>
-          <div class="n"><b>Kids Holiday Workshop</b><span>${fmtDay(d)} · ${s.start}–${s.end}</span></div>
+          <div class="n"><b>${s.project}</b><span>${fmtDay(d)} · ${s.start}–${s.end}</span></div>
           </div>`;}).join('')
-        :`<p class="panel-note" style="border:none;padding:0">No dates for this project yet. New dates are added before every school holiday.</p>`}</div>
+        :`<p class="panel-note" style="border:none;padding:0">No dates for this project yet. <a href="${wa(WA_NOTIFY.replace('[e.g. Key Rack]',filterProj||''))}" target="_blank" rel="noopener">Ask us to add one &rarr;</a></p>`}</div>
       <a class="btn btn-primary panel-book" href="${HOLIDAY_BOOK_URL}" target="_blank" rel="noopener">Book a date</a>
-      <a class="ws-more" href="holiday-projects.html">What happens on the day &rarr;</a>${note}${toggle}`;
+      <a class="ws-more" href="holiday-projects.html${filterProj&&projInfo(filterProj)?'#'+projInfo(filterProj).id:''}">${filterProj?'More about the '+filterProj:'See all the projects'} &rarr;</a>${note}${toggle}`;
   }
   box.querySelectorAll('.srow').forEach(r=>r.onclick=()=>{selected=r.dataset.date;const d=parse(r.dataset.date);viewY=d.getFullYear();viewM=d.getMonth();renderCal();renderList();});
   $('#mockToggle').onclick=()=>{useSample=!useSample;selected=null;filterProj=null;jumpToStart();renderAll();};
@@ -1029,7 +1038,7 @@ function renderAll(){renderFilter();renderCal();renderList();}
 
 // hover preview of a project (calendar chips, date rows, filter buttons)
 const pop=$('#projPop');
-document.addEventListener('mouseover',e=>{ return; /* project preview removed Oct 2026 */
+document.addEventListener('mouseover',e=>{
   const t=e.target.closest('#calendar [data-pop]'); if(!t){pop.hidden=true;return;}
   if(!matchMedia('(hover:hover)').matches) return;
   const p=projInfo(t.dataset.pop); if(!p){pop.hidden=true;return;}
@@ -1060,7 +1069,7 @@ faqs.forEach((f,i)=>{
 });
 
 // contact
-$('#phoneVal').textContent=PHONE_DISPLAY;
+$('#phoneVal').textContent=PHONE_DISPLAY; $('#emailVal').textContent=EMAIL;
 $('#waBtn').href=wa(WA_GENERAL);
 $('#mapLink').href=MAP_URL;
 document.querySelectorAll('.copy-btn').forEach(b=>b.addEventListener('click',()=>{

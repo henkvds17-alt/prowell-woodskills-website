@@ -950,7 +950,7 @@ render(null);
 // projects showcase (the experience stays the same; the project is what they take home)
 if(PAGE.projects){
   const sc=$('#showcase'); sc.hidden=false;
-  sc.innerHTML=`<div class="sc-head"><h2>${PAGE.projectsTitle}</h2><p>${PAGE.projectsIntro}</p></div>
+  sc.innerHTML=`<div class="sc-head"><h2>${PAGE.projectsTitle}</h2>${PAGE.projectsIntro?`<p>${PAGE.projectsIntro}</p>`:''}</div>
     <div class="sc-row">${PAGE.projects.map(p=>`<figure class="sc-card" id="${p.id}"><img src="${p.photos[0]}" alt="${p.name}" loading="lazy"><figcaption>${p.name}</figcaption></figure>`).join('')}</div>`;
   const hl=()=>{const el=location.hash&&document.getElementById(location.hash.slice(1));
     document.querySelectorAll('.sc-card').forEach(c=>c.classList.toggle('on',c===el));
