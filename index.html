@@ -888,18 +888,6 @@ const SCHOOL_HOLIDAYS = [
   {name:"Summer holidays",  from:"2027-12-09", to:"2028-01-11"}
 ];
 
-/* Mockup only: sample sessions so the calendar layout can be reviewed. Remove before launch. */
-const SAMPLE_SESSIONS = [
-  {date:"2026-12-14",start:"09:00",end:"12:00",project:"Pot Stand"},
-  {date:"2026-12-14",start:"13:00",end:"16:00",project:"Key Rack"},
-  {date:"2026-12-16",start:"09:00",end:"12:00",project:"Book Stand"},
-  {date:"2026-12-17",start:"09:00",end:"12:00",project:"Offcut Box"},
-  {date:"2026-12-17",start:"13:00",end:"16:00",project:"Hat / Coat Hook"},
-  {date:"2027-01-05",start:"09:00",end:"12:00",project:"Pot Stand"},
-  {date:"2027-01-05",start:"13:00",end:"16:00",project:"Key Rack"},
-  {date:"2027-01-07",start:"09:00",end:"12:00",project:"Book Stand"}
-];
-
 /* Holiday projects (same projects as The Woodworking Guy site) — keep names in sync with holiday-projects.html and the calendar. */
 const PROJECT_PREVIEW = [
   {id:"pot-stand",  name:"Pot Stand", level:"Hand tools & glue",       short:"Pot",  line:"A slatted stand that keeps hot pots off the table.",          photo:"images/projects/pot-stand.webp"},
@@ -977,7 +965,7 @@ const today=new Date(); today.setHours(0,0,0,0);
 const iso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 const parse=s=>{const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d);};
 let useSample=false, viewY=today.getFullYear(), viewM=today.getMonth(), selected=null, filterProj=null;
-const allSessions=()=> (useSample?SAMPLE_SESSIONS:SESSIONS).filter(s=>parse(s.date)>=today).sort((a,b)=>(a.date+a.start).localeCompare(b.date+b.start));
+const allSessions=()=> SESSIONS.filter(s=>parse(s.date)>=today).sort((a,b)=>(a.date+a.start).localeCompare(b.date+b.start));
 const sessions=()=> allSessions().filter(s=>!filterProj||s.project===filterProj);
 
 const fmtDay=d=>`${DOW[(d.getDay()+6)%7]} ${d.getDate()} ${MONTHS[d.getMonth()].slice(0,3)}`;
@@ -1035,13 +1023,12 @@ function renderCal(){
 }
 function renderList(){
   const list=sessions(), box=$('#sessList');
-  const toggle=`<button class="mock-toggle" id="mockToggle" type="button" aria-pressed="${useSample}">${useSample?'Hide sample dates':'Mockup: show sample dates'}</button>`;
   const note=`<p class="panel-note"><strong>Parties &amp; Craft Together</strong> run on almost any date, by request. <a href="#contact">Request booking &rarr;</a></p>`;
   if(!allSessions().length){
     box.innerHTML=`<div class="cal-empty"><h4>Next holiday dates coming soon</h4>
       <p>We're scheduling the December holiday experiences now. Dates are added here before every school holiday, so check back soon.</p>
       </div>
-      <a class="ws-more" href="holiday-projects.html">See the projects &rarr;</a>${note}${toggle}`;
+      <a class="ws-more" href="holiday-projects.html">See the projects &rarr;</a>${note}`;
   } else {
     box.innerHTML=`<h3>${filterProj?filterProj:'Next dates'} <small>${list.length} date${list.length===1?'':'s'}</small>${useSample?'<span class="mock-flag">SAMPLE</span>':''}</h3>
       <div class="srows">${list.length?list.map(s=>{const d=parse(s.date);
@@ -1051,10 +1038,9 @@ function renderList(){
           </div>`;}).join('')
         :`<p class="panel-note" style="border:none;padding:0">No dates for this project yet. New dates are added before every school holiday.</p>`}</div>
       <a class="btn btn-primary panel-book" href="${HOLIDAY_BOOK_URL}" target="_blank" rel="noopener">Book a date</a>
-      <a class="ws-more" href="holiday-projects.html${filterProj&&projInfo(filterProj)?'#'+projInfo(filterProj).id:''}">${filterProj?'More about the '+filterProj:'See all the projects'} &rarr;</a>${note}${toggle}`;
+      <a class="ws-more" href="holiday-projects.html${filterProj&&projInfo(filterProj)?'#'+projInfo(filterProj).id:''}">${filterProj?'More about the '+filterProj:'See all the projects'} &rarr;</a>${note}`;
   }
   box.querySelectorAll('.srow').forEach(r=>r.onclick=()=>{selected=r.dataset.date;const d=parse(r.dataset.date);viewY=d.getFullYear();viewM=d.getMonth();renderCal();renderList();});
-  $('#mockToggle').onclick=()=>{useSample=!useSample;selected=null;filterProj=null;jumpToStart();renderAll();};
 }
 function renderAll(){renderFilter();renderCal();renderList();}
 

@@ -194,7 +194,7 @@ const li=a=>a.map(x=>`<li>${check}<span>${x}</span></li>`).join('');
 
 function render(proj){
   const photos = proj ? proj.photos : PAGE.photos;
-  const items = photos.map(p=>({type:'img',p})).concat([{type:'video'}]);
+  const items = photos.map(p=>({type:'img',p})).concat(PAGE.video.id?[{type:'video'}]:[]); // video slide only shows once a video id is added
   $('#track').innerHTML = items.map((it,i)=>it.type==='img'
     ? `<div class="slide"><img src="${src(it.p)}" ${fb(it.p)} alt="${proj&&i===0?proj.name+' — the finished project':alt(it.p)||PAGE.name+' at Prowell WoodSkills'}" ${i?'loading="lazy"':''}></div>`
     : `<div class="slide" id="vslide"><button class="vposter" type="button" aria-label="Play video"><img src="${src(PAGE.videoPoster)}" ${fb(PAGE.videoPoster)} alt=""><span class="play">&#9658;</span><span class="vl">${PAGE.videoLabel}</span>${PAGE.video.id?'':'<span class="soon">Video coming soon</span>'}</button></div>`).join('');
