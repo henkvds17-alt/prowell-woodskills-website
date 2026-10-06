@@ -92,6 +92,12 @@
   .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;}
   .hero-copy{min-width:0;}
   .hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:var(--white);font-size:13px;font-weight:600;padding:8px 18px;border-radius:100px;margin-bottom:18px;backdrop-filter:blur(6px);}
+  .hero-badge .pin{color:var(--gold);flex:0 0 auto;}
+  .hero h1 em{position:relative;display:inline-block;}
+  .hero h1 .swoosh{position:absolute;left:0;bottom:-.2em;width:62%;height:.26em;}
+  .btn .bi{flex:0 0 auto;}
+  .squiggle{display:none;}
+  .who-card .who-svg{display:none;}
   .hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 1.8s infinite;}
   @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(224,168,62,.7);}50%{box-shadow:0 0 0 8px rgba(224,168,62,0);}}
   .hero h1{color:var(--white);font-family:var(--logo);font-weight:800;font-size:clamp(36px,5.6vw,64px);line-height:1.04;margin-bottom:20px;letter-spacing:-.01em;}
@@ -516,22 +522,36 @@
     .why3{grid-template-columns:1fr 1fr 1fr;gap:8px;} .why3 b{font-size:14px;} .why3 span{font-size:11.5px;}
   }
 
-  /* ===== MOBILE HERO (compact, Oct 2026) ===== */
+  /* ===== MOBILE HERO (striking layout, Oct 2026): big headline, photo cards beside the intro, stacked CTAs, curved edge, icon cards ===== */
   @media(max-width:640px){
-    .hero{padding:88px 0 52px;}
-    .hero-grid{display:grid;grid-template-columns:1fr 36%;grid-template-areas:"badge badge" "title photo" "lede lede" "ctas ctas";column-gap:12px;row-gap:0;align-items:center;}
+    .brand-logo img{height:50px;}
+    .hero{padding:96px 0 78px;align-items:flex-start;}
+    .hero::after{content:'';position:absolute;left:-15%;right:-15%;bottom:-1px;height:64px;background:var(--cream);border-radius:50% 50% 0 0/100% 100% 0 0;z-index:1;}
+    .hero-grid{display:grid;grid-template-columns:57% 1fr;grid-template-areas:"badge badge" "title title" "lede photos" "ctas ctas";column-gap:10px;row-gap:0;align-items:start;}
     .hero-copy{display:contents;}
-    .hero-badge{grid-area:badge;justify-self:start;font-size:11.5px;padding:6px 12px;margin-bottom:12px;}
-    .hero h1{grid-area:title;font-size:30px;line-height:1.06;margin:0;}
-    .hero-photos{grid-area:photo;height:auto;max-width:none;width:auto;margin:0;align-self:center;}
-    .hero-photos .p1{position:relative;width:100%;height:150px;transform:rotate(3deg);padding:5px 5px 14px;border-radius:5px;}
-    .hero-photos .p1 figcaption{font-size:10.5px;bottom:4px;}
-    .hero-photos .tape{width:50px;height:16px;top:-8px;}
-    .hero .lede{grid-area:lede;font-size:14px;line-height:1.5;margin:14px 0 16px;}
-    .hero-ctas{grid-area:ctas;display:flex;flex-wrap:nowrap;gap:8px;margin:0;}
-    .hero-ctas .btn{flex:1 1 0;padding:12px 10px;font-size:14px;white-space:nowrap;}
+    .hero-badge{grid-area:badge;justify-self:start;font-size:13.5px;padding:9px 16px 9px 12px;margin-bottom:18px;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3);}
+    .hero h1{grid-area:title;font-size:clamp(44px,12.4vw,54px);line-height:1;margin:0 0 26px;letter-spacing:-.015em;}
+    .hero h1 .swoosh{bottom:-.3em;width:70%;}
+    .hero .lede{grid-area:lede;font-size:15.5px;line-height:1.55;margin:0 0 24px;color:rgba(255,255,255,.92);}
+    .hero-photos{grid-area:photos;position:relative;height:250px;width:auto;max-width:none;margin:4px -6px 0 0;}
+    .hero-photos .polaroid{padding:5px 5px 14px;border-radius:5px;}
+    .hero-photos .p1{position:absolute;top:0;right:0;left:auto;width:100%;height:132px;transform:rotate(5deg);z-index:1;display:block;}
+    .hero-photos .p2{display:none;}
+    .hero-photos .p3{display:block;position:absolute;top:118px;left:-8px;right:auto;bottom:auto;width:100%;height:120px;transform:rotate(-5deg);z-index:2;}
+    .hero-photos .tape{width:46px;height:15px;top:-7px;}
+    .hero-ctas{grid-area:ctas;position:relative;display:flex;flex-direction:column;flex-wrap:nowrap;gap:12px;margin:0;width:78%;}
+    .hero-ctas .btn{width:100%;padding:17px 18px;font-size:17px;gap:12px;white-space:nowrap;}
+    .hero-ctas .btn-outline{border-width:2px;border-color:rgba(255,255,255,.6);}
+    .squiggle{display:block;position:absolute;right:-74px;top:30px;width:52px;height:84px;}
     .hero-stats{display:none;}
-    .who{margin-top:-26px;}
+    .who{margin-top:-46px;z-index:3;}
+    .who-grid{grid-template-columns:1fr 1fr;gap:12px;}
+    .who-card{flex-direction:column;align-items:flex-start;gap:6px;padding:16px 14px 18px;border-radius:18px;}
+    .who-card .who-ico{flex:0 0 auto;width:auto;height:auto;padding:5px 10px;border-radius:9px;font-size:15px;}
+    .who-card .who-svg{display:block;width:40px;height:40px;color:var(--red);margin:6px 0 2px;}
+    .who-card h3{font-size:18px;line-height:1.15;}
+    .who-card p{font-size:13.5px;}
+    .who-card .arrow{display:none;}
   }
 </style>
 
@@ -567,12 +587,13 @@
   <div class="shape s1"></div><div class="shape s2"></div>
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <div class="hero-badge"><span class="dot"></span> Woodworking studio in Paarl</div>
-      <h1>Real tools. Real skills.<br><em>Real fun.</em></h1>
+      <div class="hero-badge"><svg class="pin" width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.6A2.6 2.6 0 1 1 12 6.4a2.6 2.6 0 0 1 0 5.2z"/></svg> Woodworking studio in Paarl</div>
+      <h1>Real tools. Real skills.<br><em>Real fun.<svg class="swoosh" viewBox="0 0 200 18" preserveAspectRatio="none" aria-hidden="true"><path d="M4 13C55 4 135 3 196 9" fill="none" stroke="#E0A83E" stroke-width="6" stroke-linecap="round"/></svg></em></h1>
       <p class="lede">Hands-on woodworking experiences for kids and adults. Holiday experiences, birthday parties and group sessions in our professional woodworking studio in Paarl, where everyone walks out with something they built themselves.</p>
       <div class="hero-ctas">
-        <a href="#calendar" class="btn btn-primary">See holiday dates</a>
-        <a href="#experiences" class="btn btn-outline">See all experiences</a>
+        <a href="#calendar" class="btn btn-primary">See holiday dates <svg class="bi" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg></a>
+        <a href="#experiences" class="btn btn-outline">See all experiences <svg class="bi" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+        <svg class="squiggle" viewBox="0 0 70 110" aria-hidden="true"><path d="M30 104c-14-6-20-20-10-28 11-9 26 2 18 14-9 13-26 2-24-18 2-22 12-44 26-62" fill="none" stroke="#E0A83E" stroke-width="4.5" stroke-linecap="round"/><path d="M28 13l13-4 2 14" fill="none" stroke="#E0A83E" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <ul class="hero-stats">
         <li><span class="check">&#10003;</span>No experience needed</li>
@@ -591,12 +612,12 @@
 <section class="who">
   <div class="wrap who-grid">
     <a class="who-card" href="#experiences" data-jump="Kids">
-      <span class="who-ico">8+</span>
+      <span class="who-ico">8+</span><svg class="who-svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="25" r="16"/><path d="M10 21c5 1 12-1 15-7 3 5 9 8 14 7"/><circle cx="18.5" cy="26" r="1.3" fill="currentColor"/><circle cx="29.5" cy="26" r="1.3" fill="currentColor"/><path d="M19 32c3 2.6 7 2.6 10 0"/></svg>
       <div><h3>For kids</h3><p>Holiday experiences and birthday parties, ages 8 to 16</p></div>
       <span class="arrow">&rarr;</span>
     </a>
     <a class="who-card" href="#experiences" data-jump="Adults">
-      <span class="who-ico">5–8</span>
+      <span class="who-ico">5–8</span><svg class="who-svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="15" r="6"/><circle cx="11" cy="19" r="4.5"/><circle cx="37" cy="19" r="4.5"/><path d="M13 39c0-7 5-12 11-12s11 5 11 12M3 37c0-5 3.5-9 8-9 2 0 3.5.6 5 1.6M45 37c0-5-3.5-9-8-9-2 0-3.5.6-5 1.6"/></svg>
       <div><h3>For adults &amp; families</h3><p>Craft Together sessions for families, friends and teams</p></div>
       <span class="arrow">&rarr;</span>
     </a>
