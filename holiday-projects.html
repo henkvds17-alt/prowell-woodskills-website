@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Kids Holiday Workshop · Prowell WoodSkills</title>
-<meta name="description" content="A day in our professional woodworking studio these school holidays. Kids learn to use real tools safely, build a project from the first cut to the final sa">
+<meta name="description" content="A day in our professional woodworking studio these school holidays. It starts with an introduction to woodworking, then kids use real tools safely to build">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -606,26 +606,16 @@
   .contact-mini{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;font-size:13px;color:var(--charcoal-soft);}
   .contact-mini b{color:var(--charcoal);user-select:all;}
   /* holiday projects showcase */
-  .showcase{margin-top:30px;padding:0;}
+  .showcase{margin-top:24px;padding:0;}
   .sc-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:12px;}
-  .sc-head h2{font-size:22px;}
-  .sc-head p{font-size:14px;color:var(--charcoal-soft);max-width:560px;}
-  .sc-row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;align-items:start;}
-  .sc-card{background:var(--white);border-radius:18px;overflow:hidden;box-shadow:var(--shadow-sm);border:2px solid transparent;min-width:0;scroll-margin-top:90px;}
+  .sc-head h2{font-size:18px;}
+  .sc-head p{font-size:13px;color:var(--charcoal-soft);max-width:560px;}
+  .sc-row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+  .sc-card{margin:0;background:var(--white);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);border:2px solid transparent;min-width:0;scroll-margin-top:90px;}
   .sc-card.on{border-color:var(--red);}
-  .sc-card img{width:100%;aspect-ratio:1/1;max-width:100%;object-fit:cover;}
-  .sc-body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;}
-  .sc-body h3{font-size:17px;}
-  .sc-level{align-self:flex-start;font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--red);background:rgba(191,38,38,.08);padding:3px 8px;border-radius:100px;}
-  .sc-body p{font-size:12.5px;color:var(--charcoal-soft);line-height:1.45;}
-  .sc-body details{font-size:12.5px;}
-  .sc-body summary{cursor:pointer;font-weight:700;color:var(--charcoal);}
-  .sc-body details ul{display:flex;flex-direction:column;gap:4px;margin-top:6px;}
-  .sc-body details li{display:flex;gap:6px;}
-  .sc-body details .check{width:15px;height:15px;font-size:8px;margin-top:1px;}
-  .sc-go{font-weight:700;font-size:13px;color:var(--red);}
-  @media(max-width:1100px){.sc-row{grid-template-columns:repeat(3,1fr);}}
-  @media(max-width:860px){.sc-row{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -18px;padding:4px 18px 12px;scrollbar-width:none;}.sc-row::-webkit-scrollbar{display:none;}.sc-card{flex:0 0 62%;scroll-snap-align:center;}}
+  .sc-card img{width:100%;aspect-ratio:4/3;max-width:100%;object-fit:cover;}
+  .sc-card figcaption{padding:7px 10px 9px;font-family:var(--display);font-weight:600;font-size:14px;}
+  @media(max-width:860px){.sc-row{display:flex;overflow-x:auto;margin:0 -18px;padding:4px 18px 10px;scrollbar-width:none;}.sc-row::-webkit-scrollbar{display:none;}.sc-card{flex:0 0 36%;}}
   /* project options / how projects work */
   .pblock{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px;align-items:start;}
   .pblock.single{grid-template-columns:1fr;}
@@ -721,13 +711,12 @@
         </div>
       </div>
     </div>
-    <section class="showcase" id="showcase" hidden></section>
     <div class="pblock" id="pblock" hidden></div>
     <div class="strip">
       <div class="card"><h2 id="stripTitle"></h2><div id="stripBody"></div></div>
-      <div class="card"><h2 id="sideTitle"></h2><div id="sideBody"></div>
-        <div class="contact-mini"><span>WhatsApp / phone: <b>081 027 0892</b></span><span>Email: <b>henk@prowellkitchens.co.za</b></span></div></div>
+      <div class="card"><h2 id="sideTitle"></h2><div id="sideBody"></div></div>
     </div>
+      <section class="showcase" id="showcase" hidden></section>
   </div>
 </main>
 <footer>
@@ -764,7 +753,7 @@ const PAGE = {
  "name": "Kids Holiday Workshop",
  "tag": "Kids · ages 8–16 · school holidays",
  "titleHtml": "Kids Holiday <em>Workshop</em>",
- "lede": "A day in our professional woodworking studio these school holidays. Kids learn to use real tools safely, build a project from the first cut to the final sanding, and go home proud, project and certificate in hand. Small groups, patient guidance and no screens in sight.",
+ "lede": "A day in our professional woodworking studio these school holidays. It starts with an introduction to woodworking, then kids use real tools safely to build a project from the first cut to the final sanding and go home proud, project and certificate in hand. Small groups, patient guidance and no screens in sight.",
  "photos": [
   "images/studio/studio-12.webp",
   "images/studio/studio-13.webp",
@@ -783,8 +772,8 @@ const PAGE = {
   "Sanding and finishing",
   "Following a plan from start to finish"
  ],
- "projectsTitle": "Choose the project they take home",
- "projectsIntro": "The day is the same great experience whichever project they pick. Choose one when you book; each date on the calendar shows its project.",
+ "projectsTitle": "Projects available these holidays",
+ "projectsIntro": "Every workshop is the same experience. These are the projects kids can make on the day.",
  "facts": [
   [
    "Duration",
@@ -807,8 +796,7 @@ const PAGE = {
  "priceNote": "per child, per project. All materials included.",
  "bookLabel": "See dates & book",
  "bookHref": "index.html#calendar",
- "altHtml": "Each date on the calendar shows which project it builds.",
- "waQuestion": "Hi Henk! My name is [your name]. I have a question about the Kids Holiday Workshop ([project]):\n\n[your question]\n\nThank you!",
+ "altHtml": "One-day workshops in the school holidays. Pick a date on the calendar.",
  "included": [
   "All timber, glue and hardware",
   "Tools and safety gear at every bench",
@@ -825,12 +813,12 @@ const PAGE = {
  "sideTitle": "How the day works",
  "sideSteps": [
   [
-   "Arrive & gear up",
-   "Safety gear on and a quick, simple safety briefing."
+   "Introduction to woodworking",
+   "The day starts with a general introduction to woodworking: the wood, the tools, how to use them safely, and the safety gear."
   ],
   [
-   "Build",
-   "Measure, cut, assemble and finish, with help at every step."
+   "Build the project",
+   "Then it is hands-on: measure, cut, assemble and finish, with help at every step."
   ],
   [
    "Take it home",
@@ -975,7 +963,7 @@ function render(proj){
     $('#stripTitle').textContent=`What they'll learn building the ${proj.name}`;
     $('#stripBody').innerHTML=`<ul class="learn">${li(proj.learn)}</ul>`;
     document.querySelectorAll('.pick').forEach(b=>b.classList.toggle('on',b.dataset.id===proj.id));
-    $('#alt').innerHTML=`Pick a date that runs the ${proj.name}. Questions? <a href="${wa(PAGE.waQuestion.replace('[project]',proj.name))}" target="_blank" rel="noopener">WhatsApp us</a>`;
+
   }
 }
 
@@ -1003,11 +991,7 @@ render(null);
 if(PAGE.projects){
   const sc=$('#showcase'); sc.hidden=false;
   sc.innerHTML=`<div class="sc-head"><h2>${PAGE.projectsTitle}</h2><p>${PAGE.projectsIntro}</p></div>
-    <div class="sc-row">${PAGE.projects.map(p=>`<article class="sc-card" id="${p.id}">
-      <img src="${p.photos[0]}" alt="${p.name}, the finished project" loading="lazy">
-      <div class="sc-body"><h3>${p.name}</h3><span class="sc-level">${p.level}</span><p>${p.blurb}</p>
-        <details><summary>What they'll learn</summary><ul>${li(p.learn)}</ul></details>
-        <a class="sc-go" href="index.html#calendar">Find a date &rarr;</a></div></article>`).join('')}</div>`;
+    <div class="sc-row">${PAGE.projects.map(p=>`<figure class="sc-card" id="${p.id}"><img src="${p.photos[0]}" alt="${p.name}" loading="lazy"><figcaption>${p.name}</figcaption></figure>`).join('')}</div>`;
   const hl=()=>{const el=location.hash&&document.getElementById(location.hash.slice(1));
     document.querySelectorAll('.sc-card').forEach(c=>c.classList.toggle('on',c===el));
     if(el&&el.classList.contains('sc-card')){el.scrollIntoView({block:'center',inline:'center'});}};
@@ -1016,7 +1000,7 @@ if(PAGE.projects){
 // project options / how projects work
 if(PAGE.projectsBlock){
   const P=PAGE.projectsBlock, pb=$('#pblock'); pb.hidden=false; if(!P.how) pb.classList.add('single');
-  const ideas=`<div class="card"><h2>${P.ideasTitle}</h2>${P.ideasIntro?`<p>${P.ideasIntro}</p>`:''}<div class="ideas">${P.ideas.map(i=>`<div class="idea"><b>${i[0]}</b><span>${i[1]}</span></div>`).join('')}</div>${P.note?`<div class="pnote">${P.note}</div>`:''}${P.cta?`<a class="btn btn-wa" href="${wa(P.cta.msg)}" target="_blank" rel="noopener">${P.cta.label}</a>`:''}</div>`;
+  const ideas=`<div class="card"><h2>${P.ideasTitle}</h2>${P.ideasIntro?`<p>${P.ideasIntro}</p>`:''}<div class="ideas">${P.ideas.map(i=>`<div class="idea"><b>${i[0]}</b><span>${i[1]}</span></div>`).join('')}</div>${P.note?`<div class="pnote">${P.note}</div>`:''}</div>`;
   const how=P.how?`<div class="card"><h2>${P.how.title}</h2>${P.how.size?`<span class="sizebadge">${P.how.size}</span>`:''}<div class="how4">${P.how.steps.map((st,i)=>`<div><b><i>${i+1}</i>${st[0]}</b><span>${st[1]}</span></div>`).join('')}</div></div>`:'';
   pb.innerHTML=how+ideas;
 }
