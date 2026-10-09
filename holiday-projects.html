@@ -3,6 +3,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Kids Holiday Experience · Prowell WoodSkills</title>
+<!-- Meta Pixel (Prowell WoodSkills / Wix Website Pixel) -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','975273788505595');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=975273788505595&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel -->
+
 <meta name="description" content="School holidays, but you still have to work? Don't let them spend the day at home on video games. Give your kids something meaningful to do: three hours of">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1033,4 +1046,19 @@ if(PAGE.projectsBlock){
 const menu=$('#mobileMenu'), hb=$('#hamburgerBtn'); $('#siteNav').classList.add('scrolled');
 hb.onclick=()=>{const o=menu.classList.toggle('open');document.body.classList.toggle('menu-open',o);hb.setAttribute('aria-expanded',o);};
 menu.querySelectorAll('a').forEach(a=>a.onclick=()=>{menu.classList.remove('open');document.body.classList.remove('menu-open');});
+</script>
+
+<!-- Meta Pixel click events -->
+<script>
+(function(){
+  var page=(document.title||'').split('·')[0].trim();
+  if(!/^Prowell WoodSkills$/.test(page)&&window.fbq)fbq('track','ViewContent',{content_name:page,content_category:'experience'});
+  document.addEventListener('click',function(e){
+    var l=e.target.closest&&e.target.closest('a[href]'); if(!l||!window.fbq)return;
+    var h=l.getAttribute('href')||'', name=(l.innerText||'').trim().slice(0,60)||page;
+    if(/prowellwoodskills\.co\.za/i.test(l.href))fbq('track','InitiateCheckout',{content_name:name,content_category:'booking'});
+    else if(/^mailto:/i.test(h))fbq('track','Lead',{content_name:name});
+    else if(/wa\.me|^tel:/i.test(h))fbq('track','Contact',{content_name:name});
+  },true);
+})();
 </script>
