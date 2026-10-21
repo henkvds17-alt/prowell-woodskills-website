@@ -824,7 +824,7 @@ const PAGE = {
    "Beginner"
   ]
  ],
- "price": "R350",
+ "price": "R390",
  "priceNote": "per child, per project. All materials included.",
  "bookLabel": "See dates & book",
  "bookHref": "index.html#calendar",
@@ -965,8 +965,6 @@ const PAGE = {
   }
  ]
 };
-const PHONE_INTL="27810270892";
-const wa=m=>`https://wa.me/${PHONE_INTL}?text=${encodeURIComponent(m)}`;
 const BOOK_EMAIL="henkvds17@gmail.com";
 const mail=(sub,body)=>`mailto:${BOOK_EMAIL}?subject=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`;
 /* Wix gallery photos load from your Wix media library; if one can't load, a local studio photo shows instead. */
@@ -1058,7 +1056,6 @@ menu.querySelectorAll('a').forEach(a=>a.onclick=()=>{menu.classList.remove('open
     var h=l.getAttribute('href')||'', name=(l.innerText||'').trim().slice(0,60)||page;
     if(/prowellwoodskills\.co\.za/i.test(l.href))fbq('track','InitiateCheckout',{content_name:name,content_category:'booking'});
     else if(/^mailto:/i.test(h))fbq('track','Lead',{content_name:name});
-    else if(/wa\.me|^tel:/i.test(h))fbq('track','Contact',{content_name:name});
   },true);
 })();
 </script>

@@ -178,8 +178,6 @@ BODY = '''
 SCRIPT = r'''<script>
 /* ================= PAGE CONTENT — edit in Website Mockups/_gen_workshop_pages.py, then re-run ================= */
 const PAGE = __PAGE__;
-const PHONE_INTL="27810270892";
-const wa=m=>`https://wa.me/${PHONE_INTL}?text=${encodeURIComponent(m)}`;
 const BOOK_EMAIL="henkvds17@gmail.com";
 const mail=(sub,body)=>`mailto:${BOOK_EMAIL}?subject=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`;
 /* Wix gallery photos load from your Wix media library; if one can't load, a local studio photo shows instead. */
@@ -275,7 +273,7 @@ PAGES = {
    projectsTitle='Projects available these holidays',
    projectsIntro='',
    facts=[['Duration','1 day · 3 hrs'],['Ages','8–16'],['Group','Max 8 kids'],['Level','Beginner']],
-   price='R350', priceNote='per child, per project. All materials included.',
+   price='R390', priceNote='per child, per project. All materials included.',
    bookLabel='See dates & book', bookHref='index.html#calendar',
    altHtml='One-day experiences in the school holidays. Pick a date on the calendar.',
    included=['All timber, glue and hardware','Tools and safety gear at every bench','Step-by-step guidance from start to finish','A finished project to take home','A certificate of completion'],
@@ -372,6 +370,9 @@ for fname, d in PAGES.items():
     hb = re.sub(r'<title>.*?</title>', f"<title>{d['name']} · Prowell WoodSkills</title>", headbits)
     desc = (d.get('lede') or 'The woodworking projects kids build at the Prowell WoodSkills Kids Holiday Experience in Paarl.')[:155]
     hb = re.sub(r'<meta name="description" content=".*?">', f'<meta name="description" content="{desc}">', hb)
-    page = top + hb + style + '\n' + CSS + '\n' + header + BODY + footer + '\n' + SCRIPT.replace('__PAGE__', json.dumps(d, ensure_ascii=False, indent=1)) + '\n'
+    hdr = header
+    if fname == 'craft-together.html':  # group page: nav CTA requests a date by email, not a holiday spot
+        hdr = hdr.replace('<a class="btn btn-primary" href="index.html#calendar">Book a holiday spot</a>', '<a class="btn btn-primary" href="mailto:henkvds17@gmail.com?subject=Craft%20Together%20booking%20request&body=Hi%20Henk%2C%0A%0AI%20would%20like%20to%20book%3A%0ADate%3A%0ATime%3A%0AGroup%20size%3A%0A%0AMy%20name%3A%0A">Request a date</a>')
+    page = top + hb + style + '\n' + CSS + '\n' + hdr + BODY + footer + '\n' + SCRIPT.replace('__PAGE__', json.dumps(d, ensure_ascii=False, indent=1)) + '\n'
     open(fname, 'w').write(page)
     print(fname, len(page))

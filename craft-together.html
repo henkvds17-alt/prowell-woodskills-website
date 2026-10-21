@@ -695,7 +695,7 @@ fbq('track','PageView');
       <a href="index.html#faq">FAQ</a>
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-primary" href="index.html#calendar">Book a holiday spot</a>
+      <a class="btn btn-primary" href="mailto:henkvds17@gmail.com?subject=Craft%20Together%20booking%20request&body=Hi%20Henk%2C%0A%0AI%20would%20like%20to%20book%3A%0ADate%3A%0ATime%3A%0AGroup%20size%3A%0A%0AMy%20name%3A%0A">Request a date</a>
       <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -708,7 +708,7 @@ fbq('track','PageView');
   <a href="index.html#visit">Visit</a>
   <a href="index.html#faq">FAQ</a>
   <a href="index.html#contact">Contact</a>
-  <a class="btn btn-primary" href="index.html#calendar">Book a holiday spot</a>
+  <a class="btn btn-primary" href="mailto:henkvds17@gmail.com?subject=Craft%20Together%20booking%20request&body=Hi%20Henk%2C%0A%0AI%20would%20like%20to%20book%3A%0ADate%3A%0ATime%3A%0AGroup%20size%3A%0A%0AMy%20name%3A%0A">Request a date</a>
 </div>
 
 
@@ -950,8 +950,6 @@ const PAGE = {
   }
  ]
 };
-const PHONE_INTL="27810270892";
-const wa=m=>`https://wa.me/${PHONE_INTL}?text=${encodeURIComponent(m)}`;
 const BOOK_EMAIL="henkvds17@gmail.com";
 const mail=(sub,body)=>`mailto:${BOOK_EMAIL}?subject=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`;
 /* Wix gallery photos load from your Wix media library; if one can't load, a local studio photo shows instead. */
@@ -1043,7 +1041,6 @@ menu.querySelectorAll('a').forEach(a=>a.onclick=()=>{menu.classList.remove('open
     var h=l.getAttribute('href')||'', name=(l.innerText||'').trim().slice(0,60)||page;
     if(/prowellwoodskills\.co\.za/i.test(l.href))fbq('track','InitiateCheckout',{content_name:name,content_category:'booking'});
     else if(/^mailto:/i.test(h))fbq('track','Lead',{content_name:name});
-    else if(/wa\.me|^tel:/i.test(h))fbq('track','Contact',{content_name:name});
   },true);
 })();
 </script>
