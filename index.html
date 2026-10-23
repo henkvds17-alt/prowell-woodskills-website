@@ -261,6 +261,12 @@ fbq('track','PageView');
   .chips{display:flex;flex-direction:column;gap:3px;min-width:0;}
   .chip{display:block;font-size:10.5px;cursor:pointer;font-weight:700;line-height:1.25;color:var(--white);border-radius:6px;padding:3px 6px;white-space:normal;overflow-wrap:break-word;hyphens:manual;min-width:0;}
   .chip .t{display:none;}
+  .chip.full{background:#9A8F87!important;opacity:.8;}
+  .chip.full .nm,.chip.full .sh{text-decoration:line-through;}
+  .chip .fl{display:block;font-size:9px;letter-spacing:.06em;text-transform:uppercase;}
+  .srow.full{opacity:.6;} .srow.full .n b{text-decoration:line-through;}
+  .sbadge{display:inline-block;font-style:normal;margin-left:6px;font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:100px;vertical-align:1px;}
+  .sbadge.full{background:#E7E1DC;color:var(--charcoal);} .sbadge.low{background:var(--red);color:var(--white);}
   .chip .sh{display:none;}
   .proj-key{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;}
   .proj-key span{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;background:var(--cream);border-radius:100px;padding:5px 12px 5px 6px;}
@@ -905,6 +911,8 @@ const workshops = [
    Format: date "YYYY-MM-DD", start/end "HH:MM", project = name shown on the calendar
    (should match a project on holiday-projects.html). Availability/spots are handled by Wix.
    December 2026 holiday schedule (Granola "Holiday workshops schedule", 23 Oct 2026). Add the same sessions in Wix. */
+/* Optional per session: full:true = fully booked (greyed out, can't be chosen); left:N = "Only N spots left".
+   Kept in sync with Wix by the daily "Prowell WoodSkills fully booked check". */
 const SESSIONS = [
   {date:"2026-11-30", start:"14:00", end:"17:00", project:"Book Stand"},
   {date:"2026-12-01", start:"14:00", end:"17:00", project:"Key Rack"},
@@ -1065,7 +1073,7 @@ function renderCal(){
     if(holidayOn(k) && dt>=today) cls+=' hol';
     if(ss){cls+=' has'; if(selected===k) cls+=' sel';}
     const el=document.createElement(ss?'button':'div'); el.className=cls;
-    el.innerHTML=`<span class="dn">${d}</span>${ss?`<span class="chips">${ss.map(s=>`<span class="chip" style="background:${pc(s.project)}" data-key="${k}|${s.start}" data-pop="${s.project}" data-when="${fmtDay(dt)} · ${s.start}–${s.end}"><span class="t">${s.start}</span><span class="nm">${s.project}</span><span class="sh">${shortName(s.project)}</span></span>`).join('')}</span>`:''}`;
+    el.innerHTML=`<span class="dn">${d}</span>${ss?`<span class="chips">${ss.map(s=>`<span class="chip${s.full?' full':''}" style="background:${pc(s.project)}" data-key="${k}|${s.start}" data-pop="${s.project}" data-when="${fmtDay(dt)} · ${s.start}–${s.end}${s.full?' · FULLY BOOKED':''}"><span class="t">${s.start}</span><span class="nm">${s.project}</span><span class="sh">${shortName(s.project)}</span>${s.full?'<span class="fl">Full</span>':''}</span>`).join('')}</span>`:''}`;
     if(ss){el.type='button';
       el.setAttribute('aria-label',`${d} ${MONTHS[viewM]}: ${ss.map(s=>s.project+' '+s.start).join(', ')}`);
       el.onclick=e=>{const ch=e.target.closest('.chip'); selected=k; selSess=ch?ch.dataset.key:(ss.length===1?k+'|'+ss[0].start:(selSess&&selSess.startsWith(k+'|')?selSess:null));renderCal();renderList();const t=document.querySelector(selSess?`.srow[data-key="${selSess}"]`:`.srow[data-date="${k}"]`);t&&t.scrollIntoView({block:'nearest',behavior:'smooth'});};}
@@ -1080,11 +1088,16 @@ function remindHtml(){
     ? `<b>Two projects on this day.</b> Tap the one you want in the list above.`
     : `<b>Tap your project's date first.</b> The booking page only shows dates and times, not the projects, so remember the date and start time of the project you want.`;
   const d=parse(c.date);
+  if(c.full) return `<b>${c.project} on ${fmtDay(d)} at ${c.start} is fully booked.</b> Please choose another date for this project.`;
   return `<div class="pick"><i style="background:${pc(c.project)}"></i>${c.project}</div>On the booking page, choose <b>${fmtDay(d)} at ${c.start}</b>. It only shows dates and times, not the projects.`;
 }
 function openBookModal(){
   const c=chosen(), m=$('#bookModal'), box=$('#bmBox');
-  if(c){const d=parse(c.date);
+  if(c&&c.full){const d=parse(c.date);
+    box.innerHTML=`<h4 id="bmTitle">This session is fully booked</h4>
+      <p>${c.project} on ${fmtDay(d)} at ${c.start} has no spots left. Please choose another date for this project.</p>
+      <button class="btn btn-primary" type="button" id="bmBack">Choose another date</button>`;
+  } else if(c){const d=parse(c.date);
     box.innerHTML=`<h4 id="bmTitle">Remember your date and time</h4>
       <p>The booking page shows dates and times only, not the projects. Choose this one:</p>
       <div class="bm-card"><div class="d" style="background:${pc(c.project)}"><b>${d.getDate()}</b><small>${MONTHS[d.getMonth()].slice(0,3)}</small></div>
@@ -1099,9 +1112,9 @@ function openBookModal(){
   }
   m.hidden=false; document.body.style.overflow='hidden';
   const close=()=>{m.hidden=true;document.body.style.overflow='';};
-  $('#bmBack').onclick=close; $('#bmGo').addEventListener('click',()=>setTimeout(close,300));
+  $('#bmBack').onclick=close; const go=$('#bmGo'); if(go) go.addEventListener('click',()=>setTimeout(close,300));
   m.onclick=e=>{if(e.target===m)close();};
-  ($('#bmGo').classList.contains('btn')?$('#bmGo'):$('#bmBack')).focus();
+  (go&&go.classList.contains('btn')?go:$('#bmBack')).focus();
 }
 addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#bookModal').hidden){$('#bookModal').hidden=true;document.body.style.overflow='';}});
 function renderList(){
@@ -1115,9 +1128,9 @@ function renderList(){
   } else {
     box.innerHTML=`<h3>${filterProj?filterProj:'Next dates'} <small>${list.length} date${list.length===1?'':'s'}</small>${useSample?'<span class="mock-flag">SAMPLE</span>':''}</h3>
       <div class="srows">${list.length?list.map(s=>{const d=parse(s.date);
-        return `<div class="srow ${selSess===s.date+'|'+s.start||(!selSess&&selected===s.date)?'sel':''}" data-date="${s.date}" data-key="${s.date}|${s.start}" data-pop="${s.project}" data-when="${fmtDay(d)} · ${s.start}–${s.end}">
+        return `<div class="srow ${s.full?'full ':''}${selSess===s.date+'|'+s.start||(!selSess&&selected===s.date)?'sel':''}" data-date="${s.date}" data-key="${s.date}|${s.start}" data-pop="${s.project}" data-when="${fmtDay(d)} · ${s.start}–${s.end}">
           <div class="d" style="background:${pc(s.project)}"><b>${d.getDate()}</b><small>${MONTHS[d.getMonth()].slice(0,3)}</small></div>
-          <div class="n"><b>${s.project}</b><span>${fmtDay(d)} · ${s.start}–${s.end}</span></div>
+          <div class="n"><b>${s.project}</b><span>${fmtDay(d)} · ${s.start}–${s.end}${s.full?'<i class="sbadge full">Fully booked</i>':(s.left?`<i class="sbadge low">Only ${s.left} spot${s.left===1?'':'s'} left</i>`:'')}</span></div>
           </div>`;}).join('')
         :`<p class="panel-note" style="border:none;padding:0">No dates for this project yet. New dates are added before every school holiday.</p>`}</div>
       <div class="book-remind">${remindHtml()}</div>
