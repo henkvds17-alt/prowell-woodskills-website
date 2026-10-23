@@ -285,10 +285,6 @@ PAGES = {
               ['Finish & take it home','Sand, finish, and leave with the project and a certificate.']],
    videoLabel='Watch a holiday experience', video={'host':'youtube','id':''}, videoPoster=L(13),
    projects=[
-     dict(id='pot-stand', name='Pot Stand', level='Hand tools & glue',
-       blurb="A slatted stand that keeps hot pots and pans off the table. It's the perfect first build: simple to plan, satisfying to make, and the whole family will use it.",
-       learn=['Measuring and marking with a ruler and square','Cutting straight with a pull saw and mitre box','Spacing slats evenly','Gluing and clamping a strong joint','Sanding to a smooth finish'],
-       photos=['images/projects/pot-stand.webp']+SP([12,13,22])),
      dict(id='book-stand', name='Book Stand', level='Hand tools & glue',
        blurb='An angled stand that holds a recipe book, reading book or tablet. It teaches how to cut angles and build something that stands up straight.',
        learn=['Measuring and marking angles','Cutting accurate angles in a mitre box','Gluing a stable support','Clamping while the glue sets','Sanding edges and corners'],
