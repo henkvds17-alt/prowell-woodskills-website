@@ -1065,10 +1065,10 @@ function renderCal(){
     if(holidayOn(k) && dt>=today) cls+=' hol';
     if(ss){cls+=' has'; if(selected===k) cls+=' sel';}
     const el=document.createElement(ss?'button':'div'); el.className=cls;
-    el.innerHTML=`<span class="dn">${d}</span>${ss?`<span class="chips">${ss.map(s=>`<span class="chip" style="background:${pc(s.project)}" data-pop="${s.project}" data-when="${fmtDay(dt)} · ${s.start}–${s.end}"><span class="t">${s.start}</span><span class="nm">${s.project}</span><span class="sh">${shortName(s.project)}</span></span>`).join('')}</span>`:''}`;
+    el.innerHTML=`<span class="dn">${d}</span>${ss?`<span class="chips">${ss.map(s=>`<span class="chip" style="background:${pc(s.project)}" data-key="${k}|${s.start}" data-pop="${s.project}" data-when="${fmtDay(dt)} · ${s.start}–${s.end}"><span class="t">${s.start}</span><span class="nm">${s.project}</span><span class="sh">${shortName(s.project)}</span></span>`).join('')}</span>`:''}`;
     if(ss){el.type='button';
       el.setAttribute('aria-label',`${d} ${MONTHS[viewM]}: ${ss.map(s=>s.project+' '+s.start).join(', ')}`);
-      el.onclick=()=>{selected=k;selSess=ss.length===1?k+'|'+ss[0].start:(selSess&&selSess.startsWith(k+'|')?selSess:null);renderCal();renderList();const t=document.querySelector(`.srow[data-date="${k}"]`);t&&t.scrollIntoView({block:'nearest',behavior:'smooth'});};}
+      el.onclick=e=>{const ch=e.target.closest('.chip'); selected=k; selSess=ch?ch.dataset.key:(ss.length===1?k+'|'+ss[0].start:(selSess&&selSess.startsWith(k+'|')?selSess:null));renderCal();renderList();const t=document.querySelector(selSess?`.srow[data-key="${selSess}"]`:`.srow[data-date="${k}"]`);t&&t.scrollIntoView({block:'nearest',behavior:'smooth'});};}
     g.appendChild(el);
   }
 }
