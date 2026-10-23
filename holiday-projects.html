@@ -653,11 +653,27 @@ fbq('track','PageView');
   .sc-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:12px;}
   .sc-head h2{font-size:18px;}
   .sc-head p{font-size:13px;color:var(--charcoal-soft);max-width:560px;}
-  .sc-row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+  .sc-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;}
   .sc-card{margin:0;background:var(--white);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);border:2px solid transparent;min-width:0;scroll-margin-top:90px;}
   .sc-card.on{border-color:var(--red);}
   .sc-card img{width:100%;aspect-ratio:4/3;max-width:100%;object-fit:cover;}
   .sc-card figcaption{padding:7px 10px 9px;font-family:var(--display);font-weight:600;font-size:14px;}
+  .sc-card,.slide img.zoom{cursor:zoom-in;}
+  .sc-card{transition:transform .2s;} .sc-card:hover{transform:translateY(-3px);}
+  /* lightbox: tap a photo to see it large */
+  .lb{position:fixed;inset:0;z-index:200;background:rgba(20,15,12,.92);display:flex;align-items:center;justify-content:center;padding:56px 64px;}
+  .lb[hidden]{display:none;}
+  .lb figure{margin:0;max-width:min(1100px,100%);max-height:100%;display:flex;flex-direction:column;align-items:center;gap:12px;}
+  .lb img{max-width:100%;max-height:calc(100vh - 190px);border-radius:14px;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+  .lb figcaption{color:#fff;text-align:center;font-size:14.5px;line-height:1.45;max-width:640px;}
+  .lb figcaption b{display:block;font-family:var(--display);font-size:19px;margin-bottom:2px;}
+  .lb figcaption small{display:block;color:var(--gold);font-weight:600;margin-bottom:4px;}
+  .lb button{position:absolute;border:none;cursor:pointer;background:rgba(255,255,255,.14);color:#fff;width:46px;height:46px;border-radius:50%;font-size:22px;line-height:1;display:flex;align-items:center;justify-content:center;}
+  .lb button:hover{background:rgba(255,255,255,.28);}
+  .lb .lb-x{top:14px;right:14px;} .lb .lb-p{left:12px;top:50%;transform:translateY(-50%);} .lb .lb-n{right:12px;top:50%;transform:translateY(-50%);}
+  .lb .lb-c{position:absolute;top:24px;left:22px;color:rgba(255,255,255,.7);font-size:13px;font-weight:600;}
+  @media(max-width:640px){.lb{padding:60px 10px 20px;}.lb img{max-height:calc(100vh - 230px);}.lb .lb-p,.lb .lb-n{top:auto;bottom:14px;transform:none;}.lb .lb-p{left:calc(50% - 56px);}.lb .lb-n{right:calc(50% - 56px);}}
+  body.lb-open{overflow:hidden;}
   @media(max-width:860px){.sc-row{display:flex;overflow-x:auto;margin:0 -18px;padding:4px 18px 10px;scrollbar-width:none;}.sc-row::-webkit-scrollbar{display:none;}.sc-card{flex:0 0 36%;}}
   /* project options / how projects work */
   .pblock{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px;align-items:start;}
@@ -1005,11 +1021,28 @@ const $=(q,el=document)=>el.querySelector(q);
 const check='<span class="check">&#10003;</span>';
 const li=a=>a.map(x=>`<li>${check}<span>${x}</span></li>`).join('');
 
+// lightbox: opens photos large (project cards and the main photo viewer)
+const lb=document.createElement('div'); lb.className='lb'; lb.hidden=true; lb.setAttribute('role','dialog'); lb.setAttribute('aria-modal','true'); lb.setAttribute('aria-label','Photo viewer');
+lb.innerHTML='<span class="lb-c"></span><figure><img alt=""><figcaption></figcaption></figure><button class="lb-p" type="button" aria-label="Previous photo">&#8249;</button><button class="lb-n" type="button" aria-label="Next photo">&#8250;</button><button class="lb-x" type="button" aria-label="Close">&#10005;</button>';
+document.body.appendChild(lb);
+let lbList=[], lbI=0, lbLast=null;
+const lbShow=()=>{const it=lbList[lbI]; lb.querySelector('img').src=it.src; lb.querySelector('img').alt=it.title||it.text||'';
+  lb.querySelector('figcaption').innerHTML=(it.title?`<b>${it.title}</b>`:'')+(it.level?`<small>${it.level}</small>`:'')+(it.text&&it.title?it.text:'');
+  const many=lbList.length>1; lb.querySelector('.lb-p').hidden=!many; lb.querySelector('.lb-n').hidden=!many; lb.querySelector('.lb-c').textContent=many?`${lbI+1} / ${lbList.length}`:'';};
+function lightbox(list,i){lbList=list; lbI=i||0; lbLast=document.activeElement; lbShow(); lb.hidden=false; document.body.classList.add('lb-open'); lb.querySelector('.lb-x').focus();}
+const lbClose=()=>{lb.hidden=true; document.body.classList.remove('lb-open'); if(lbLast&&lbLast.focus) lbLast.focus();};
+const lbStep=d=>{lbI=(lbI+d+lbList.length)%lbList.length; lbShow();};
+lb.querySelector('.lb-x').onclick=lbClose; lb.querySelector('.lb-p').onclick=()=>lbStep(-1); lb.querySelector('.lb-n').onclick=()=>lbStep(1);
+lb.onclick=e=>{if(e.target===lb||e.target.tagName==='FIGURE') lbClose();};
+addEventListener('keydown',e=>{if(lb.hidden)return; if(e.key==='Escape')lbClose(); if(e.key==='ArrowLeft')lbStep(-1); if(e.key==='ArrowRight')lbStep(1);});
+let lbX=null; lb.addEventListener('touchstart',e=>{lbX=e.touches[0].clientX;},{passive:true});
+lb.addEventListener('touchend',e=>{if(lbX===null)return; const dx=e.changedTouches[0].clientX-lbX; if(Math.abs(dx)>50) lbStep(dx<0?1:-1); lbX=null;});
+
 function render(proj){
   const photos = proj ? proj.photos : PAGE.photos;
   const items = photos.map(p=>({type:'img',p})).concat(PAGE.video.id?[{type:'video'}]:[]); // video slide only shows once a video id is added
   $('#track').innerHTML = items.map((it,i)=>it.type==='img'
-    ? `<div class="slide"><img src="${src(it.p)}" ${fb(it.p)} alt="${proj&&i===0?proj.name+' — the finished project':alt(it.p)||PAGE.name+' at Prowell WoodSkills'}" ${i?'loading="lazy"':''}></div>`
+    ? `<div class="slide"><img class="zoom" data-i="${i}" src="${src(it.p)}" ${fb(it.p)} alt="${proj&&i===0?proj.name+' — the finished project':alt(it.p)||PAGE.name+' at Prowell WoodSkills'}" ${i?'loading="lazy"':''}></div>`
     : `<div class="slide" id="vslide"><button class="vposter" type="button" aria-label="Play video"><img src="${src(PAGE.videoPoster)}" ${fb(PAGE.videoPoster)} alt=""><span class="play">&#9658;</span><span class="vl">${PAGE.videoLabel}</span>${PAGE.video.id?'':'<span class="soon">Video coming soon</span>'}</button></div>`).join('');
   $('#thumbs').innerHTML = items.map((it,i)=>it.type==='img'
     ? `<button type="button" aria-label="Photo ${i+1}"><img src="${src(it.p,200,150)}" ${fb(it.p)} alt=""></button>`
@@ -1020,6 +1053,7 @@ function render(proj){
   const sync=()=>{const i=idx();th.forEach((t,j)=>t.classList.toggle('on',j===i));prev.disabled=i===0;next.disabled=i===n-1;$('#count').textContent=i===n-1?'Video':`${i+1} / ${n-1}`;};
   th.forEach((t,i)=>t.onclick=()=>go(i)); prev.onclick=()=>go(Math.max(0,idx()-1)); next.onclick=()=>go(Math.min(n-1,idx()+1));
   track.onscroll=()=>requestAnimationFrame(sync); track.scrollLeft=0; sync();
+  track.querySelectorAll('img.zoom').forEach(im=>im.onclick=()=>lightbox(photos.map(p=>({src:src(p,1600,1200),title:proj?proj.name:'',text:alt(p)})),+im.dataset.i));
 
   if(proj){
     $('#sub').hidden=false; $('#sub').textContent=`${proj.name} · ${proj.level}`;
@@ -1055,11 +1089,13 @@ render(null);
 if(PAGE.projects){
   const sc=$('#showcase'); sc.hidden=false;
   sc.innerHTML=`<div class="sc-head"><h2>${PAGE.projectsTitle}</h2>${PAGE.projectsIntro?`<p>${PAGE.projectsIntro}</p>`:''}</div>
-    <div class="sc-row">${PAGE.projects.map(p=>`<figure class="sc-card" id="${p.id}"><img src="${p.photos[0]}" alt="${p.name}" loading="lazy"><figcaption>${p.name}</figcaption></figure>`).join('')}</div>`;
+    <div class="sc-row">${PAGE.projects.map(p=>`<figure class="sc-card" id="${p.id}" tabindex="0" role="button" aria-label="View ${p.name} photo larger"><img src="${p.photos[0]}" alt="${p.name}" loading="lazy"><figcaption>${p.name}</figcaption></figure>`).join('')}</div>`;
   const hl=()=>{const el=location.hash&&document.getElementById(location.hash.slice(1));
     document.querySelectorAll('.sc-card').forEach(c=>c.classList.toggle('on',c===el));
     if(el&&el.classList.contains('sc-card')){el.scrollIntoView({block:'center',inline:'center'});}};
   hl(); addEventListener('hashchange',hl);
+  const cards=[...document.querySelectorAll('.sc-card')], plist=PAGE.projects.map(p=>({src:p.photos[0],title:p.name,level:p.level,text:p.blurb}));
+  cards.forEach((c,i)=>{c.onclick=()=>lightbox(plist,i); c.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();lightbox(plist,i);}};});
 }
 // project options / how projects work
 if(PAGE.projectsBlock){
