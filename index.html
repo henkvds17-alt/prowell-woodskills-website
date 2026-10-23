@@ -453,6 +453,22 @@ fbq('track','PageView');
   .srow .n b{font-size:14px;} .srow .n span{font-size:11.5px;}
   .srows{gap:4px;max-height:380px;}
   .panel-book{width:100%;padding:13px 20px;}
+  /* booking reminder: the Wix page shows dates and times only, not the projects */
+  .book-remind{background:var(--gold-light);border:1px solid var(--gold);border-radius:14px;padding:10px 12px;font-size:13px;line-height:1.45;color:var(--charcoal);}
+  .book-remind b{font-weight:700;}
+  .book-remind .pick{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:600;font-size:15px;margin-bottom:3px;}
+  .book-remind .pick i{width:10px;height:10px;border-radius:50%;flex:0 0 auto;}
+  .bm{position:fixed;inset:0;z-index:300;background:rgba(20,15,12,.6);display:flex;align-items:center;justify-content:center;padding:18px;}
+  .bm[hidden]{display:none;}
+  .bm-box{background:var(--white);border-radius:22px;max-width:420px;width:100%;padding:26px 24px 20px;box-shadow:0 24px 60px rgba(0,0,0,.35);text-align:center;}
+  .bm-box h4{font-family:var(--display);font-size:21px;margin:0 0 6px;}
+  .bm-box p{font-size:14.5px;line-height:1.5;color:var(--charcoal-soft);margin:0 0 14px;}
+  .bm-card{display:flex;align-items:center;gap:12px;text-align:left;background:var(--cream);border-radius:16px;padding:12px;margin:0 0 14px;}
+  .bm-card .d{width:52px;height:54px;border-radius:12px;color:var(--white);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;flex:0 0 auto;}
+  .bm-card .d b{font-family:var(--display);font-size:22px;} .bm-card .d small{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-top:2px;}
+  .bm-card .n b{display:block;font-family:var(--display);font-size:17px;} .bm-card .n span{font-size:14px;font-weight:600;}
+  .bm-box .btn{width:100%;padding:13px 20px;margin-bottom:8px;}
+  .bm-back{background:none;border:none;color:var(--charcoal-soft);font-weight:600;font-size:14px;cursor:pointer;padding:6px;}
   .good{padding:72px 0;}
   .good .section-head{margin-bottom:26px;}
   .good-grid{grid-template-columns:repeat(4,1fr);gap:10px;max-width:1100px;}
@@ -718,6 +734,7 @@ fbq('track','PageView');
     </div>
   </div>
   <div class="pop" id="projPop" hidden></div>
+  <div class="bm" id="bookModal" hidden role="dialog" aria-modal="true" aria-labelledby="bmTitle"><div class="bm-box" id="bmBox"></div></div>
 </section>
 
 <section class="studio" id="studio">
@@ -998,7 +1015,7 @@ const DOW=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
 const today=new Date(); today.setHours(0,0,0,0);
 const iso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 const parse=s=>{const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d);};
-let useSample=false, viewY=today.getFullYear(), viewM=today.getMonth(), selected=null, filterProj=null;
+let useSample=false, viewY=today.getFullYear(), viewM=today.getMonth(), selected=null, filterProj=null, selSess=null; // selSess = "date|start" of the chosen session
 const allSessions=()=> SESSIONS.filter(s=>parse(s.date)>=today).sort((a,b)=>(a.date+a.start).localeCompare(b.date+b.start));
 const sessions=()=> allSessions().filter(s=>!filterProj||s.project===filterProj);
 
@@ -1017,7 +1034,7 @@ function renderFilter(){
   const f=$('#pFilter');
   f.innerHTML=`<button class="pf ${!filterProj?'on':''}" type="button" data-p="">All projects</button>`+
     names.map(n=>`<button class="pf ${filterProj===n?'on':''} ${counts[n]?'':'zero'}" type="button" data-p="${n}" data-pop="${n}"><i style="background:${pc(n)}"></i>${n} <small>${counts[n]||0}</small></button>`).join('');
-  f.querySelectorAll('.pf').forEach(b=>b.onclick=()=>{filterProj=b.dataset.p||null;selected=null;jumpToStart();renderAll();});
+  f.querySelectorAll('.pf').forEach(b=>b.onclick=()=>{filterProj=b.dataset.p||null;selected=null;selSess=null;jumpToStart();renderAll();});
 }
 const holidayOn=k=>SCHOOL_HOLIDAYS.find(h=>k>=h.from&&k<=h.to);
 const fmtShort=s=>{const d=parse(s);return `${d.getDate()} ${MONTHS[d.getMonth()].slice(0,3)}`;};
@@ -1051,10 +1068,42 @@ function renderCal(){
     el.innerHTML=`<span class="dn">${d}</span>${ss?`<span class="chips">${ss.map(s=>`<span class="chip" style="background:${pc(s.project)}" data-pop="${s.project}" data-when="${fmtDay(dt)} · ${s.start}–${s.end}"><span class="t">${s.start}</span><span class="nm">${s.project}</span><span class="sh">${shortName(s.project)}</span></span>`).join('')}</span>`:''}`;
     if(ss){el.type='button';
       el.setAttribute('aria-label',`${d} ${MONTHS[viewM]}: ${ss.map(s=>s.project+' '+s.start).join(', ')}`);
-      el.onclick=()=>{selected=k;renderCal();renderList();const t=document.querySelector(`.srow[data-date="${k}"]`);t&&t.scrollIntoView({block:'nearest',behavior:'smooth'});};}
+      el.onclick=()=>{selected=k;selSess=ss.length===1?k+'|'+ss[0].start:(selSess&&selSess.startsWith(k+'|')?selSess:null);renderCal();renderList();const t=document.querySelector(`.srow[data-date="${k}"]`);t&&t.scrollIntoView({block:'nearest',behavior:'smooth'});};}
     g.appendChild(el);
   }
 }
+// booking reminder: Wix shows only dates and times, so the visitor must remember the date + start time of their project
+const chosen=()=>{if(!selSess)return null;const [d,t]=selSess.split('|');return allSessions().find(s=>s.date===d&&s.start===t)||null;};
+function remindHtml(){
+  const c=chosen();
+  if(!c) return selected
+    ? `<b>Two projects on this day.</b> Tap the one you want in the list above.`
+    : `<b>Tap your project's date first.</b> The booking page only shows dates and times, not the projects, so remember the date and start time of the project you want.`;
+  const d=parse(c.date);
+  return `<div class="pick"><i style="background:${pc(c.project)}"></i>${c.project}</div>On the booking page, choose <b>${fmtDay(d)} at ${c.start}</b>. It only shows dates and times, not the projects.`;
+}
+function openBookModal(){
+  const c=chosen(), m=$('#bookModal'), box=$('#bmBox');
+  if(c){const d=parse(c.date);
+    box.innerHTML=`<h4 id="bmTitle">Remember your date and time</h4>
+      <p>The booking page shows dates and times only, not the projects. Choose this one:</p>
+      <div class="bm-card"><div class="d" style="background:${pc(c.project)}"><b>${d.getDate()}</b><small>${MONTHS[d.getMonth()].slice(0,3)}</small></div>
+        <div class="n"><b>${c.project}</b><span>${fmtDay(d)} · ${c.start}–${c.end}</span></div></div>
+      <a class="btn btn-primary" href="${HOLIDAY_BOOK_URL}" target="_blank" rel="noopener" id="bmGo">Continue to booking &rarr;</a>
+      <button class="bm-back" type="button" id="bmBack">Choose another date</button>`;
+  } else {
+    box.innerHTML=`<h4 id="bmTitle">Pick your project's date first</h4>
+      <p>The booking page shows dates and times only, not the projects. Tap your project's date on the calendar first, so you know exactly which date and time to choose.</p>
+      <button class="btn btn-primary" type="button" id="bmBack">Pick a date</button>
+      <a class="bm-back" href="${HOLIDAY_BOOK_URL}" target="_blank" rel="noopener" id="bmGo">I know my date, continue &rarr;</a>`;
+  }
+  m.hidden=false; document.body.style.overflow='hidden';
+  const close=()=>{m.hidden=true;document.body.style.overflow='';};
+  $('#bmBack').onclick=close; $('#bmGo').addEventListener('click',()=>setTimeout(close,300));
+  m.onclick=e=>{if(e.target===m)close();};
+  ($('#bmGo').classList.contains('btn')?$('#bmGo'):$('#bmBack')).focus();
+}
+addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#bookModal').hidden){$('#bookModal').hidden=true;document.body.style.overflow='';}});
 function renderList(){
   const list=sessions(), box=$('#sessList');
   const note=`<p class="panel-note"><strong>Parties &amp; Craft Together</strong> run on almost any date, by request. <a href="#experiences">Request booking &rarr;</a></p>`;
@@ -1066,15 +1115,17 @@ function renderList(){
   } else {
     box.innerHTML=`<h3>${filterProj?filterProj:'Next dates'} <small>${list.length} date${list.length===1?'':'s'}</small>${useSample?'<span class="mock-flag">SAMPLE</span>':''}</h3>
       <div class="srows">${list.length?list.map(s=>{const d=parse(s.date);
-        return `<div class="srow ${selected===s.date?'sel':''}" data-date="${s.date}" data-pop="${s.project}" data-when="${fmtDay(d)} · ${s.start}–${s.end}">
+        return `<div class="srow ${selSess===s.date+'|'+s.start||(!selSess&&selected===s.date)?'sel':''}" data-date="${s.date}" data-key="${s.date}|${s.start}" data-pop="${s.project}" data-when="${fmtDay(d)} · ${s.start}–${s.end}">
           <div class="d" style="background:${pc(s.project)}"><b>${d.getDate()}</b><small>${MONTHS[d.getMonth()].slice(0,3)}</small></div>
           <div class="n"><b>${s.project}</b><span>${fmtDay(d)} · ${s.start}–${s.end}</span></div>
           </div>`;}).join('')
         :`<p class="panel-note" style="border:none;padding:0">No dates for this project yet. New dates are added before every school holiday.</p>`}</div>
-      <a class="btn btn-primary panel-book" href="${HOLIDAY_BOOK_URL}" target="_blank" rel="noopener">Book a date</a>
+      <div class="book-remind">${remindHtml()}</div>
+      <button class="btn btn-primary panel-book" type="button" id="bookBtn">Book a date</button>
       <a class="ws-more" href="holiday-projects.html${filterProj&&projInfo(filterProj)?'#'+projInfo(filterProj).id:''}">${filterProj?'More about the '+filterProj:'See all the projects'} &rarr;</a>${note}`;
   }
-  box.querySelectorAll('.srow').forEach(r=>r.onclick=()=>{selected=r.dataset.date;const d=parse(r.dataset.date);viewY=d.getFullYear();viewM=d.getMonth();renderCal();renderList();});
+  const bb=$('#bookBtn'); if(bb) bb.onclick=openBookModal;
+  box.querySelectorAll('.srow').forEach(r=>r.onclick=()=>{selected=r.dataset.date;selSess=r.dataset.key;const d=parse(r.dataset.date);viewY=d.getFullYear();viewM=d.getMonth();renderCal();renderList();});
 }
 function renderAll(){renderFilter();renderCal();renderList();}
 
