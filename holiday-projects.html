@@ -105,6 +105,14 @@ fbq('track','PageView');
   .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;}
   .hero-copy{min-width:0;}
   .hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:var(--white);font-size:13px;font-weight:600;padding:8px 18px;border-radius:100px;margin-bottom:18px;backdrop-filter:blur(6px);}
+  .hero-notice{display:inline-flex;align-items:center;gap:9px;background:var(--gold);color:var(--charcoal);font-size:13.5px;font-weight:600;padding:8px 16px 8px 12px;border-radius:100px;margin:0 0 12px;box-shadow:0 10px 24px -12px rgba(0,0,0,.45);width:max-content;max-width:100%;}
+  .hero-notice b{font-weight:800;}
+  .hero-notice:hover{transform:translateY(-2px);}
+  .hero-copy .hero-notice + .hero-badge{display:flex;width:max-content;}
+  .cal-notice{display:flex;gap:14px;align-items:flex-start;background:var(--gold-light);border:1px solid var(--gold);color:var(--charcoal);border-radius:18px;padding:16px 20px;margin:0 0 22px;}
+  .cal-notice svg{flex:0 0 auto;color:var(--red);margin-top:3px;}
+  .cal-notice p{font-size:15px;line-height:1.5;margin:0;}
+  .dec-notice[hidden]{display:none!important;}
   .hero-badge .pin{color:var(--gold);flex:0 0 auto;}
   .hero h1 em{position:relative;display:inline-block;}
   .hero h1 .swoosh{position:absolute;left:0;bottom:-.2em;width:62%;height:.26em;}
@@ -540,8 +548,9 @@ fbq('track','PageView');
     .brand-logo img{height:50px;}
     .hero{padding:96px 0 78px;align-items:flex-start;}
     .hero::after{content:'';position:absolute;left:-15%;right:-15%;bottom:-1px;height:64px;background:var(--cream);border-radius:50% 50% 0 0/100% 100% 0 0;z-index:1;}
-    .hero-grid{display:grid;grid-template-columns:54% 1fr;grid-template-areas:"badge badge" "title title" "lede photos" "ctas ctas";column-gap:10px;row-gap:0;align-items:start;}
+    .hero-grid{display:grid;grid-template-columns:54% 1fr;grid-template-areas:"notice notice" "badge badge" "title title" "lede photos" "ctas ctas";column-gap:10px;row-gap:0;align-items:start;}
     .hero-copy{display:contents;}
+    .hero-notice{grid-area:notice;font-size:13px;padding:8px 14px 8px 11px;margin-bottom:10px;}
     .hero-badge{grid-area:badge;justify-self:start;font-size:13.5px;padding:9px 16px 9px 12px;margin-bottom:18px;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3);}
     .hero h1{grid-area:title;font-size:clamp(44px,12.4vw,54px);line-height:1;margin:0 0 26px;letter-spacing:-.015em;}
     .hero h1 .swoosh{bottom:-.3em;width:70%;}
@@ -961,6 +970,44 @@ const PAGE = {
     "images/studio/studio-10.webp",
     "images/studio/studio-2.webp",
     "images/studio/studio-24.webp"
+   ]
+  },
+  {
+   "id": "serving-tray",
+   "name": "Serving Tray",
+   "level": "Hand & power tools",
+   "blurb": "A solid serving tray with cut-out handles on both ends, big enough for tea, snacks or breakfast in bed. Kids use real power tools, with supervision, to shape the handles and build a tray the family will use every day.",
+   "learn": [
+    "Measuring and marking a frame",
+    "Cutting handle slots with power tools, safely and under supervision",
+    "Building a square frame around a base",
+    "Gluing and fixing strong corners",
+    "Sanding the handles smooth and finishing"
+   ],
+   "photos": [
+    "images/projects/serving-tray.webp",
+    "images/studio/studio-12.webp",
+    "images/studio/studio-17.webp",
+    "images/studio/studio-9.webp"
+   ]
+  },
+  {
+   "id": "christmas-decor",
+   "name": "Christmas Decor Set",
+   "level": "Hand tools & glue",
+   "blurb": "A Christmas set to take home: a wooden cross with a rope hanger and a little tea-light house. A festive build for the December holidays that makes a lovely handmade gift.",
+   "learn": [
+    "Measuring and marking accurately",
+    "Cutting straight with a pull saw and mitre box",
+    "Cutting the angled roof pieces",
+    "Gluing and clamping small parts",
+    "Sanding and finishing for display"
+   ],
+   "photos": [
+    "images/projects/christmas-decor.webp",
+    "images/studio/studio-13.webp",
+    "images/studio/studio-22.webp",
+    "images/studio/studio-5.webp"
    ]
   }
  ]
