@@ -309,7 +309,7 @@ PAGES = {
    projectsTitle='Projects available these holidays',
    projectsIntro='',
    facts=[['Duration','1 day · 3 hrs'],['Ages','8–16'],['Group','Max 8 kids'],['Level','Beginner']],
-   price='R390', priceNote='per child, per project. All materials included.',
+   price='R370', priceNote='per child, per project. All materials included.',
    bookLabel='See dates & book', bookHref='index.html#calendar',
    altHtml='One-day experiences in the school holidays. Pick a date on the calendar.',
    included=['All timber, glue and hardware','Tools and safety gear at every bench','Step-by-step guidance from start to finish','A finished project to take home','A certificate of completion'],
