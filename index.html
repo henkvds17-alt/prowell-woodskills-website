@@ -907,7 +907,9 @@ const PROJECT_PREVIEW = [
   {id:"book-stand", name:"Book Stand", level:"Hand tools & glue",      short:"Book", line:"An angled stand for a recipe book, reading book or tablet.",   photo:"images/projects/book-stand.webp"},
   {id:"offcut-box", name:"Offcut Box", level:"Hand tools & glue",      short:"Box",  line:"A sturdy little box with grip handles for odds and ends.",     photo:"images/projects/offcut-box.webp"},
   {id:"key-rack",   name:"Key Rack", level:"Drill & screws · best for 12+",        short:"Keys", line:"A wall-mounted key rack with brass hooks, built with a drill.", photo:"images/projects/key-rack.webp"},
-  {id:"coat-hook",  name:"Hat / Coat Hook", level:"Drill & screws · best for 12+", short:"Hook", line:"A wall rail with wooden pegs for hats, coats and bags.",       photo:"images/projects/coat-hook.webp"}
+  {id:"coat-hook",  name:"Hat / Coat Hook", level:"Drill & screws · best for 12+", short:"Hook", line:"A wall rail with wooden pegs for hats, coats and bags.",       photo:"images/projects/coat-hook.webp"},
+  {id:"serving-tray",    name:"Serving Tray", level:"Hand tools & glue",    short:"Tray", line:"A pine tray with cut-out handles for tea, snacks or breakfast.", photo:"images/projects/serving-tray.webp"},
+  {id:"christmas-decor", name:"Christmas Decor", level:"Hand tools & glue", short:"Xmas", line:"A standing cross and a little nativity stable for Christmas.",  photo:"images/projects/christmas-decor.webp"}
 ];
 
 const studioPhotos = [3,4,9,16,12,23,7,13,10,5,21,17,2,18,8,24,6,11,19,20,1,15,22,14]
@@ -983,7 +985,7 @@ const sessions=()=> allSessions().filter(s=>!filterProj||s.project===filterProj)
 
 const fmtDay=d=>`${DOW[(d.getDay()+6)%7]} ${d.getDate()} ${MONTHS[d.getMonth()].slice(0,3)}`;
 /* One colour per project, so repeats are easy to spot on the calendar. Gold is reserved for school holidays. */
-const PROJECT_COLOURS=["#BF2626","#2E5E8C","#3F7D4E","#7A4E9C","#241C18","#C2571A"];
+const PROJECT_COLOURS=["#BF2626","#2E5E8C","#3F7D4E","#7A4E9C","#241C18","#C2571A","#1F7A75"];
 const projectOrder=[]; const pc=name=>{let i=projectOrder.indexOf(name); if(i<0){projectOrder.push(name); i=projectOrder.length-1;} return PROJECT_COLOURS[i%PROJECT_COLOURS.length];};
 PROJECT_PREVIEW.forEach(p=>pc(p.name));
 const projInfo=n=>PROJECT_PREVIEW.find(x=>x.name===n);
