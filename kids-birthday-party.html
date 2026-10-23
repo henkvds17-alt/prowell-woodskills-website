@@ -1012,10 +1012,10 @@ menu.querySelectorAll('a').forEach(a=>a.onclick=()=>{menu.classList.remove('open
   var page=(document.title||'').split('·')[0].trim();
   if(!/^Prowell WoodSkills$/.test(page)&&window.fbq)fbq('track','ViewContent',{content_name:page,content_category:'experience'});
   document.addEventListener('click',function(e){
-    var l=e.target.closest&&e.target.closest('a[href]'); if(!l||!window.fbq)return;
+    var l=e.target.closest&&e.target.closest('a[href]'); if(!l)return; var fb=window.fbq||function(){}, va=window.va||function(){};
     var h=l.getAttribute('href')||'', name=(l.innerText||'').trim().slice(0,60)||page;
-    if(/prowellwoodskills\.co\.za/i.test(l.href))fbq('track','InitiateCheckout',{content_name:name,content_category:'booking'});
-    else if(/^mailto:/i.test(h))fbq('track','Lead',{content_name:name});
+    if(/prowellwoodskills\.co\.za/i.test(l.href)){fb('track','InitiateCheckout',{content_name:name,content_category:'booking'});va('event',{name:'Book online click',data:{page:page,button:name}});}
+    else if(/^mailto:/i.test(h)){fb('track','Lead',{content_name:name});va('event',{name:'Request date click',data:{page:page,button:name}});}
   },true);
 })();
 </script>
