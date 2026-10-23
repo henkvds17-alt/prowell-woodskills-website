@@ -136,6 +136,17 @@ CSS = '''<style>
   .sizebadge small{font-family:var(--body);font-size:11.5px;font-weight:600;color:var(--gold-light);}
   .pblock .btn{align-self:flex-start;padding:12px 20px;font-size:14.5px;}
   @media(max-width:860px){.pblock{grid-template-columns:1fr;}}
+  /* idea collage (Craft Together): a light mosaic of options, not individual product pages */
+  .pblock.stack{grid-template-columns:1fr;}
+  .pblock.stack .how4{grid-template-columns:repeat(4,1fr);}
+  .collage-wrap{position:relative;max-height:430px;overflow:hidden;transition:max-height .5s var(--ease);}
+  .collage-wrap.open{max-height:none;}
+  .collage-wrap:not(.open)::after{content:'';position:absolute;left:0;right:0;bottom:0;height:120px;background:linear-gradient(rgba(255,255,255,0),var(--white));pointer-events:none;}
+  .collage{columns:6 140px;column-gap:10px;}
+  .collage img{display:block;width:100%;height:auto;margin:0 0 10px;break-inside:avoid;border-radius:12px;border:1px solid var(--cream-dark);background:#fff;padding:6px;}
+  .collage-more{align-self:center!important;background:none;border:2px solid var(--cream-dark);border-radius:100px;padding:9px 18px;font-weight:700;font-size:14px;color:var(--charcoal);cursor:pointer;}
+  .collage-more:hover{border-color:var(--red);color:var(--red);}
+  @media(max-width:860px){.pblock.stack .how4{grid-template-columns:1fr 1fr;}.collage{columns:3 100px;}.collage-wrap{max-height:520px;}}
   @media(max-width:640px){.how4{grid-template-columns:1fr;}.ideas{grid-template-columns:1fr 1fr;}.pblock .btn{width:100%;}}
   header.nav{background:rgba(251,243,236,.94);backdrop-filter:blur(10px);box-shadow:0 6px 24px -14px rgba(36,28,24,.25);}
   @media(max-width:980px){.facts{grid-template-columns:repeat(2,1fr);}}
@@ -285,9 +296,14 @@ if(PAGE.projects){
 // project options / how projects work
 if(PAGE.projectsBlock){
   const P=PAGE.projectsBlock, pb=$('#pblock'); pb.hidden=false; if(!P.how) pb.classList.add('single');
-  const ideas=`<div class="card"><h2>${P.ideasTitle}</h2>${P.ideasIntro?`<p>${P.ideasIntro}</p>`:''}<div class="ideas">${P.ideas.map(i=>`<div class="idea"><b>${i[0]}</b><span>${i[1]}</span></div>`).join('')}</div>${P.note?`<div class="pnote">${P.note}</div>`:''}</div>`;
+  const body=P.collage
+    ? `<div class="collage-wrap" id="collageWrap"><div class="collage">${P.collage.map(c=>`<img src="images/craft-ideas/${c[0]}.webp" alt="${c[1]}" title="${c[1]}" loading="lazy">`).join('')}</div></div><button class="collage-more" type="button" id="collageMore">See all ${P.collage.length} ideas</button>`
+    : `<div class="ideas">${P.ideas.map(i=>`<div class="idea"><b>${i[0]}</b><span>${i[1]}</span></div>`).join('')}</div>`;
+  const ideas=`<div class="card"><h2>${P.ideasTitle}</h2>${P.ideasIntro?`<p>${P.ideasIntro}</p>`:''}${body}${P.note?`<div class="pnote">${P.note}</div>`:''}</div>`;
   const how=P.how?`<div class="card"><h2>${P.how.title}</h2>${P.how.size?`<span class="sizebadge">${P.how.size}</span>`:''}<div class="how4">${P.how.steps.map((st,i)=>`<div><b><i>${i+1}</i>${st[0]}</b><span>${st[1]}</span></div>`).join('')}</div></div>`:'';
   pb.innerHTML=how+ideas;
+  if(P.collage){ pb.classList.add('stack'); const w=$('#collageWrap'), b=$('#collageMore');
+    b.onclick=()=>{const o=w.classList.toggle('open'); b.textContent=o?'Show fewer ideas':`See all ${P.collage.length} ideas`; if(!o) w.scrollIntoView({block:'nearest'});}; }
 }
 // nav (header stays solid on these pages)
 const menu=$('#mobileMenu'), hb=$('#hamburgerBtn'); $('#siteNav').classList.add('scrolled');
@@ -392,7 +408,9 @@ PAGES = {
               ['Send them 2 days before','So we can prepare the timber.'],
               ['Choose on the day','Each person builds <strong>any one</strong> of the 3.']]),
      ideasTitle='Project ideas to get you started',
-     ideas=[['Coaster Set','Four coasters, sanded and oiled.'],['Serving Board','A small board for cheese or snacks.'],['Candle Holder','A block holder for tea lights.'],['Phone Stand','A neat stand for your desk.'],['Mini Planter Box','For herbs or succulents.'],['House Number Sign','Your number, cut and finished.']],
+     ideasIntro='A few ideas of what groups build. Pick from these or bring your own idea: a photo is enough.',
+     # Idea collage: drop more photos into images/craft-ideas/ and add [file name without .webp, short description] here.
+     collage=[["tealight-steps", "Stepped tea-light holder"], ["toothbrush-holder", "Toothbrush holder"], ["tic-tac-toe", "Tic-tac-toe board"], ["cable-organiser", "Cable organiser"], ["desk-organiser", "Desk organiser"], ["soap-dish", "Soap dish"], ["ply-candles", "Plywood candle holders"], ["curtain-tieback", "Curtain tie-back"], ["glasses-stand", "Glasses stand"], ["wine-holder", "Wine and glass holder"], ["wine-caddy", "Wine glass caddy"], ["toothbrush-stand", "Toothbrush and toothpaste stand"], ["hanging-frame", "Hanging photo frame"], ["napkin-holder", "Napkin holder"], ["christmas-trees", "Wooden Christmas trees"], ["toilet-roll-holder", "Toilet roll holder"], ["toothpick-house", "Toothpick house"], ["magazine-holder", "Magazine holder"], ["paper-roll-holder", "Paper roll holder"], ["house-tealights", "House tea-light holders"], ["photo-frame", "Photo frame"]],
      note='Not sure if your idea will work? Include a photo when you book and we will confirm it fits the 20 × 20 × 20 cm size and the 3-hour session.',),
    videoLabel='Watch a group in action', video={'host':'youtube','id':''}, videoPoster={'local':L(22)},
    photos=[
