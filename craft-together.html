@@ -725,7 +725,8 @@ fbq('track','PageView');
   .collage-wrap.open{max-height:none;}
   .collage-wrap:not(.open)::after{content:'';position:absolute;left:0;right:0;bottom:0;height:120px;background:linear-gradient(rgba(255,255,255,0),var(--white));pointer-events:none;}
   .collage{columns:6 140px;column-gap:10px;}
-  .collage img{display:block;width:100%;height:auto;margin:0 0 10px;break-inside:avoid;border-radius:12px;border:1px solid var(--cream-dark);background:#fff;padding:6px;}
+  .collage img{display:block;width:100%;height:auto;margin:0 0 10px;break-inside:avoid;-webkit-column-break-inside:avoid;border-radius:12px;border:1px solid var(--cream-dark);background:#fff;padding:6px;color:transparent;font-size:0;}
+  /* no loading="lazy" here: Safari skips lazy images inside CSS columns, which showed the alt text instead of the photo */
   .collage-more{align-self:center!important;background:none;border:2px solid var(--cream-dark);border-radius:100px;padding:9px 18px;font-weight:700;font-size:14px;color:var(--charcoal);cursor:pointer;}
   .collage-more:hover{border-color:var(--red);color:var(--red);}
   @media(max-width:860px){.pblock.stack .how4{grid-template-columns:1fr 1fr;}.collage{columns:3 100px;}.collage-wrap{max-height:520px;}}
@@ -938,87 +939,129 @@ const PAGE = {
   "collage": [
    [
     "tealight-steps",
-    "Stepped tea-light holder"
+    "Stepped tea-light holder",
+    330,
+    235
    ],
    [
     "toothbrush-holder",
-    "Toothbrush holder"
+    "Toothbrush holder",
+    240,
+    400
    ],
    [
     "tic-tac-toe",
-    "Tic-tac-toe board"
+    "Tic-tac-toe board",
+    245,
+    215
    ],
    [
     "cable-organiser",
-    "Cable organiser"
+    "Cable organiser",
+    190,
+    195
    ],
    [
     "desk-organiser",
-    "Desk organiser"
+    "Desk organiser",
+    286,
+    320
    ],
    [
     "soap-dish",
-    "Soap dish"
+    "Soap dish",
+    335,
+    325
    ],
    [
     "ply-candles",
-    "Plywood candle holders"
+    "Plywood candle holders",
+    220,
+    275
    ],
    [
     "curtain-tieback",
-    "Curtain tie-back"
+    "Curtain tie-back",
+    235,
+    480
    ],
    [
     "glasses-stand",
-    "Glasses stand"
+    "Glasses stand",
+    277,
+    255
    ],
    [
     "wine-holder",
-    "Wine and glass holder"
+    "Wine and glass holder",
+    305,
+    270
    ],
    [
     "wine-caddy",
-    "Wine glass caddy"
+    "Wine glass caddy",
+    300,
+    195
    ],
    [
     "toothbrush-stand",
-    "Toothbrush and toothpaste stand"
+    "Toothbrush and toothpaste stand",
+    275,
+    385
    ],
    [
     "hanging-frame",
-    "Hanging photo frame"
+    "Hanging photo frame",
+    307,
+    310
    ],
    [
     "napkin-holder",
-    "Napkin holder"
+    "Napkin holder",
+    265,
+    225
    ],
    [
     "christmas-trees",
-    "Wooden Christmas trees"
+    "Wooden Christmas trees",
+    320,
+    385
    ],
    [
     "toilet-roll-holder",
-    "Toilet roll holder"
+    "Toilet roll holder",
+    310,
+    185
    ],
    [
     "toothpick-house",
-    "Toothpick house"
+    "Toothpick house",
+    215,
+    285
    ],
    [
     "magazine-holder",
-    "Magazine holder"
+    "Magazine holder",
+    395,
+    375
    ],
    [
     "paper-roll-holder",
-    "Paper roll holder"
+    "Paper roll holder",
+    315,
+    245
    ],
    [
     "house-tealights",
-    "House tea-light holders"
+    "House tea-light holders",
+    385,
+    335
    ],
    [
     "photo-frame",
-    "Photo frame"
+    "Photo frame",
+    290,
+    305
    ]
   ],
   "note": "Not sure if your idea will work? Include a photo when you book and we will confirm it fits the 20 × 20 × 20 cm size and the 3-hour session."
@@ -1161,7 +1204,7 @@ if(PAGE.projects){
 if(PAGE.projectsBlock){
   const P=PAGE.projectsBlock, pb=$('#pblock'); pb.hidden=false; if(!P.how) pb.classList.add('single');
   const body=P.collage
-    ? `<div class="collage-wrap" id="collageWrap"><div class="collage">${P.collage.map(c=>`<img src="images/craft-ideas/${c[0]}.webp" alt="${c[1]}" title="${c[1]}" loading="lazy">`).join('')}</div></div><button class="collage-more" type="button" id="collageMore">See all ${P.collage.length} ideas</button>`
+    ? `<div class="collage-wrap" id="collageWrap"><div class="collage">${P.collage.map(c=>`<img src="images/craft-ideas/${c[0]}.webp" alt="${c[1]}" title="${c[1]}"${c[2]?` width="${c[2]}" height="${c[3]}"`:''} decoding="async" onerror="this.remove()">`).join('')}</div></div><button class="collage-more" type="button" id="collageMore">See all ${P.collage.length} ideas</button>`
     : `<div class="ideas">${P.ideas.map(i=>`<div class="idea"><b>${i[0]}</b><span>${i[1]}</span></div>`).join('')}</div>`;
   const ideas=`<div class="card"><h2>${P.ideasTitle}</h2>${P.ideasIntro?`<p>${P.ideasIntro}</p>`:''}${body}${P.note?`<div class="pnote">${P.note}</div>`:''}</div>`;
   const how=P.how?`<div class="card"><h2>${P.how.title}</h2>${P.how.size?`<span class="sizebadge">${P.how.size}</span>`:''}<div class="how4">${P.how.steps.map((st,i)=>`<div><b><i>${i+1}</i>${st[0]}</b><span>${st[1]}</span></div>`).join('')}</div></div>`:'';
