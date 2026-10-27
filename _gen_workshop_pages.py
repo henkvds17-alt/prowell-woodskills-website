@@ -350,7 +350,7 @@ PAGES = {
        blurb='A wall-mounted key rack with brass hooks. Kids step up to a cordless drill and screws to build something that hangs by the front door for years.',
        learn=['Using a cordless drill safely','Pre-drilling and screwing joints','Fitting brass hooks','Building a frame','Finishing with wood oil'],
        photos=['images/projects/key-rack.webp']+SP([13,14,7])),
-     dict(id='coat-hook', name='Hat / Coat Hook', level='Drill & screws · best for 12+',
+     dict(id='coat-hook', name='Coat Rack', level='Drill & screws · best for 12+',
        blurb='A wall rail with wooden pegs for hats, coats and school bags. A bigger, stronger build that uses a drill and screws, and finally gives the school bag a home.',
        learn=['Measuring and spacing pegs evenly','Drilling and screwing pegs to a rail','Making strong joints that carry weight','Sanding and finishing with wood oil','Planning a project from start to finish'],
        photos=['images/projects/coat-hook.webp']+SP([10,2,24])),
