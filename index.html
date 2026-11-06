@@ -117,6 +117,8 @@ fbq('track','PageView');
   .cal-notice p{font-size:15px;line-height:1.5;margin:0;}
   .dec-notice[hidden]{display:none!important;}
   .promo-notice[hidden]{display:none!important;}
+  .ws-promo{display:flex;flex-direction:column;gap:2px;background:var(--gold-light);border:1px solid var(--gold);color:var(--charcoal);border-radius:14px;padding:10px 14px;margin:0 0 14px;font-size:14.5px;line-height:1.45;}
+  .ws-promo b{font-weight:800;}
   .hero-badge .pin{color:var(--gold);flex:0 0 auto;}
   .hero h1 em{position:relative;display:inline-block;}
   .hero h1 .swoosh{position:absolute;left:0;bottom:-.2em;width:62%;height:.26em;}
@@ -894,6 +896,7 @@ const workshops = [
     blurb:"One day in the school holidays building a project from start to finish. Choose your project when you book.",
     more:{label:"Read more", href:"holiday-projects.html"},
     facts:[["Duration","1 day · 3 hrs"],["Group","Max 8 kids"],["Level","Beginner"],["Language","Afr & Eng"]],
+    promo:{until:"2026-12-01T00:00:00+02:00", title:"Early-bird special", text:"Book all 8 spots in one booking and get 20% off. Bring the cousins, friends or the whole class."},
     price:"R370", priceNote:"per child, per project, materials included",
     booking:"online", cta:"See dates & book", href:"#calendar" },
   { name:"Kids Birthday Party", audience:"Kids", tag:"Kids · ages 8–16", photo:"images/studio/studio-23.webp",
@@ -1005,6 +1008,7 @@ workshops.forEach(w=>{
       <span class="ws-tag">${w.tag}</span>
       <h3>${w.name}</h3>
       <p>${w.blurb}</p>
+      ${w.promo&&new Date()<new Date(w.promo.until)?`<div class="ws-promo"><b>🎉 ${w.promo.title}</b><span>${w.promo.text}</span></div>`:''}
       <dl class="ws-facts">${w.facts.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
       <div class="ws-price"><strong>${w.price}</strong><span>${w.priceNote}</span></div>
       <a class="btn ${w.booking==='online'?'btn-primary':'btn-dark'}" href="${w.href}" ${ext?'target="_blank" rel="noopener"':''}>${w.cta}</a>
