@@ -116,6 +116,7 @@ fbq('track','PageView');
   .cal-notice svg{flex:0 0 auto;color:var(--red);margin-top:3px;}
   .cal-notice p{font-size:15px;line-height:1.5;margin:0;}
   .dec-notice[hidden]{display:none!important;}
+  .promo-notice[hidden]{display:none!important;}
   .hero-badge .pin{color:var(--gold);flex:0 0 auto;}
   .hero h1 em{position:relative;display:inline-block;}
   .hero h1 .swoosh{position:absolute;left:0;bottom:-.2em;width:62%;height:.26em;}
@@ -634,6 +635,7 @@ fbq('track','PageView');
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <a class="hero-notice dec-notice" href="#calendar" hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg><span><b>December holiday dates</b> will be released soon</span></a>
+      <a class="hero-notice promo-notice" href="#calendar" hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg><span><b>Early bird:</b> book all 8 spots, get 20% off</span></a>
       <div class="hero-badge"><svg class="pin" width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.6A2.6 2.6 0 1 1 12 6.4a2.6 2.6 0 0 1 0 5.2z"/></svg> Woodworking studio in Paarl</div>
       <h1>Hands-on fun<br><em>for all.<svg class="swoosh" viewBox="0 0 200 18" preserveAspectRatio="none" aria-hidden="true"><path d="M4 13C55 4 135 3 196 9" fill="none" stroke="#E0A83E" stroke-width="6" stroke-linecap="round"/></svg></em></h1>
       <p class="lede">Discover the joy of making something with your own hands. Hands-on woodworking experiences for kids and adults.</p>
@@ -721,6 +723,7 @@ fbq('track','PageView');
       <p>One-day experiences. Pick a project to see only its dates, or tap a day to book.</p>
     </div>
     <div class="cal-notice dec-notice reveal" hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg><p><b>December holiday dates will be released soon.</b> We're planning the summer holiday experiences now, so check back here soon.</p></div>
+    <div class="cal-notice promo-notice reveal" hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg><p><b>Early-bird special: book all 8 spots in one booking and get 20% off.</b> Bring the cousins, friends or the whole class. Book before 1 December.</p></div>
     <div class="cal-shell">
       <div class="cal-card reveal">
         <div class="cal-top">
@@ -1197,6 +1200,8 @@ if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: red
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target);}}),{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>{if(el.getBoundingClientRect().top>innerHeight){el.classList.add('pre');io.observe(el);}});
 }
+/* Early-bird group special (book 8, 20% off): shows until 1 Dec 2026, then hides itself. Discount runs automatically in Wix. */
+if(new Date()<new Date("2026-12-01T00:00:00+02:00")) document.querySelectorAll('.promo-notice').forEach(e=>e.hidden=false);
 /* December-holiday notice: shows until a session in the summer school holiday (10 Dec 2026 – 12 Jan 2027) is added to SESSIONS, then hides itself. */
 (function(){const hasDec=SESSIONS.some(s=>s.date>="2026-12-10"&&s.date<="2027-01-12"); const over=new Date()>new Date("2027-01-12");
   if(!hasDec&&!over) document.querySelectorAll('.dec-notice').forEach(e=>{ if(e.classList.contains('cal-notice')&&!SESSIONS.length) return; /* empty calendar already says dates are coming */ e.hidden=false;});})();
