@@ -742,6 +742,7 @@ fbq('track','PageView');
 
 <main class="pd" id="top">
   <div class="wrap">
+    <div class="cal-notice promo-notice" hidden style="margin-top:14px"><span style="font-size:22px;line-height:1">🎉</span><p style="margin:0"><b>Early-bird special until 20 November: book all 8 spots in one booking and get 20% off.</b> Bring the cousins, friends or the whole class. <a href="index.html#calendar" style="color:inherit;font-weight:700">See the dates &rarr;</a></p></div>
     <nav class="crumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="index.html#experiences">Experiences</a><span>/</span><span id="crumbName"></span></nav>
     <div class="picker" id="picker" hidden></div>
     <div class="pd-grid">
@@ -1126,3 +1127,5 @@ menu.querySelectorAll('a').forEach(a=>a.onclick=()=>{menu.classList.remove('open
   },true);
 })();
 </script>
+<script>/* Early-bird special: shows until 20 Nov 2026, then hides itself. Discount runs automatically in Wix. */
+if(new Date()<new Date("2026-11-21T00:00:00+02:00")) document.querySelectorAll(".promo-notice").forEach(e=>e.hidden=false);</script>
