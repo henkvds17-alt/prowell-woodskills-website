@@ -26,6 +26,14 @@ fbq('track','PageView');
 <style>
   /* Layout: one-page scroll, same system as The Woodworking Guy site (red hero → cream sections → charcoal studio band → red final CTA).
      Single deliberate light look, matching the TWG brand. Every colour set explicitly. */
+  .signup{margin-top:22px;padding-top:20px;border-top:1px solid rgba(0,0,0,.08);}
+  .signup h4{margin:0 0 4px;font-family:var(--display);font-size:20px;}
+  .signup p{margin:0 0 12px;font-size:14px;}
+  .signup form{display:flex;flex-direction:column;gap:8px;}
+  .signup input{padding:12px 14px;border:1.5px solid #ddd;border-radius:12px;font:inherit;font-size:15px;}
+  .signup input:focus{outline:none;border-color:var(--red);}
+  .signup .hp{position:absolute;left:-9999px;}
+  .signup .msg{font-size:14px;font-weight:700;margin-top:4px;}
   :root{
     --red:#BF2626; --red-dark:#8B1D1D; --red-deep:#6E1616;
     --gold:#E0A83E; --gold-light:#F3D9A4;
@@ -821,6 +829,17 @@ fbq('track','PageView');
       <p>Parties and group sessions are booked by request. Send your date, time and group size.</p>
       <div class="contact-row"><div><span class="lbl">Email</span><span class="val">henkvds17@gmail.com</span></div></div>
       <a class="btn btn-primary" id="emailBtn" href="mailto:henkvds17@gmail.com?subject=Question%20about%20Prowell%20WoodSkills&body=Hi%20Henk%21%20My%20name%20is%20%5Byour%20name%5D%20and%20I%20have%20a%20question%20about%20Prowell%20WoodSkills%3A%0A%0A%5Byour%20question%5D%0A%0AThank%20you%21">Email Henk</a>
+      <div class="signup">
+        <h4>Get the holiday dates first</h4>
+        <p>One short email when new holiday projects open. Unsubscribe any time.</p>
+        <form id="signupForm" novalidate>
+          <input name="first" type="text" placeholder="Your first name" autocomplete="given-name" maxlength="60">
+          <input name="email" type="email" placeholder="Your email" autocomplete="email" required>
+          <input name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn btn-dark" type="submit">Keep me posted</button>
+          <div class="msg" id="signupMsg" role="status"></div>
+        </form>
+      </div>
     </div>
   </div>
 </section>
@@ -1224,4 +1243,15 @@ if(new Date()<new Date("2026-11-21T00:00:00+02:00")) document.querySelectorAll('
     else if(/^mailto:/i.test(h)){fb('track','Lead',{content_name:name});va('event',{name:'Request date click',data:{page:page,button:name}});}
   },true);
 })();
+</script>
+
+<script>
+/* Holiday list sign-up -> /api/subscribe -> Wix contact with the "PWS Holiday list" label */
+(function(){var f=document.getElementById('signupForm');if(!f)return;var m=document.getElementById('signupMsg');
+f.addEventListener('submit',function(e){e.preventDefault();var d={first:f.first.value.trim(),email:f.email.value.trim(),website:f.website.value};
+if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email)||d.email.indexOf('..')>-1){m.style.color='var(--red)';m.textContent='Please check your email address.';return;}
+var b=f.querySelector('button');b.disabled=true;m.style.color='';m.textContent='Saving…';
+fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}).then(function(r){return r.json().then(function(j){return r.ok&&j.ok;});})
+.then(function(ok){if(ok){f.reset();m.style.color='#2E7D32';m.textContent='Thanks! You’re on the list.';try{fbq('track','Lead',{content_name:'Holiday list sign-up'});}catch(_){}}else throw 0;})
+.catch(function(){m.style.color='var(--red)';m.textContent='Sorry, that didn’t work. Please email henkvds17@gmail.com instead.';}).finally(function(){b.disabled=false;});});})();
 </script>
