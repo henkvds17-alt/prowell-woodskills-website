@@ -1059,7 +1059,12 @@ const fmtShort=s=>{const d=parse(s);return `${d.getDate()} ${MONTHS[d.getMonth()
 const nextHoliday=()=>SCHOOL_HOLIDAYS.find(h=>h.to>=iso(today));
 function jumpToStart(){ // open on first (filtered) workshop month, else on the next school holiday month
   const f=sessions()[0], h=nextHoliday();
-  const d=f?parse(f.date):(h?parse(h.from<iso(today)?iso(today):h.from):today);
+  let d=f?parse(f.date):(h?parse(h.from<iso(today)?iso(today):h.from):today);
+  if(f){ // if the first month has only 1-2 dates and the next month has more, open on the busier month (the list still shows the early date first)
+    const ym=x=>x.slice(0,7), all=sessions(), m1=ym(f.date);
+    const n1=all.filter(s=>ym(s.date)===m1).length, nxt=all.find(s=>ym(s.date)>m1);
+    if(nxt && n1<3 && all.filter(s=>ym(s.date)===ym(nxt.date)).length>n1) d=parse(nxt.date);
+  }
   viewY=d.getFullYear(); viewM=d.getMonth();
 }
 function renderHolBanner(){
