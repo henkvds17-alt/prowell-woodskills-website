@@ -283,6 +283,7 @@ fbq('track','PageView');
   .sess-extras{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;}
   .sess-info h4 i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:7px;vertical-align:1px;}
   .cal-day.empty{background:transparent;}
+  .cal-day.other{border-style:dashed;border-color:rgba(122,31,31,.35);} .cal-day.other .dn{font-size:11px;}
   .cal-day.past{color:rgba(90,76,69,.4);background:transparent;}
   .cal-day.today{border-color:var(--gold);}
   .cal-day.has{color:var(--red-dark);font-weight:800;cursor:pointer;box-shadow:inset 0 0 0 1.5px rgba(191,38,38,.35);transition:box-shadow .2s,transform .2s;}
@@ -1086,16 +1087,18 @@ function renderCal(){
   $('#calPrev').disabled = (viewY===today.getFullYear() && viewM===today.getMonth());
   const g=$('#calGrid'); g.innerHTML=DOW.map(d=>`<div class="cal-dow">${d}</div>`).join('');
   const first=new Date(viewY,viewM,1), lead=(first.getDay()+6)%7, days=new Date(viewY,viewM+1,0).getDate();
-  for(let i=0;i<lead;i++) g.insertAdjacentHTML('beforeend','<div class="cal-day empty"></div>');
-  for(let d=1;d<=days;d++){
-    const dt=new Date(viewY,viewM,d), k=iso(dt), ss=byDate[k];
-    let cls='cal-day'; if(dt<today) cls+=' past'; if(+dt===+today) cls+=' today';
+  // days of the previous/next month that share a week with this month are shown too (muted), so e.g. a Monday 30 Nov session shows in the December view
+  const cells=Math.ceil((lead+days)/7)*7;
+  for(let i=0;i<cells;i++){
+    const dt=new Date(viewY,viewM,1-lead+i), k=iso(dt), ss=byDate[k], other=dt.getMonth()!==viewM, d=dt.getDate();
+    if(other&&!ss){g.insertAdjacentHTML('beforeend','<div class="cal-day empty"></div>');continue;}
+    let cls='cal-day'+(other?' other':''); if(dt<today) cls+=' past'; if(+dt===+today) cls+=' today';
     if(holidayOn(k) && dt>=today) cls+=' hol';
     if(ss){cls+=' has'; if(selected===k) cls+=' sel';}
     const el=document.createElement(ss?'button':'div'); el.className=cls;
-    el.innerHTML=`<span class="dn">${d}</span>${ss?`<span class="chips">${ss.map(s=>`<span class="chip${s.full?' full':''}" style="background:${pc(s.project)}" data-key="${k}|${s.start}" data-pop="${s.project}" data-when="${fmtDay(dt)} · ${s.start}–${s.end}${s.full?' · FULLY BOOKED':(s.left?' · '+spotsTxt(s.left):'')}"><span class="t">${s.start}</span><span class="nm">${s.project}</span><span class="sh">${shortName(s.project)}</span>${s.full?'<span class="fl">Full</span>':(s.left?`<span class="lf">${s.left} left</span>`:'')}</span>`).join('')}</span>`:''}`;
+    el.innerHTML=`<span class="dn">${other?d+' '+MONTHS[dt.getMonth()].slice(0,3):d}</span>${ss?`<span class="chips">${ss.map(s=>`<span class="chip${s.full?' full':''}" style="background:${pc(s.project)}" data-key="${k}|${s.start}" data-pop="${s.project}" data-when="${fmtDay(dt)} · ${s.start}–${s.end}${s.full?' · FULLY BOOKED':(s.left?' · '+spotsTxt(s.left):'')}"><span class="t">${s.start}</span><span class="nm">${s.project}</span><span class="sh">${shortName(s.project)}</span>${s.full?'<span class="fl">Full</span>':(s.left?`<span class="lf">${s.left} left</span>`:'')}</span>`).join('')}</span>`:''}`;
     if(ss){el.type='button';
-      el.setAttribute('aria-label',`${d} ${MONTHS[viewM]}: ${ss.map(s=>s.project+' '+s.start).join(', ')}`);
+      el.setAttribute('aria-label',`${d} ${MONTHS[dt.getMonth()]}: ${ss.map(s=>s.project+' '+s.start).join(', ')}`);
       el.onclick=e=>{const ch=e.target.closest('.chip'); selected=k; selSess=ch?ch.dataset.key:(ss.length===1?k+'|'+ss[0].start:(selSess&&selSess.startsWith(k+'|')?selSess:null));renderCal();renderList();const t=document.querySelector(selSess?`.srow[data-key="${selSess}"]`:`.srow[data-date="${k}"]`);t&&t.scrollIntoView({block:'nearest',behavior:'smooth'});};}
     g.appendChild(el);
   }
