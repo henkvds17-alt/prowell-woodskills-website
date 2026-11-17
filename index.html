@@ -272,7 +272,8 @@ fbq('track','PageView');
   .chip .fl{display:block;font-size:9px;letter-spacing:.06em;text-transform:uppercase;}
   .srow.full{opacity:.6;} .srow.full .n b{text-decoration:line-through;}
   .sbadge{display:inline-block;font-style:normal;margin-left:6px;font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:100px;vertical-align:1px;}
-  .sbadge.full{background:#E7E1DC;color:var(--charcoal);} .sbadge.low{background:var(--red);color:var(--white);}
+  .sbadge.full{background:#E7E1DC;color:var(--charcoal);} .sbadge.low{background:var(--red);color:var(--white);} .sbadge.ok{background:#2F6B3A;color:var(--white);}
+  .chip .lf{display:block;font-size:9px;font-weight:600;opacity:.95;}
   .chip .sh{display:none;}
   .proj-key{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;}
   .proj-key span{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;background:var(--cream);border-radius:100px;padding:5px 12px 5px 6px;}
@@ -923,28 +924,28 @@ const workshops = [
    Format: date "YYYY-MM-DD", start/end "HH:MM", project = name shown on the calendar
    (should match a project on holiday-projects.html). Availability/spots are handled by Wix.
    December 2026 holiday schedule (Granola "Holiday workshops schedule", 23 Oct 2026). Add the same sessions in Wix. */
-/* Optional per session: full:true = fully booked (greyed out, can't be chosen); left:N = "Only N spots left".
-   Kept in sync with Wix by the daily "Prowell WoodSkills fully booked check". */
+/* Per session: full:true = fully booked (greyed out, can't be chosen); left:N = exact spots left (shown on every session, red at 2 or fewer).
+   Kept in sync with Wix every 4 hours by the scheduled task "Prowell WoodSkills spots left sync". */
 const SESSIONS = [
-  {date:"2026-11-30", start:"14:00", end:"17:00", project:"Book Stand"},
-  {date:"2026-12-01", start:"14:00", end:"17:00", project:"Key Rack"},
-  {date:"2026-12-02", start:"14:00", end:"17:00", project:"Serving Tray"},
-  {date:"2026-12-03", start:"14:00", end:"17:00", project:"Coat Rack"},
-  {date:"2026-12-04", start:"14:00", end:"17:00", project:"Christmas Decor Set"},
-  {date:"2026-12-07", start:"08:30", end:"11:30", project:"Christmas Decor Set"},
-  {date:"2026-12-07", start:"14:00", end:"17:00", project:"Book Stand"},
-  {date:"2026-12-08", start:"08:30", end:"11:30", project:"Serving Tray"},
-  {date:"2026-12-08", start:"14:00", end:"17:00", project:"Offcut Box"},
-  {date:"2026-12-09", start:"08:30", end:"11:30", project:"Key Rack"},
-  {date:"2026-12-09", start:"14:00", end:"17:00", project:"Christmas Decor Set"},
+  {date:"2026-11-30", start:"14:00", end:"17:00", project:"Book Stand", left:4},
+  {date:"2026-12-01", start:"14:00", end:"17:00", project:"Key Rack", left:8},
+  {date:"2026-12-02", start:"14:00", end:"17:00", project:"Serving Tray", left:6},
+  {date:"2026-12-03", start:"14:00", end:"17:00", project:"Coat Rack", left:8},
+  {date:"2026-12-04", start:"14:00", end:"17:00", project:"Christmas Decor Set", left:8},
+  {date:"2026-12-07", start:"08:30", end:"11:30", project:"Christmas Decor Set", left:7},
+  {date:"2026-12-07", start:"14:00", end:"17:00", project:"Book Stand", left:8},
+  {date:"2026-12-08", start:"08:30", end:"11:30", project:"Serving Tray", left:7},
+  {date:"2026-12-08", start:"14:00", end:"17:00", project:"Offcut Box", left:4},
+  {date:"2026-12-09", start:"08:30", end:"11:30", project:"Key Rack", left:6},
+  {date:"2026-12-09", start:"14:00", end:"17:00", project:"Christmas Decor Set", left:7},
   {date:"2026-12-10", start:"08:30", end:"11:30", project:"Coat Rack", full:true},
-  {date:"2026-12-10", start:"14:00", end:"17:00", project:"Serving Tray"},
+  {date:"2026-12-10", start:"14:00", end:"17:00", project:"Serving Tray", left:5},
   {date:"2026-12-11", start:"08:30", end:"11:30", project:"Book Stand", left:3},
-  {date:"2026-12-11", start:"14:00", end:"17:00", project:"Christmas Decor Set"},
-  {date:"2026-12-14", start:"08:30", end:"11:30", project:"Offcut Box"},
-  {date:"2026-12-14", start:"14:00", end:"17:00", project:"Key Rack"},
+  {date:"2026-12-11", start:"14:00", end:"17:00", project:"Christmas Decor Set", left:6},
+  {date:"2026-12-14", start:"08:30", end:"11:30", project:"Offcut Box", left:3},
+  {date:"2026-12-14", start:"14:00", end:"17:00", project:"Key Rack", left:8},
   {date:"2026-12-15", start:"08:30", end:"11:30", project:"Christmas Decor Set", left:1},
-  {date:"2026-12-15", start:"14:00", end:"17:00", project:"Coat Rack"}
+  {date:"2026-12-15", start:"14:00", end:"17:00", project:"Coat Rack", left:6}
 ];
 
 /* PUBLIC SCHOOL HOLIDAYS (learners) — national DBE calendar, followed by all provinces incl. Western Cape.
@@ -1037,6 +1038,7 @@ const today=new Date(); today.setHours(0,0,0,0);
 const iso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 const parse=s=>{const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d);};
 let useSample=false, viewY=today.getFullYear(), viewM=today.getMonth(), selected=null, filterProj=null, selSess=null; // selSess = "date|start" of the chosen session
+const spotsTxt=n=>`${n} spot${n===1?'':'s'} left`;
 const allSessions=()=> SESSIONS.filter(s=>parse(s.date)>=today).sort((a,b)=>(a.date+a.start).localeCompare(b.date+b.start));
 const sessions=()=> allSessions().filter(s=>!filterProj||s.project===filterProj);
 
@@ -1091,7 +1093,7 @@ function renderCal(){
     if(holidayOn(k) && dt>=today) cls+=' hol';
     if(ss){cls+=' has'; if(selected===k) cls+=' sel';}
     const el=document.createElement(ss?'button':'div'); el.className=cls;
-    el.innerHTML=`<span class="dn">${d}</span>${ss?`<span class="chips">${ss.map(s=>`<span class="chip${s.full?' full':''}" style="background:${pc(s.project)}" data-key="${k}|${s.start}" data-pop="${s.project}" data-when="${fmtDay(dt)} · ${s.start}–${s.end}${s.full?' · FULLY BOOKED':''}"><span class="t">${s.start}</span><span class="nm">${s.project}</span><span class="sh">${shortName(s.project)}</span>${s.full?'<span class="fl">Full</span>':''}</span>`).join('')}</span>`:''}`;
+    el.innerHTML=`<span class="dn">${d}</span>${ss?`<span class="chips">${ss.map(s=>`<span class="chip${s.full?' full':''}" style="background:${pc(s.project)}" data-key="${k}|${s.start}" data-pop="${s.project}" data-when="${fmtDay(dt)} · ${s.start}–${s.end}${s.full?' · FULLY BOOKED':(s.left?' · '+spotsTxt(s.left):'')}"><span class="t">${s.start}</span><span class="nm">${s.project}</span><span class="sh">${shortName(s.project)}</span>${s.full?'<span class="fl">Full</span>':(s.left?`<span class="lf">${s.left} left</span>`:'')}</span>`).join('')}</span>`:''}`;
     if(ss){el.type='button';
       el.setAttribute('aria-label',`${d} ${MONTHS[viewM]}: ${ss.map(s=>s.project+' '+s.start).join(', ')}`);
       el.onclick=e=>{const ch=e.target.closest('.chip'); selected=k; selSess=ch?ch.dataset.key:(ss.length===1?k+'|'+ss[0].start:(selSess&&selSess.startsWith(k+'|')?selSess:null));renderCal();renderList();const t=document.querySelector(selSess?`.srow[data-key="${selSess}"]`:`.srow[data-date="${k}"]`);t&&t.scrollIntoView({block:'nearest',behavior:'smooth'});};}
@@ -1148,7 +1150,7 @@ function renderList(){
       <div class="srows">${list.length?list.map(s=>{const d=parse(s.date);
         return `<div class="srow ${s.full?'full ':''}${selSess===s.date+'|'+s.start||(!selSess&&selected===s.date)?'sel':''}" data-date="${s.date}" data-key="${s.date}|${s.start}" data-pop="${s.project}" data-when="${fmtDay(d)} · ${s.start}–${s.end}">
           <div class="d" style="background:${pc(s.project)}"><b>${d.getDate()}</b><small>${MONTHS[d.getMonth()].slice(0,3)}</small></div>
-          <div class="n"><b>${s.project}</b><span>${fmtDay(d)} · ${s.start}–${s.end}${s.full?'<i class="sbadge full">Fully booked</i>':(s.left?`<i class="sbadge low">Only ${s.left} spot${s.left===1?'':'s'} left</i>`:'')}</span></div>
+          <div class="n"><b>${s.project}</b><span>${fmtDay(d)} · ${s.start}–${s.end}${s.full?'<i class="sbadge full">Fully booked</i>':(s.left?`<i class="sbadge ${s.left<=2?'low':'ok'}">${spotsTxt(s.left)}</i>`:'')}</span></div>
           </div>`;}).join('')
         :`<p class="panel-note" style="border:none;padding:0">No dates for this project yet. New dates are added before every school holiday.</p>`}</div>
       <div class="book-remind">${remindHtml()}</div>
