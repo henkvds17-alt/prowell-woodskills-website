@@ -926,15 +926,15 @@ const workshops = [
    (should match a project on holiday-projects.html). Availability/spots are handled by Wix.
    December 2026 holiday schedule (Granola "Holiday workshops schedule", 23 Oct 2026). Add the same sessions in Wix. */
 /* Per session: full:true = fully booked (greyed out, can't be chosen); left:N = exact spots left (shown on every session, red at 2 or fewer).
-   Kept in sync with Wix every 4 hours by the scheduled task "Prowell WoodSkills spots left sync". Last synced 26 Nov 2026 09:45 (4 Dec 14:00 cancelled; 9 Dec 14:00 full). */
+   Kept in sync with Wix every 4 hours by the scheduled task "Prowell WoodSkills spots left sync". Last synced 27 Nov 2026 12:40 (matches Wix). */
 const SESSIONS = [
-  {date:"2026-11-30", start:"14:00", end:"17:00", project:"Book Stand", left:2},
+  {date:"2026-11-30", start:"14:00", end:"17:00", project:"Book Stand", left:3},
   {date:"2026-12-02", start:"14:00", end:"17:00", project:"Serving Tray", left:6},
   {date:"2026-12-03", start:"14:00", end:"17:00", project:"Coat Rack", left:8},
   {date:"2026-12-07", start:"08:30", end:"11:30", project:"Christmas Decor Set", left:2},
   {date:"2026-12-07", start:"14:00", end:"17:00", project:"Book Stand", left:8},
   {date:"2026-12-08", start:"08:30", end:"11:30", project:"Serving Tray", left:2},
-  {date:"2026-12-08", start:"14:00", end:"17:00", project:"Offcut Box", left:4},
+  {date:"2026-12-08", start:"14:00", end:"17:00", project:"Offcut Box", left:2},
   {date:"2026-12-09", start:"08:30", end:"11:30", project:"Key Rack", left:5},
   {date:"2026-12-09", start:"14:00", end:"17:00", project:"Christmas Decor Set", full:true},
   {date:"2026-12-10", start:"08:30", end:"11:30", project:"Coat Rack", full:true},
@@ -943,7 +943,7 @@ const SESSIONS = [
   {date:"2026-12-11", start:"14:00", end:"17:00", project:"Christmas Decor Set", left:6},
   {date:"2026-12-14", start:"08:30", end:"11:30", project:"Offcut Box", full:true},
   {date:"2026-12-14", start:"14:00", end:"17:00", project:"Key Rack", left:8},
-  {date:"2026-12-15", start:"08:30", end:"11:30", project:"Christmas Decor Set", left:1},
+  {date:"2026-12-15", start:"08:30", end:"11:30", project:"Christmas Decor Set", full:true},
   {date:"2026-12-15", start:"14:00", end:"17:00", project:"Coat Rack", left:3}
 ];
 
